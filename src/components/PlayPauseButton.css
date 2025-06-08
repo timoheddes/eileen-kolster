@@ -1,0 +1,20 @@
+.play-button {
+  background: #34424b;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+.play-button:hover {
+  transform: scale(1.05);
+}
+.play-button svg {
+  width: 24px;
+  height: 24px;
+}

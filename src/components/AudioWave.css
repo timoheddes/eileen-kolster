@@ -1,0 +1,31 @@
+.audio-wave {
+  z-index: 1;
+  width: 100%;
+  max-width: 600px;
+}
+
+.audio-wave-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background-color: #ffffff;
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.audio-wave-title {
+  margin: 0;
+  /* color: #343f49; */
+  margin-bottom: 14px;
+  font-size: 1.2em;
+  cursor: default;
+}
+
+/* The div where WaveSurfer will draw the waveform */
+.waveform {
+  width: 100%;
+  height: 80px; /* Set a fixed height for the waveform */
+  cursor: col-resize;
+}
