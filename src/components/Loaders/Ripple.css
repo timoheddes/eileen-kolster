@@ -1,0 +1,16 @@
+.ripple-container {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ripple-circle {
+  width: 10rem;
+  height: 10rem;
+  background-color: #34424b;
+  border-radius: 50%;
+  position: absolute;
+}

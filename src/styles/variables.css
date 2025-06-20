@@ -1,0 +1,13 @@
+:root {
+  --color-text: #eeeeee;
+  --color-bg: #948e81;
+  --color-title: var(--color-text);
+  --color-link: #ffffff;
+  --color-link-hover: #d7d7d7;
+
+  --main-background: url(../assets/noise.png),
+    radial-gradient(ellipse at top, #1d383b, transparent),
+    radial-gradient(ellipse at bottom, #3c2014, transparent);
+  --main-background-size: 200px, 100%, 200%;
+  --main-background-attachment: fixed;
+}

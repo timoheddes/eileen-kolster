@@ -1,0 +1,40 @@
+.timeline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: left;
+  align-items: baseline;
+
+  .timeline-legend {
+    position: fixed;
+    top: 7em;
+
+    h4 {
+      font-size: 0.9em;
+      font-weight: 300;
+      margin-top: 2em;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.2s ease-in-out;
+
+      &.active {
+        opacity: 1;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.timeline-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

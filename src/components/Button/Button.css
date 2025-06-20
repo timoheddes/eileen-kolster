@@ -1,0 +1,29 @@
+button {
+  background: #fff;
+  color: #154c57;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  position: relative;
+  cursor: pointer;
+  gap: 0.5em;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.secondary {
+    background: rgba(80, 108, 131, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+}

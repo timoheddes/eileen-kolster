@@ -1,7 +1,15 @@
 {
-  "name": "vite-site",
+  "name": "Eileen-Kolster",
+  "description": "Eileen Kolster's portfolio website",
+  "author": "Timo Heddes",
+  "license": "MIT",
+  "homepage": "https://eileenkolster.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eileenkolster/Eileen-Kolster"
+  },
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,20 +18,32 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/baloo-da-2": "^5.2.6",
     "@fontsource/cute-font": "^5.2.6",
+    "@fontsource/dekko": "^5.2.6",
     "@fontsource/fira-sans": "^5.2.6",
+    "@fontsource/kalam": "^5.2.6",
     "@fontsource/lato": "^5.2.6",
+    "@fontsource/livvic": "^5.2.6",
     "@fontsource/poppins": "^5.2.6",
+    "@fontsource/reenie-beanie": "^5.2.6",
+    "@fontsource/swanky-and-moo-moo": "^5.2.6",
     "gsap": "^3.13.0",
+    "lucide-react": "^0.517.0",
+    "motion": "^12.16.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "splitting": "^1.1.0",
     "wavesurfer.js": "^7.9.5",
+    "wouter": "^3.7.1",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/node": "^24.0.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@types/splitting": "^1.0.6",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",

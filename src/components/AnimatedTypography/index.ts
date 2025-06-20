@@ -1,0 +1,1 @@
+export { AnimatedTypography } from './AnimatedTypography';

@@ -1,0 +1,10 @@
+.splash-screen {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  inset: 0px;
+  justify-content: space-evenly;
+  overflow-x: var(--main-overflow-x);
+  position: fixed;
+  z-index: 10;
+}

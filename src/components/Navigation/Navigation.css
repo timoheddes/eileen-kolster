@@ -1,0 +1,10 @@
+.navigation {
+  display: flex;
+  gap: 3em;
+  font-weight: 500;
+  font-size: 1.1rem;
+
+  a {
+    padding: 0.5em;
+  }
+}
