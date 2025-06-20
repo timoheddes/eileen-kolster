@@ -1,13 +1,14 @@
+import { MessageSquareShare, AudioWaveform } from 'lucide-react';
+
 import ImageCollage from '../components/ImageCollage/ImageCollage';
 import { SplashScreen } from '../components/SplashScreen';
+import Button from '../components/Button/Button';
+
 import useAnimationState from '../store/animationState';
 
-import eileen from '../assets/eileen.jpg';
-import eileen2 from '../assets/eileen7.jpg';
-import eileen3 from '../assets/eileen3.jpg';
-import eileen4 from '../assets/eileen8.jpg';
-import Button from '../components/Button/Button';
-import { MessageSquareShare, AudioWaveform } from 'lucide-react';
+import eileen_colourful from '../assets/images/photos/eileen-colourful.webp';
+import eileen_piano2 from '../assets/images/photos/eileen-piano2.webp';
+import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp';
 
 const Home = () => {
   const { isSplashScreenVisible } = useAnimationState();
@@ -29,10 +30,9 @@ const Home = () => {
             rotate
             imageSize={350}
             images={[
-              { file: eileen, zIndex: 20 },
-              { file: eileen2, zIndex: 30 },
-              { file: eileen3, zIndex: 40 },
-              { file: eileen4, zIndex: 30 },
+              { file: eileen_roof_violin, zIndex: 20 },
+              { file: eileen_colourful, zIndex: 30 },
+              { file: eileen_piano2, zIndex: 20 },
             ]}
           />
           <p className="font-size-2 font-style-bold">
