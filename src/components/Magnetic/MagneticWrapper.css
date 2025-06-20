@@ -1,0 +1,6 @@
+.magnetic-wrapper {
+  position: relative;
+  &:hover {
+    z-index: 100 !important;
+  }
+}

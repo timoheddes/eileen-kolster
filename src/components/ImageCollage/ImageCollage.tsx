@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { getRandomPosition } from '../../utils';
-import MagneticController from '../Magnetic/controller';
 import { motion } from 'motion/react';
-import { opacity, stagger } from '../../animations';
+import MagneticWrapper from '../Magnetic/MagneticWrapper';
 
 export type ImageCollageImage = {
   file: string;
@@ -38,27 +37,7 @@ const ImageCollage = ({
         }
       }
     });
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          refs.current.forEach((el) => {
-            if (el) {
-              if (magnetic) {
-                new MagneticController(el, 'normal');
-              }
-            }
-          });
-        }
-      },
-      {
-        threshold: 1,
-      }
-    );
-    if (grid.current) {
-      observer.observe(grid.current);
-    }
-  }, [ready, refs, magnetic, largestImage]);
+  }, [ready, refs, largestImage]);
 
   useEffect(() => {
     setReady(true);
@@ -67,11 +46,17 @@ const ImageCollage = ({
   return (
     <motion.div
       className="image-grid"
-      // Pass the variants object to the component
-      variants={stagger}
-      // Tell it to start in the "hidden" state
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.1,
+            delay: 0.3,
+            ease: 'easeOut',
+          },
+        },
+      }}
       initial="hidden"
-      // Animate to the "visible" state when it mounts
       animate="visible"
       ref={grid}
       style={{
@@ -80,31 +65,47 @@ const ImageCollage = ({
       }}
     >
       {images.map((image, index) => (
-        <motion.figure
-          variants={opacity}
-          className="image-border overlay"
-          ref={(element) => {
-            refs.current[index] = element;
-          }}
-          key={index}
-          style={{
-            ...getRandomPosition(
-              index,
-              imageSize,
-              rotate,
-              image.zIndex
-            ),
-          }}
-          onMouseEnter={() => {
-            refs.current[index]?.classList.add('hover');
-          }}
-          onMouseLeave={() => {
-            refs.current[index]?.classList.remove('hover');
-          }}
+        <MagneticWrapper
+          force={magnetic ? 0.1 : 0}
+          style={{ zIndex: image.zIndex }}
         >
-          <figcaption>{image.caption}</figcaption>
-          <img src={image.file} alt={image.caption} />
-        </motion.figure>
+          <motion.figure
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  ease: [0.43, 0.13, 0.23, 0.96],
+                },
+              },
+              exit: {
+                opacity: 0,
+                transition: {
+                  duration: 0.5,
+                  ease: [0.43, 0.13, 0.23, 0.96],
+                },
+              },
+            }}
+            className="image-border overlay"
+            ref={(element) => {
+              refs.current[index] = element;
+            }}
+            key={index}
+            style={{
+              ...getRandomPosition(index, imageSize, rotate),
+            }}
+            onMouseEnter={() => {
+              refs.current[index]?.classList.add('hover');
+            }}
+            onMouseLeave={() => {
+              refs.current[index]?.classList.remove('hover');
+            }}
+          >
+            <figcaption>{image.caption}</figcaption>
+            <img src={image.file} alt={image.caption} />
+          </motion.figure>
+        </MagneticWrapper>
       ))}
     </motion.div>
   );

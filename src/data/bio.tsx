@@ -25,6 +25,7 @@ export const timeline: TimelineItemType[] = [
       <>
         <ImageCollage
           rotate
+          magnetic
           imageSize={315}
           images={[
             {
@@ -177,6 +178,7 @@ export const timeline: TimelineItemType[] = [
 
         <ImageCollage
           rotate
+          magnetic
           imageSize={315}
           images={[
             { file: eileen_kenley, zIndex: 40 },

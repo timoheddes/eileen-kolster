@@ -53,9 +53,5 @@
 
   figure {
     position: absolute;
-
-    &.hover {
-      z-index: 50 !important;
-    }
   }
 }

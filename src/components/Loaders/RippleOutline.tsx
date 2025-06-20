@@ -1,24 +1,5 @@
 import { motion } from 'framer-motion';
 
-// The animation variants are identical to the solid circle version.
-// The animation logic (scale and opacity) is independent of the styling.
-const outlineVariants = {
-  initial: {
-    scale: 0,
-    opacity: 0,
-  },
-  animate: {
-    scale: 1,
-    opacity: [0, 0.8, 0], // Fades in to 80% opacity, then fades out
-    transition: {
-      ease: 'easeInOut',
-      duration: 1,
-      repeat: Infinity,
-      repeatDelay: 0.5,
-    },
-  },
-};
-
 const containerVariants = {
   animate: {
     transition: {
@@ -38,7 +19,24 @@ const Outline = ({ size = '5rem' }: { size?: string }) => {
         backgroundColor: 'transparent',
         border: '2px solid #34424b',
       }}
-      variants={outlineVariants}
+      variants={{
+        initial: {
+          scale: 0,
+          opacity: 0,
+        },
+        animate: {
+          scale: 1,
+          opacity: [0, 0.8, 0],
+          transition: {
+            ease: ['easeIn', 'easeOut'],
+            duration: 1,
+            repeat: Infinity,
+            repeatDelay: 0.5,
+          },
+        },
+      }}
+      initial="initial"
+      animate="animate"
     />
   );
 };

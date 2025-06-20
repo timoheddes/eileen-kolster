@@ -28,6 +28,7 @@ const Home = () => {
         <>
           <ImageCollage
             rotate
+            magnetic
             imageSize={350}
             images={[
               { file: eileen_roof_violin, zIndex: 20 },
