@@ -1,28 +1,36 @@
 import type { TimelineItemType } from '../components/Timeline/Timeline';
 
-import { AudioWave } from '../components/AudioWave';
 import ImageCollage from '../components/ImageCollage/ImageCollage';
-
-import tides from '../assets/music/Timeless Tides.wav';
 
 import eileen_child1 from '../assets/images/photos/eileen-child1.webp';
 import eileen_child2 from '../assets/images/photos/eileen-child2.webp';
-import eileen_piano2 from '../assets/images/photos/eileen-piano2.webp';
 import eileen_chamber from '../assets/images/photos/eileen-chamber.webp';
 import studio from '../assets/images/photos/studio.webp';
 import studio2 from '../assets/images/photos/studio2.webp';
 import eileen_kenley from '../assets/images/photos/eileen-kenley.webp';
 
-import { getRandomPosition } from '../utils';
 import Button from '../components/Button/Button';
 import { MessageSquareShare } from 'lucide-react';
 
 export const timeline: TimelineItemType[] = [
   {
-    title: 'Early years',
-    dates: '1986 — 1992',
+    title: 'Early Melodies',
+    dates: '1991 — 2004',
     body: (
       <>
+        <h2>Early Melodies</h2>
+        <p>
+          <strong>
+            Eileen's musical journey began at the age of five learning
+            the violin with the Suzuki method.
+          </strong>
+        </p>
+        <p>
+          A year later she began piano lessons and continued her
+          classical music training throughout school, discovering the
+          music of different composers and eras whilst playing in
+          youth orchestras.
+        </p>
         <ImageCollage
           rotate
           magnetic
@@ -35,145 +43,98 @@ export const timeline: TimelineItemType[] = [
             { file: eileen_child2, zIndex: 20 },
           ]}
         />
-        <h2>Early years</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          dapibus nunc sit amet ligula venenatis interdum nec at
-          magna. In cursus odio et lectus sagittis, id rhoncus ex
-          semper. Nullam ornare nibh purus, id ullamcorper tortor
-          congue in. In sollicitudin tortor ac rhoncus consectetur.
-        </p>
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
-        </p>
       </>
     ),
   },
   {
-    title: 'Acoustic engineering',
-    dates: '1992 — 2000',
+    title: 'Exploring Sound',
+    dates: '2004 — 2008',
     body: (
       <>
-        <h2>Acoustic engineering</h2>
+        <h2>Exploring Sound</h2>
         <p>
-          Pellentesque posuere sapien eu porta sagittis. Nam pulvinar
-          placerat leo eget rutrum. Sed neque sem, vehicula a felis
-          sed, vehicula suscipit augue. Nunc lorem purus, dictum eget
-          nisi facilisis, consectetur tempus augue. Curabitur id
-          mattis est. Nam scelerisque mauris sed libero eleifend, vel
-          egestas turpis interdum. Nullam a faucibus eros. Quisque
-          justo leo, bibendum quis pharetra non, rhoncus vitae dolor.
-        </p>
-
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
+          Driven by a curiosity for how sound works and her love for
+          music, maths and physics, she pursued an MEng (Master of
+          Engineering) in Acoustic Engineering at the University of
+          Southampton.
         </p>
 
         <figure
           className="image-border overlay"
           style={{
-            ...getRandomPosition(0, 300, true, 10),
             margin: '2em 0em',
+            width: '60%',
           }}
         >
-          <figcaption>Anechoic chamber</figcaption>
-          <img src={eileen_chamber} alt="Anechoic chamber" />
+          <figcaption>Testing in an anechoic chamber</figcaption>
+          <img
+            src={eileen_chamber}
+            alt="Testing in an anechoic chamber"
+          />
         </figure>
-
+      </>
+    ),
+  },
+  {
+    title: 'Engineering Adventures',
+    dates: '2009 — 2024',
+    body: (
+      <>
+        <h2>Engineering Adventures</h2>
         <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
+          Her engineering career took her into diverse fields, from
+          acoustic consultancies to engineering research in underwater
+          acoustics and dolphin echolocation at the National
+          University of Singapore.
+        </p>
+        <p>
+          Ultimately, Eileen opted to fully follow her passion for
+          creating music and left her engineering career behind.
         </p>
       </>
     ),
   },
   {
-    title: 'Ocean research',
-    dates: '2000 — 2008',
+    title: 'Ensemble Performance',
+    dates: '2011 — 2017',
     body: (
       <>
-        <h2>Ocean research</h2>
+        <h2>Ensemble Performance</h2>
         <p>
-          Pellentesque porttitor lorem eget metus cursus finibus.
-          Donec dui turpis, fringilla sed ante in, egestas sodales
-          velit. Donec consequat lacus eget nisi pharetra, et lobortis
-          odio tincidunt. Nunc porta leo sed ex pharetra euismod.
-          Curabitur volutpat blandit tortor, quis malesuada erat
-          efficitur at. Nam condimentum iaculis ultrices. Nulla vitae
-          varius ipsum, ac mollis risus.
+          During her engineering career, she kept her passion for
+          performance alive, regularly playing in vibrant ensembles
+          like the London Gypsy Orchestra (2011-2013), folk groups and
+          the Paris Fantasy Orchestra (2015-2017).
         </p>
-
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
-        </p>
-
-        <AudioWave
-          file={tides}
-          style={{ margin: '2em 0em', width: '60%' }}
-        />
-
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
-        </p>
-      </>
-    ),
-  },
-  {
-    title: 'Gypsy orchestra',
-    dates: '2008 — 2012',
-    body: (
-      <>
-        <h2>Gypsy orchestra</h2>
-        <p>
-          Vestibulum luctus justo a erat imperdiet elementum. Aenean
-          eget nulla nec nunc mattis accumsan sit amet fringilla leo.
-          Aenean interdum maximus ante, quis dignissim magna cursus
-          quis
-        </p>
-        <figure
-          className="image-border overlay"
+        <iframe
+          className="video"
           style={{
-            ...getRandomPosition(0, 300, true, 10),
-            margin: '2em 0em',
+            marginTop: '1em',
           }}
-        >
-          <img src={eileen_piano2} alt="Piano" />
-        </figure>
+          src="https://www.youtube.com/embed/OW-fHJEoXEs?color=white"
+          title="Music Discovery Day 2012 - Cecil Sharp House"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
         <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
-        </p>
-
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
+          <small>Eileen can be seen briefly at around 3:32</small>
         </p>
       </>
     ),
   },
   {
-    title: 'A new chapter',
-    dates: '2012 — 2014',
+    title: 'Composing Her Path',
+    dates: '2024 — Present',
     body: (
       <>
-        <h2>A new chapter</h2>
+        <h2>Composing Her Path</h2>
         <p>
-          Etiam aliquam vehicula lectus sit amet rutrum. Nunc felis
-          nunc, venenatis in turpis in, suscipit molestie eros.
-          Phasellus non diam quam. Sed consequat lobortis mi, sed
-          aliquam metus ornare vel. Vestibulum ante ipsum primis in
-          faucibus orci luctus et ultrices posuere cubilia curae;
+          Now based in Amsterdam, Eileen is currently honing her
+          skills in scoring for story-telling through an MA (Master of
+          Arts) in Professional Media Composition at ThinkSpace
+          Education, Arts University Bournemouth.
         </p>
 
         <ImageCollage
@@ -189,17 +150,6 @@ export const timeline: TimelineItemType[] = [
             { file: studio2, zIndex: 20 },
           ]}
         />
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
-        </p>
-
-        <p>
-          In cursus odio et lectus sagittis, id rhoncus ex semper.
-          Nullam ornare nibh purus, id ullamcorper tortor congue in.
-          In sollicitudin tortor ac rhoncus consectetur.
-        </p>
 
         <p className="font-size-1-5 flex gap-1 mt-1">
           <Button

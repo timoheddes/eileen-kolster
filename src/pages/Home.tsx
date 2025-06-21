@@ -39,7 +39,7 @@ const Home = () => {
           <p className="font-size-2 font-style-bold">
             An Amsterdam-based media composer
           </p>
-          <p className="font-size-1-2" style={{ width: '800px' }}>
+          <p className="font-size-1-2" style={{ maxWidth: '800px' }}>
             My music ranges from intimate acoustic and ambient
             textures to expansive orchestral and synth-driven
             soundscapes.

@@ -15,8 +15,8 @@ const scrollToSection = (section: TimelineItemType) => {
   if (sectionElement) {
     sectionElement.scrollIntoView({
       behavior: 'smooth',
-      block: 'end',
-      inline: 'start',
+      block: 'center',
+      inline: 'nearest',
     });
   }
 };

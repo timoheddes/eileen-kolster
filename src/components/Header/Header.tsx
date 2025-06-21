@@ -8,11 +8,13 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import { useState } from 'react';
+import useMenuState from '../../store/menuState';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
   const triggerScrollAt = 50;
+  const { isMenuOpen } = useMenuState();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     // If the user scrolls down more than 50px, set isScrolled to true, otherwise false
@@ -41,11 +43,11 @@ export const Header = () => {
     <motion.header
       className="header"
       variants={headerVariants}
-      animate={isScrolled ? 'solid' : 'transparent'}
+      animate={isScrolled && !isMenuOpen ? 'solid' : 'transparent'}
       initial="transparent"
     >
       <div className="content">
-        <Link href="/">
+        <Link href="/" style={{ zIndex: 100 }}>
           <Logo text="Eileen Kolster" size={3} />
         </Link>
         <Navigation />

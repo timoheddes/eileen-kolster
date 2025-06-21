@@ -27,3 +27,9 @@ button {
     color: #fff;
   }
 }
+
+@media screen and (max-width: 768px) {
+  button {
+    font-size: 0.85rem;
+  }
+}

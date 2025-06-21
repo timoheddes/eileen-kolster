@@ -19,7 +19,7 @@ export const TimelineItem = ({
         setIsVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.9,
+        threshold: 0.95,
       }
     );
 

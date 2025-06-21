@@ -6,10 +6,12 @@ import { Footer } from './components/Footer';
 import useAnimationState from './store/animationState';
 import AnimatedRoutes from './pages/AnimatedRoutes';
 import { useEffect } from 'react';
+import useMenuState from './store/menuState';
 
 function App() {
   const [isHome] = useRoute('/');
   const { isSplashScreenVisible } = useAnimationState();
+  const { isMenuOpen } = useMenuState();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
@@ -20,7 +22,10 @@ function App() {
       <AnimatedLinkSVG />
       {(!isSplashScreenVisible || !isHome) && <Header />}
       <Router>
-        <main className="main-content">
+        <main
+          className="main-content"
+          style={{ opacity: isMenuOpen ? '0' : '1' }}
+        >
           <AnimatedRoutes />
         </main>
         <Particles numParticles={100} />

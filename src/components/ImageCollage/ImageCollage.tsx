@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getRandomPosition } from '../../utils';
-import { motion } from 'motion/react';
 import MagneticWrapper from '../Magnetic/MagneticWrapper';
+import useWindowDimensions from '../../hooks/windowDimensions';
 
 export type ImageCollageImage = {
   file: string;
@@ -23,12 +23,12 @@ const ImageCollage = ({
   rotate?: boolean;
 }) => {
   const [ready, setReady] = useState(false);
+  const [recalculate, setRecalculate] = useState(false);
   const [largestImage, setLargestImage] = useState<number>(0);
   const refs = useRef<(HTMLElement | null)[]>([]);
   const grid = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!ready) return;
+  const calculateLargestImage = useCallback(() => {
     refs.current.forEach((el) => {
       if (el) {
         const height = el.getBoundingClientRect().height;
@@ -37,63 +37,59 @@ const ImageCollage = ({
         }
       }
     });
-  }, [ready, refs, largestImage]);
+  }, [refs, largestImage]);
+
+  const { width: screenWidth } = useWindowDimensions();
+  let adjustImageSize = Math.round(screenWidth / images.length) * 1.2;
+  adjustImageSize =
+    adjustImageSize > imageSize ? imageSize : adjustImageSize;
+
+  useEffect(() => {
+    if (!ready) return;
+    calculateLargestImage();
+  }, [ready, refs, largestImage, calculateLargestImage]);
+
+  useEffect(() => {
+    if (recalculate) {
+      calculateLargestImage();
+    }
+  }, [recalculate, calculateLargestImage]);
 
   useEffect(() => {
     setReady(true);
+    setTimeout(() => {
+      setRecalculate(true);
+    }, 100);
   }, []);
 
   return (
-    <motion.div
+    <div
       className="image-grid"
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.1,
-            delay: 0.3,
-            ease: 'easeOut',
-          },
-        },
-      }}
-      initial="hidden"
-      animate="visible"
       ref={grid}
       style={{
-        height: `${largestImage}px`,
-        minHeight: `${imageSize * 1.35}px`,
+        height: `${
+          largestImage > adjustImageSize
+            ? adjustImageSize
+            : largestImage
+        }px`,
+        minHeight: `${largestImage}px`,
       }}
     >
       {images.map((image, index) => (
         <MagneticWrapper
           force={magnetic ? 0.1 : 0}
           style={{ zIndex: image.zIndex }}
+          key={index}
         >
-          <motion.figure
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  duration: 0.5,
-                  ease: [0.43, 0.13, 0.23, 0.96],
-                },
-              },
-              exit: {
-                opacity: 0,
-                transition: {
-                  duration: 0.5,
-                  ease: [0.43, 0.13, 0.23, 0.96],
-                },
-              },
-            }}
+          <figure
             className="image-border overlay"
             ref={(element) => {
               refs.current[index] = element;
             }}
             key={index}
             style={{
-              ...getRandomPosition(index, imageSize, rotate),
+              ...getRandomPosition(index, adjustImageSize, rotate),
+              width: `${adjustImageSize}px`,
             }}
             onMouseEnter={() => {
               refs.current[index]?.classList.add('hover');
@@ -104,10 +100,10 @@ const ImageCollage = ({
           >
             <figcaption>{image.caption}</figcaption>
             <img src={image.file} alt={image.caption} />
-          </motion.figure>
+          </figure>
         </MagneticWrapper>
       ))}
-    </motion.div>
+    </div>
   );
 };
 

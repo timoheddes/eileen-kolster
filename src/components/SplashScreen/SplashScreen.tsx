@@ -24,6 +24,7 @@ export const SplashScreen = ({
       setIsSplashScreenVisible(false);
     }, duration * 0.65);
   }, [duration, setIsSplashScreenVisible]);
+
   return (
     <div className="splash-screen">
       <AnimatedTypography

@@ -43,7 +43,7 @@
 
 .image-grid {
   height: 490px;
-  width: 100%;
+  width: 100vw;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -54,4 +54,9 @@
   figure {
     position: absolute;
   }
+}
+
+.video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
 }
