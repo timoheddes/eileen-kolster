@@ -8,6 +8,9 @@ import eileen_chamber from '../assets/images/photos/eileen-chamber.webp';
 import studio from '../assets/images/photos/studio.webp';
 import studio2 from '../assets/images/photos/studio2.webp';
 import eileen_kenley from '../assets/images/photos/eileen-kenley.webp';
+import eileen_fish from '../assets/images/photos/eileen-fish.webp';
+import singapore1 from '../assets/images/photos/singapore1.webp';
+import singapore2 from '../assets/images/photos/singapore2.webp';
 
 import Button from '../components/Button/Button';
 import { MessageSquareShare } from 'lucide-react';
@@ -21,8 +24,8 @@ export const timeline: TimelineItemType[] = [
         <h2>Early Melodies</h2>
         <p>
           <strong>
-            Eileen's musical journey began at the age of five learning
-            the violin with the Suzuki method.
+            Born in 1986, Eileen's musical journey began at the age of
+            five learning the violin with the Suzuki method.
           </strong>
         </p>
         <p>
@@ -63,7 +66,7 @@ export const timeline: TimelineItemType[] = [
           className="image-border overlay"
           style={{
             margin: '2em 0em',
-            width: '60%',
+            width: '80%',
           }}
         >
           <figcaption>Testing in an anechoic chamber</figcaption>
@@ -87,10 +90,16 @@ export const timeline: TimelineItemType[] = [
           acoustics and dolphin echolocation at the National
           University of Singapore.
         </p>
-        <p>
-          Ultimately, Eileen opted to fully follow her passion for
-          creating music and left her engineering career behind.
-        </p>
+        <ImageCollage
+          rotate
+          magnetic
+          imageSize={300}
+          images={[
+            { file: eileen_fish, zIndex: 10 },
+            { file: singapore1, zIndex: 40 },
+            { file: singapore2, zIndex: 20 },
+          ]}
+        />
       </>
     ),
   },

@@ -59,7 +59,7 @@ const ImageCollage = ({
     setReady(true);
     setTimeout(() => {
       setRecalculate(true);
-    }, 100);
+    }, 250);
   }, []);
 
   return (

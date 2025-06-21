@@ -4,6 +4,7 @@
   flex-wrap: nowrap;
   width: 100%;
   justify-content: left;
+  gap: 40px;
   align-items: baseline;
 
   aside {

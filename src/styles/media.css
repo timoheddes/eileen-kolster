@@ -43,6 +43,7 @@
 
 .image-grid {
   height: 490px;
+  min-height: 300px;
   width: 100vw;
   position: relative;
   display: flex;
