@@ -47,14 +47,14 @@
   width: 100vw;
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1em;
   margin-top: 2em;
-  margin-bottom: 0;
+  margin-bottom: 2em;
 
-  figure {
+  /* figure {
     position: absolute;
-  }
+  } */
 }
 
 .video {

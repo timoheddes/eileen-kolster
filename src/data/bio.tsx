@@ -146,6 +146,24 @@ export const timeline: TimelineItemType[] = [
           Education, Arts University Bournemouth.
         </p>
 
+        <p>
+          Meanwhile, she's establishing herself as a freelance
+          composer and building her portfolio.
+        </p>
+
+        <p>
+          She is currently open to new projects and collaborations.
+        </p>
+
+        <p className="font-size-1-5 flex gap-1 mt-1">
+          <Button
+            href="/contact"
+            icon={<MessageSquareShare size={20} />}
+          >
+            Get in touch
+          </Button>
+        </p>
+
         <ImageCollage
           rotate
           magnetic
@@ -159,15 +177,6 @@ export const timeline: TimelineItemType[] = [
             { file: studio2, zIndex: 20 },
           ]}
         />
-
-        <p className="font-size-1-5 flex gap-1 mt-1">
-          <Button
-            href="/contact"
-            icon={<MessageSquareShare size={20} />}
-          >
-            Get in touch
-          </Button>
-        </p>
       </>
     ),
   },

@@ -27,7 +27,9 @@ export const getRandomPosition = (
   index: number,
   imageSize: number,
   rotate: boolean,
-  zIndex?: number
+  minHeight?: number | 'auto',
+  zIndex?: number,
+  position?: 'absolute' | 'relative'
 ) => {
   const leftOffset = index < 2 ? 0 : index * 10;
   return {
@@ -41,6 +43,8 @@ export const getRandomPosition = (
         }deg)`
       : 'none',
     zIndex: zIndex || Math.round(Math.random() * 10),
+    position: position || 'relative',
+    minHeight: minHeight ? `${minHeight}px` : 'auto',
     // width: gridWidth ? gridWidth / imagesLength : '100%',
   };
 };

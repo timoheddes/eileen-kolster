@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getRandomPosition } from '../../utils';
 import MagneticWrapper from '../Magnetic/MagneticWrapper';
 import useWindowDimensions from '../../hooks/windowDimensions';
+import { useWindowSize } from '../../hooks/useWindowSize';
+import { useLocation } from 'wouter';
 
 export type ImageCollageImage = {
   file: string;
@@ -22,44 +24,46 @@ const ImageCollage = ({
   imageSize?: number;
   rotate?: boolean;
 }) => {
-  const [ready, setReady] = useState(false);
-  const [recalculate, setRecalculate] = useState(false);
+  const [location] = useLocation();
+  const [rerender, setRerender] = useState(false);
+  const [adjustImageSize, setAdjustImageSize] = useState<number>(0);
   const [largestImage, setLargestImage] = useState<number>(0);
   const refs = useRef<(HTMLElement | null)[]>([]);
   const grid = useRef<HTMLDivElement>(null);
 
-  const calculateLargestImage = useCallback(() => {
+  useWindowSize();
+  const { width: screenWidth } = useWindowDimensions();
+
+  // Horizontal sizing
+  useEffect(() => {
+    setRerender(false);
+    let adjustImageSize =
+      Math.round(screenWidth / images.length) * 1.2;
+    adjustImageSize =
+      adjustImageSize > imageSize ? imageSize : adjustImageSize;
+    setAdjustImageSize(adjustImageSize);
+  }, [images, imageSize, screenWidth, rerender]);
+
+  // Vertical sizing
+  useEffect(() => {
+    setRerender(false);
+    const imageSizes: number[] = [];
     refs.current.forEach((el) => {
       if (el) {
-        const height = el.getBoundingClientRect().height;
-        if (height > largestImage) {
-          setLargestImage(Math.round(height));
-        }
+        imageSizes.push(el.offsetHeight);
       }
     });
-  }, [refs, largestImage]);
-
-  const { width: screenWidth } = useWindowDimensions();
-  let adjustImageSize = Math.round(screenWidth / images.length) * 1.2;
-  adjustImageSize =
-    adjustImageSize > imageSize ? imageSize : adjustImageSize;
+    const largestImage = Math.max(...imageSizes);
+    setLargestImage(largestImage);
+  }, [refs, largestImage, screenWidth, rerender]);
 
   useEffect(() => {
-    if (!ready) return;
-    calculateLargestImage();
-  }, [ready, refs, largestImage, calculateLargestImage]);
-
-  useEffect(() => {
-    if (recalculate) {
-      calculateLargestImage();
+    function handleResize() {
+      setRerender(true);
     }
-  }, [recalculate, calculateLargestImage]);
 
-  useEffect(() => {
-    setReady(true);
-    setTimeout(() => {
-      setRecalculate(true);
-    }, 250);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -74,11 +78,14 @@ const ImageCollage = ({
         }px`,
         minHeight: `${largestImage}px`,
       }}
+      key={location}
     >
       {images.map((image, index) => (
         <MagneticWrapper
           force={magnetic ? 0.1 : 0}
-          style={{ zIndex: image.zIndex }}
+          style={{
+            zIndex: image.zIndex,
+          }}
           key={index}
         >
           <figure
@@ -88,7 +95,14 @@ const ImageCollage = ({
             }}
             key={index}
             style={{
-              ...getRandomPosition(index, adjustImageSize, rotate),
+              ...getRandomPosition(
+                index,
+                adjustImageSize,
+                rotate,
+                'auto',
+                image.zIndex,
+                'absolute'
+              ),
               width: `${adjustImageSize}px`,
             }}
             onMouseEnter={() => {
@@ -99,7 +113,11 @@ const ImageCollage = ({
             }}
           >
             <figcaption>{image.caption}</figcaption>
-            <img src={image.file} alt={image.caption} />
+            <img
+              src={image.file}
+              alt={image.caption}
+              onLoad={() => setRerender(true)}
+            />
           </figure>
         </MagneticWrapper>
       ))}

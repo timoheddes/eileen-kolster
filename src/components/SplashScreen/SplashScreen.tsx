@@ -17,13 +17,15 @@ export const SplashScreen = ({
   effect: TypographyEffect;
   effectOut: TypographyEffect;
 }) => {
-  const { setIsSplashScreenVisible } = useAnimationState();
+  const { setIsSplashScreenVisible, setSplashScreenPlayed } =
+    useAnimationState();
 
   useEffect(() => {
     setTimeout(() => {
       setIsSplashScreenVisible(false);
+      setSplashScreenPlayed(true);
     }, duration * 0.65);
-  }, [duration, setIsSplashScreenVisible]);
+  }, [duration, setIsSplashScreenVisible, setSplashScreenPlayed]);
 
   return (
     <div className="splash-screen">
