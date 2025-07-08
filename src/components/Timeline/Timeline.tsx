@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
+
 import './Timeline.css';
+
 import { TimelineItem } from './TimelineItem';
 import useTimelineScroll from './useTimelineScroll';
-import { useEffect, useState } from 'react';
 
 export interface TimelineItemType {
   title: string;

@@ -35,7 +35,12 @@ export const TimelineItem = ({
   }, [isVisible, item.title, updateSection]);
 
   return (
-    <div id={id} key={item.title} ref={elementRef}>
+    <div
+      id={id}
+      className="timeline-item"
+      key={item.title}
+      ref={elementRef}
+    >
       {item.body}
     </div>
   );

@@ -13,6 +13,14 @@
     }
   }
 
+  .timeline-item {
+    margin-top: 3em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
   .timeline-legend {
     position: fixed;
     top: 7em;
@@ -24,6 +32,10 @@
       opacity: 0.5;
       cursor: pointer;
       transition: opacity 0.2s ease-in-out;
+
+      &:first-child {
+        margin-top: 0;
+      }
 
       &.active {
         opacity: 1;

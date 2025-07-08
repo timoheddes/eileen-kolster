@@ -7,7 +7,11 @@ export type AudioState = {
   isPlaying: boolean;
   audioContext: AudioContext | null;
   analyser: AnalyserNode | null;
-  initAudio: (mediaElement: HTMLAudioElement, file: string) => void;
+  initAudio: (
+    mediaElement: HTMLAudioElement,
+    file: string,
+    uuid: string
+  ) => void;
   setActiveAndPlayPause: (instance: WaveSurfer) => void;
 };
 
@@ -17,6 +21,7 @@ const mediaElements = new Map<
     element: HTMLAudioElement;
     analyser: AnalyserNode;
     audioCtx: AudioContext;
+    file: string;
   }
 >();
 
@@ -30,9 +35,13 @@ const useAudioState = create<AudioState>((set) => ({
   audioContext: null,
   analyser: null, // We will store the analyser here
 
-  initAudio: (mediaElement: HTMLAudioElement, file: string) =>
+  initAudio: (
+    mediaElement: HTMLAudioElement,
+    file: string,
+    uuid: string
+  ) =>
     set(() => {
-      if (!mediaElements.has(file)) {
+      if (!mediaElements.has(uuid)) {
         const audioCtx = new AudioContext();
         const analyser = audioCtx.createAnalyser();
         analyser.fftSize = 256;
@@ -41,15 +50,16 @@ const useAudioState = create<AudioState>((set) => ({
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
 
-        mediaElements.set(file, {
+        mediaElements.set(uuid, {
           element: mediaElement,
           analyser: analyser,
           audioCtx: audioCtx,
+          file: file,
         });
 
         return { audioContext: audioCtx, analyser };
       } else {
-        const { audioCtx, analyser } = mediaElements.get(file)!;
+        const { audioCtx, analyser } = mediaElements.get(uuid)!;
         return { audioContext: audioCtx, analyser };
       }
     }),

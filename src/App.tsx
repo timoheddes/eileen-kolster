@@ -4,15 +4,10 @@ import { Router } from 'wouter';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import AnimatedRoutes from './pages/AnimatedRoutes';
-import { useEffect } from 'react';
 import useMenuState from './store/menuState';
 
 function App() {
   const { isMenuOpen } = useMenuState();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, []);
 
   return (
     <>

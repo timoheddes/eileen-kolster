@@ -36,7 +36,7 @@ export const squiglyWaveform = (
 const themeColors = {
   light: {
     waveColor: '#343f49',
-    progressColor: '#c1a790',
+    progressColor: '#f81754',
     cursorColor: '#34424b',
   },
   dark: {

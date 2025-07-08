@@ -13,16 +13,14 @@ const Home = () => {
       <ImageCollage
         rotate
         magnetic
-        imageSize={350}
+        imageSize={280}
         images={[
           { file: eileen_roof_violin, zIndex: 20 },
           { file: eileen_colourful, zIndex: 30 },
           { file: eileen_piano2, zIndex: 20 },
         ]}
       />
-      <p className="font-size-2 font-style-bold">
-        An Amsterdam-based media composer
-      </p>
+      <h2>An Amsterdam-based media composer</h2>
       <p className="font-size-1-2" style={{ maxWidth: '800px' }}>
         My music ranges from intimate acoustic and ambient textures to
         expansive orchestral and synth-driven soundscapes.

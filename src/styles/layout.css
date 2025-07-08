@@ -2,6 +2,18 @@
   display: flex;
 }
 
+.flex-center {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
 .column-5 {
   width: 5%;
 }
@@ -76,4 +88,28 @@
 
 .mt-3 {
   margin-top: 3em;
+}
+
+.m-1 {
+  margin: 1em;
+}
+
+.m-2 {
+  margin: 2em;
+}
+
+.m-3 {
+  margin: 3em;
+}
+
+.p-1 {
+  padding: 1em;
+}
+
+.p-2 {
+  padding: 2em;
+}
+
+.p-3 {
+  padding: 3em;
 }

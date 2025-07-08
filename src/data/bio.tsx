@@ -56,10 +56,16 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Exploring Sound</h2>
         <p>
-          Driven by a curiosity for how sound works and her love for
-          music, maths and physics, she pursued an MEng (Master of
-          Engineering) in Acoustic Engineering at the University of
-          Southampton.
+          Driven by a curiosity for how sound works and her{' '}
+          <mark className="highlight">
+            love for music, maths and physics
+          </mark>
+          , she pursued an MEng (Master of Engineering) in Acoustic
+          Engineering at the University of Southampton.
+        </p>
+
+        <p>
+          She graduated with a first class honours degree in 2008.
         </p>
 
         <figure
@@ -140,7 +146,9 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Composing Her Path</h2>
         <p>
-          Now based in Amsterdam, Eileen is currently honing her
+          Now <mark className="highlight">based in Amsterdam</mark>,
+          she has left her corporate career behind to fully focus on
+          her passion of creating music. She is currently honing her
           skills in scoring for story-telling through an MA (Master of
           Arts) in Professional Media Composition at ThinkSpace
           Education, Arts University Bournemouth.
@@ -148,11 +156,8 @@ export const timeline: TimelineItemType[] = [
 
         <p>
           Meanwhile, she's establishing herself as a freelance
-          composer and building her portfolio.
-        </p>
-
-        <p>
-          She is currently open to new projects and collaborations.
+          composer and building her portfolio. She is currently open
+          to new projects and collaborations.
         </p>
 
         <p className="font-size-1-5 flex gap-1 mt-1">
