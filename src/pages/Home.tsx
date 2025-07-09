@@ -13,7 +13,7 @@ const Home = () => {
       <ImageCollage
         rotate
         magnetic
-        imageSize={280}
+        imageSize={260}
         images={[
           { file: eileen_roof_violin, zIndex: 20 },
           { file: eileen_colourful, zIndex: 30 },
@@ -37,11 +37,11 @@ const Home = () => {
           Get in touch
         </Button>
         <Button
-          href="/my-music"
+          href="/biography"
           variant="secondary"
           icon={<AudioWaveform size={20} />}
         >
-          Listen to my music
+          My journey
         </Button>
       </p>
     </>

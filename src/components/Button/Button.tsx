@@ -15,7 +15,7 @@ const Button = ({
 }) => {
   return (
     <Link href={href || ''}>
-      <button className={variant + (icon ? ' icon' : '')}>
+      <button className={`button ${variant} ${icon ? 'icon' : ''}`}>
         {children}
         {icon}
       </button>

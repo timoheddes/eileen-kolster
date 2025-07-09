@@ -4,7 +4,7 @@ export const squiglyWaveform = (
 ) => {
   const { width, height } = ctx.canvas;
   const scale = channels[0].length / width;
-  const step = 4;
+  const step = 7;
 
   ctx.translate(0, height / 2);
   ctx.strokeStyle = ctx.fillStyle;
@@ -44,11 +44,16 @@ const themeColors = {
     progressColor: '#c1a790',
     cursorColor: '#ccc',
   },
+  footer: {
+    waveColor: '#fff',
+    progressColor: '#3f9ea5',
+    cursorColor: '#ccc',
+  },
 };
 
 export const squiglyWave = (
   container: HTMLElement,
-  theme: 'light' | 'dark'
+  theme: 'light' | 'dark' | 'footer'
 ) => {
   return {
     container: container,

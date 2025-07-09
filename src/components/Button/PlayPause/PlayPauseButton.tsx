@@ -3,21 +3,26 @@ import './PlayPauseButton.css';
 export const PlayPauseButton = ({
   status,
   theme = 'light',
+  size = 50,
   onClick,
 }: {
   status: 'playing' | 'paused';
-  theme?: 'light' | 'dark';
+  theme?: 'light' | 'dark' | 'footer';
+  size?: number;
   onClick: () => void;
 }) => {
   return (
     <button
       className={`play-button theme-${theme}`}
       onClick={onClick}
+      style={{ width: `${size}px`, height: `${size}px` }}
     >
       <svg
         id="playIcon"
-        style={{ display: status === 'playing' ? 'none' : 'block' }}
-        viewBox="0 0 24 24"
+        style={{
+          display: status === 'playing' ? 'none' : 'block',
+        }}
+        viewBox={`0 0 ${size / 2} ${size / 2}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -31,8 +36,10 @@ export const PlayPauseButton = ({
       </svg>
       <svg
         id="pauseIcon"
-        style={{ display: status === 'playing' ? 'block' : 'none' }}
-        viewBox="0 0 24 24"
+        style={{
+          display: status === 'playing' ? 'block' : 'none',
+        }}
+        viewBox={`0 0 ${size / 2} ${size / 2}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

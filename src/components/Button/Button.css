@@ -1,4 +1,11 @@
 button {
+  all: unset;
+  text-shadow: none;
+  display: flex;
+  cursor: pointer;
+}
+
+.button {
   background: #fff;
   color: #154c57;
   outline: none;
@@ -29,7 +36,7 @@ button {
 }
 
 @media screen and (max-width: 768px) {
-  button {
+  .button {
     font-size: 0.85rem;
   }
 }

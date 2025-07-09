@@ -37,7 +37,6 @@ const linkSize = 2;
 
 export const Navigation = () => {
   const [biographyActive] = useRoute('/biography');
-  const [myMusicActive] = useRoute('/my-music');
   const [contactActive] = useRoute('/contact');
 
   const { isMenuOpen, setIsMenuOpen } = useMenuState();
@@ -63,22 +62,6 @@ export const Navigation = () => {
               active={biographyActive}
             >
               Biography
-            </AnimatedLink>
-          </motion.span>
-        </Link>
-        <Link
-          href="/my-music"
-          className={(active) => (active ? 'active' : '')}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <motion.span variants={linkVariants}>
-            <AnimatedLink
-              effect={linkAnimation}
-              variant={linkVariant}
-              size={linkSize}
-              active={myMusicActive}
-            >
-              My music
             </AnimatedLink>
           </motion.span>
         </Link>

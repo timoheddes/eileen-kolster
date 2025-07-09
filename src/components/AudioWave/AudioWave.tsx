@@ -4,31 +4,31 @@ import WaveSurfer, { type WaveSurferOptions } from 'wavesurfer.js';
 import './AudioWave.css';
 import useAudioState from '../../store/audioState';
 import { squiglyWave } from './waveRender';
-import { PlayPauseButton } from '../Button';
 import { RippleOutline } from '../Loaders';
-import { generateUUID } from '../../utils/uuid';
+
+import { Play, SkipForward, SkipBack, Pause } from 'lucide-react';
 
 export const AudioWave = ({
-  file,
-  title,
+  tracks,
   theme = 'light',
   style,
   options,
 }: {
-  file: string;
-  title?: string | null;
-  theme?: 'light' | 'dark';
+  tracks: { file: string; title: string }[];
+  theme?: 'light' | 'dark' | 'footer';
   style?: React.CSSProperties;
   options?: Partial<WaveSurferOptions>;
 }) => {
+  const [currentTrack, setCurrentTrack] = useState(0);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [uuid] = useState(generateUUID());
 
   const wavesurferRef = useRef<WaveSurfer | null>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
+  const playButton = useRef<HTMLButtonElement>(null);
 
-  const { initAudio, setActiveAndPlayPause } = useAudioState();
+  const { initAudio, setActiveAndPlayPause, destroyMediaElement } =
+    useAudioState();
 
   useEffect(() => {
     if (!waveformRef.current) return;
@@ -42,7 +42,10 @@ export const AudioWave = ({
     const loadAudio = async () => {
       try {
         wavesurferRef.current = wavesurfer;
-        await wavesurfer.load(file);
+        await wavesurfer.load(tracks[currentTrack].file);
+        if (playing) {
+          wavesurfer.play();
+        }
       } catch (error: unknown) {
         if (error instanceof Error && error.name !== 'AbortError') {
           console.error('Wavesurfer error:', error);
@@ -54,9 +57,12 @@ export const AudioWave = ({
 
     wavesurfer.on('play', () => {
       const mediaElement = wavesurfer.getMediaElement();
-      initAudio(mediaElement, file, uuid);
+      initAudio(mediaElement, tracks[currentTrack].file);
 
-      useAudioState.setState({ isPlaying: true, audioFile: file });
+      useAudioState.setState({
+        isPlaying: true,
+        audioFile: tracks[currentTrack].file,
+      });
       setPlaying(true);
       setActiveAndPlayPause(wavesurfer);
     });
@@ -81,26 +87,100 @@ export const AudioWave = ({
       }
       wavesurfer.destroy();
     };
-  }, [file, initAudio, setActiveAndPlayPause, theme, options, uuid]);
+  }, [
+    tracks,
+    currentTrack,
+    initAudio,
+    setActiveAndPlayPause,
+    theme,
+    options,
+  ]);
+
+  const previousTrack = () => {
+    destroyMediaElement(tracks[currentTrack].file);
+    setCurrentTrack(
+      (prev) => (prev - 1 + tracks.length) % tracks.length
+    );
+    playButton.current?.focus();
+  };
+  const nextTrack = () => {
+    destroyMediaElement(tracks[currentTrack].file);
+    setCurrentTrack((prev) => (prev + 1) % tracks.length);
+    playButton.current?.focus();
+  };
 
   return (
     <>
-      <div className="audio-wave" style={style}>
-        {title && <h2 className="audio-wave-title">{title}</h2>}
-        <div className={`audio-wave-container theme-${theme}`}>
-          {!ready ? (
-            <RippleOutline size={'50px'} />
-          ) : (
-            <PlayPauseButton
-              status={playing ? 'playing' : 'paused'}
-              theme={theme}
-              onClick={() => wavesurferRef.current?.playPause()}
-            />
-          )}
-          <div
-            className={`waveform ${playing ? 'playing' : 'paused'}`}
-            ref={waveformRef}
-          ></div>
+      <div className="flex flex-col column-30">
+        <h4 className="font-family-baloo">
+          {tracks[currentTrack].title}
+          <br />
+          <small>Eileen Kolster</small>
+        </h4>
+      </div>
+      <div className="flex flex-col column-70">
+        <div className="audio-wave" style={style}>
+          <div className={`audio-wave-container theme-${theme}`}>
+            {!ready ? (
+              <RippleOutline
+                size={
+                  options?.height ? `${options.height}px` : '50px'
+                }
+              />
+            ) : (
+              <>
+                <button onClick={() => previousTrack()}>
+                  <SkipBack
+                    size={
+                      options?.height
+                        ? `${Number(options.height) * 0.5}px`
+                        : '50px'
+                    }
+                  />
+                </button>
+                <button
+                  onClick={() => wavesurferRef.current?.playPause()}
+                  ref={playButton}
+                >
+                  {!playing ? (
+                    <Play
+                      size={
+                        options?.height
+                          ? `${Number(options.height) * 0.8}px`
+                          : '50px'
+                      }
+                    />
+                  ) : (
+                    <Pause
+                      size={
+                        options?.height
+                          ? `${Number(options.height) * 0.8}px`
+                          : '50px'
+                      }
+                    />
+                  )}
+                </button>
+                <button onClick={() => nextTrack()}>
+                  <SkipForward
+                    size={
+                      options?.height
+                        ? `${Number(options.height) * 0.5}px`
+                        : '50px'
+                    }
+                  />
+                </button>
+              </>
+            )}
+            <div
+              className={`waveform ${playing ? 'playing' : 'paused'}`}
+              style={{
+                height: options?.height
+                  ? `${options.height}px`
+                  : '80px',
+              }}
+              ref={waveformRef}
+            ></div>
+          </div>
         </div>
       </div>
     </>

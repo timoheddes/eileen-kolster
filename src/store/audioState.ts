@@ -7,11 +7,8 @@ export type AudioState = {
   isPlaying: boolean;
   audioContext: AudioContext | null;
   analyser: AnalyserNode | null;
-  initAudio: (
-    mediaElement: HTMLAudioElement,
-    file: string,
-    uuid: string
-  ) => void;
+  initAudio: (mediaElement: HTMLAudioElement, file: string) => void;
+  destroyMediaElement: (file: string) => void;
   setActiveAndPlayPause: (instance: WaveSurfer) => void;
 };
 
@@ -21,27 +18,22 @@ const mediaElements = new Map<
     element: HTMLAudioElement;
     analyser: AnalyserNode;
     audioCtx: AudioContext;
+    source: MediaElementAudioSourceNode;
     file: string;
   }
 >();
 
 const useAudioState = create<AudioState>((set) => ({
   activeInstance: null,
-  // State for UI controls
   audioFile: null,
   isPlaying: false,
-
-  // The core Web Audio API objects to be shared
   audioContext: null,
-  analyser: null, // We will store the analyser here
+  analyser: null,
 
-  initAudio: (
-    mediaElement: HTMLAudioElement,
-    file: string,
-    uuid: string
-  ) =>
+  initAudio: (mediaElement: HTMLAudioElement, file: string) =>
     set(() => {
-      if (!mediaElements.has(uuid)) {
+      // const time = new Date().getTime();
+      if (!mediaElements.has(file)) {
         const audioCtx = new AudioContext();
         const analyser = audioCtx.createAnalyser();
         analyser.fftSize = 256;
@@ -50,16 +42,17 @@ const useAudioState = create<AudioState>((set) => ({
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
 
-        mediaElements.set(uuid, {
+        mediaElements.set(file, {
           element: mediaElement,
           analyser: analyser,
           audioCtx: audioCtx,
+          source: source,
           file: file,
         });
 
         return { audioContext: audioCtx, analyser };
       } else {
-        const { audioCtx, analyser } = mediaElements.get(uuid)!;
+        const { audioCtx, analyser } = mediaElements.get(file)!;
         return { audioContext: audioCtx, analyser };
       }
     }),
@@ -74,6 +67,8 @@ const useAudioState = create<AudioState>((set) => ({
 
       return { activeInstance: instance };
     }),
+
+  destroyMediaElement: (file: string) => mediaElements.delete(file),
 }));
 
 export default useAudioState;

@@ -148,16 +148,19 @@ export const timeline: TimelineItemType[] = [
         <p>
           Now <mark className="highlight">based in Amsterdam</mark>,
           she has left her corporate career behind to fully focus on
-          her passion of creating music. She is currently honing her
-          skills in scoring for story-telling through an MA (Master of
-          Arts) in Professional Media Composition at ThinkSpace
-          Education, Arts University Bournemouth.
+          her passion of creating music.
+        </p>
+        <p>
+          She is currently honing her skills in scoring for
+          story-telling through an MA (Master of Arts) in Professional
+          Media Composition at ThinkSpace Education, Arts University
+          Bournemouth.
         </p>
 
         <p>
-          Meanwhile, she's establishing herself as a freelance
-          composer and building her portfolio. She is currently open
-          to new projects and collaborations.
+          At the same time, she's establishing herself as a freelance
+          composer and building her portfolio. She is open to new
+          projects and collaborations.
         </p>
 
         <p className="font-size-1-5 flex gap-1 mt-1">

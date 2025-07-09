@@ -12,14 +12,24 @@ export interface TimelineItemType {
   body: React.ReactNode;
 }
 
+const scrollIntoViewWithOffset = (
+  selector: string,
+  offset: number
+) => {
+  window.scrollTo({
+    behavior: 'smooth',
+    top:
+      (document.getElementById(selector)?.getBoundingClientRect()
+        .top ?? 0) -
+      document.body.getBoundingClientRect().top -
+      offset,
+  });
+};
+
 const scrollToSection = (section: TimelineItemType) => {
   const sectionElement = document.getElementById(section.title);
   if (sectionElement) {
-    sectionElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    });
+    scrollIntoViewWithOffset(sectionElement.id, 110);
   }
 };
 

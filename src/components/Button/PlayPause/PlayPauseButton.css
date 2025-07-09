@@ -22,6 +22,6 @@
   transform: scale(1.05);
 }
 .play-button svg {
-  width: 24px;
-  height: 24px;
+  width: auto;
+  height: auto;
 }
