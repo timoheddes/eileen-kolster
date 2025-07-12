@@ -7,7 +7,7 @@ import { Cursor } from './components/Cursor';
 import useCustomCursorDetection from './hooks/customCursor';
 import MainContent from './MainContent';
 
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const showCustomCursor = useCustomCursorDetection();
