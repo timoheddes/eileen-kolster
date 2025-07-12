@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   border-top: 1px solid #ffffff0f;
-  z-index: 100;
+  z-index: 1000;
   backdrop-filter: blur(10px) brightness(125%);
 
   .content {
