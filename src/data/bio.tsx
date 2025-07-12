@@ -98,7 +98,8 @@ export const timeline: TimelineItemType[] = [
         <p>
           Her engineering career took her around the world as she
           worked in diverse fields, from acoustic consultancies to
-          engineering research in underwater acoustics and{' '}
+          engineering research in{' '}
+          <mark className="highlight">underwater acoustics</mark> and{' '}
           <mark className="highlight">dolphin echolocation</mark> at
           the National University of Singapore.
         </p>
