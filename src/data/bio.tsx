@@ -150,7 +150,6 @@ export const timeline: TimelineItemType[] = [
             { file: fantasy2, zIndex: 20 },
           ]}
         />
-        <small>Eileen can be seen briefly at around 3:32</small>
       </>
     ),
   },
