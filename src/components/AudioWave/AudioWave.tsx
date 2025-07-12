@@ -137,23 +137,23 @@ export const AudioWave = ({
       <div className="flex flex-col player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>
-            {!ready ? (
-              <RippleOutline
-                size={
-                  options?.height ? `${options.height}px` : '50px'
-                }
-              />
-            ) : (
-              <>
-                <button onClick={() => previousTrack()}>
-                  <SkipBack
-                    size={
-                      options?.height
-                        ? `${Number(options.height) * 0.5}px`
-                        : '50px'
-                    }
-                  />
-                </button>
+            <>
+              <button onClick={() => previousTrack()}>
+                <SkipBack
+                  size={
+                    options?.height
+                      ? `${Number(options.height) * 0.5}px`
+                      : '50px'
+                  }
+                />
+              </button>
+              {!ready ? (
+                <RippleOutline
+                  size={
+                    options?.height ? `${options.height}px` : '50px'
+                  }
+                />
+              ) : (
                 <button
                   onClick={() => wavesurferRef.current?.playPause()}
                   ref={playButton}
@@ -176,17 +176,17 @@ export const AudioWave = ({
                     />
                   )}
                 </button>
-                <button onClick={() => nextTrack()}>
-                  <SkipForward
-                    size={
-                      options?.height
-                        ? `${Number(options.height) * 0.5}px`
-                        : '50px'
-                    }
-                  />
-                </button>
-              </>
-            )}
+              )}
+              <button onClick={() => nextTrack()}>
+                <SkipForward
+                  size={
+                    options?.height
+                      ? `${Number(options.height) * 0.5}px`
+                      : '50px'
+                  }
+                />
+              </button>
+            </>
             <div
               className={`waveform ${playing ? 'playing' : 'paused'}`}
               style={{
