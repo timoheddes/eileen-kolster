@@ -10,7 +10,6 @@ import studio2 from '../assets/images/photos/studio2.webp';
 import eileen_kenley from '../assets/images/photos/eileen-kenley.webp';
 import eileen_fish from '../assets/images/photos/eileen-fish.webp';
 import singapore1 from '../assets/images/photos/singapore1.webp';
-import singapore2 from '../assets/images/photos/singapore2.webp';
 import eileen_engineer from '../assets/images/photos/eileen-engineer.webp';
 import eileen_fantasy from '../assets/images/photos/eileen-fantasy.webp';
 import fantasy from '../assets/images/photos/fantasy.webp';
