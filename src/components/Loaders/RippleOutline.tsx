@@ -17,7 +17,7 @@ const Outline = ({ size = '5rem' }: { size?: string }) => {
         position: 'absolute',
         borderRadius: '50%',
         backgroundColor: 'transparent',
-        border: '2px solid #34424b',
+        border: '2px solid #fff',
       }}
       variants={{
         initial: {
