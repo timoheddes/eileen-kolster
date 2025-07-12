@@ -24,11 +24,11 @@ export const timeline: TimelineItemType[] = [
         <h2>Early Melodies</h2>
         <p>
           <strong>
-            Born in the South of London in 1986,{' '}
+            Born in South London in 1986,{' '}
             <mark className="highlight">
               Eileen is a British/Dutch composer
             </mark>{' '}
-            who's musical journey began at the age of five as she
+            whose musical journey began at the age of five as she
             started learning to play the violin with the Suzuki
             method.
           </strong>
