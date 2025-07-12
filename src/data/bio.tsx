@@ -32,8 +32,7 @@ export const timeline: TimelineItemType[] = [
               Eileen is a British/Dutch composer
             </mark>{' '}
             whose musical journey began at the age of five as she
-            started learning to play the violin with the Suzuki
-            method.
+            started learning the violin with the Suzuki method.
           </strong>
         </p>
         <p>
@@ -103,11 +102,10 @@ export const timeline: TimelineItemType[] = [
           worked in diverse fields.
         </p>
         <p>
-          From acoustic consultancies and risk engineering to
-          engineering research in{' '}
-          <mark className="highlight">underwater acoustics</mark> and{' '}
-          <mark className="highlight">dolphin echolocation</mark> at
-          the National University of Singapore .
+          From acoustic consultancies and risk engineering to research
+          in <mark className="highlight">underwater acoustics</mark>{' '}
+          and <mark className="highlight">dolphin echolocation</mark>{' '}
+          at the National University of Singapore .
         </p>
         <ImageCollage
           rotate
@@ -129,10 +127,10 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Ensemble Performance</h2>
         <p>
-          Although heavily invested in her engineering career, she
-          kept her passion for performance alive. Following her work,
-          she lived in various cities where she regularly play in
-          vibrant ensembles like the{' '}
+          Alongside her engineering career, she kept her passion for
+          performance alive. Following her work, she lived in various
+          cities where she regularly played in vibrant ensembles like
+          the{' '}
           <mark className="highlight">London Gypsy Orchestra</mark>{' '}
           <small>(2011-2013)</small>, folk groups and the{' '}
           <mark className="highlight">Paris Fantasy Orchestra</mark>{' '}
