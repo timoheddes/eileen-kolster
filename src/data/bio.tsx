@@ -31,7 +31,7 @@ export const timeline: TimelineItemType[] = [
             <mark className="highlight">
               I'm a British/Dutch composer
             </mark>{' '}
-            whose musical journey began at the age of five as I
+            whose musical journey began at the age of five when I
             started to learn the violin with the Suzuki method.
           </strong>
         </p>
