@@ -21,7 +21,7 @@ const Contact = () => {
         She is currently studying an MA in Professional Media
         Composition at ThinkSpace Education, Arts University
         Bournemouth, and is always interested in contributing to new
-        and intriguing projects
+        and intriguing projects.
       </p>
       <p style={{ marginBottom: '1em', marginTop: '2em' }}>
         <a
