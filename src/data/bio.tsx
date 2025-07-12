@@ -29,14 +29,14 @@ export const timeline: TimelineItemType[] = [
           <strong>
             Born in South London in 1986,{' '}
             <mark className="highlight">
-              Eileen is a British/Dutch composer
+              I'm a British/Dutch composer
             </mark>{' '}
-            whose musical journey began at the age of five as she
-            started learning the violin with the Suzuki method.
+            whose musical journey began at the age of five as I
+            started to learn the violin with the Suzuki method.
           </strong>
         </p>
         <p>
-          A year later she began piano lessons and continued her
+          A year later I began piano lessons and continued my
           classical music training throughout school, discovering the
           music of different composers and eras whilst playing in
           youth orchestras.
@@ -63,17 +63,15 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Exploring Sound</h2>
         <p>
-          Driven by curiosity and her{' '}
+          Driven by curiosity and my{' '}
           <mark className="highlight">
             love for sound, maths and physics
           </mark>
-          , she pursued an MEng (Master of Engineering) in Acoustic
+          , I pursued an MEng (Master of Engineering) in Acoustic
           Engineering at the University of Southampton.
         </p>
 
-        <p>
-          She graduated with a first class honours degree in 2008.
-        </p>
+        <p>I graduated with a first class honours degree in 2008.</p>
 
         <figure
           className="image-border overlay"
@@ -98,8 +96,8 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Engineering Adventures</h2>
         <p>
-          Her engineering career took her around the world as she
-          worked in diverse fields.
+          My engineering career took me around the world as I worked
+          in diverse fields.
         </p>
         <p>
           From acoustic consultancies and risk engineering to research
@@ -127,9 +125,9 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Ensemble Performance</h2>
         <p>
-          Alongside her engineering career, she kept her passion for
-          performance alive. Following her work, she lived in various
-          cities where she regularly played in vibrant ensembles like
+          Alongside my engineering career, I always kept my passion
+          for performance alive. Following my work, I lived in various
+          cities where I regularly played in vibrant ensembles like
           the{' '}
           <mark className="highlight">London Gypsy Orchestra</mark>{' '}
           <small>(2011-2013)</small>, folk groups and the{' '}
@@ -157,18 +155,18 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Composing Her Path</h2>
         <p>
-          Now <mark className="highlight">based in Amsterdam</mark>,
-          she has left her corporate career behind to fully focus on
-          her passion of creating music.
+          Now <mark className="highlight">based in Amsterdam</mark>, I
+          have left my corporate career behind to fully focus on my
+          passion of creating music.
         </p>
         <p>
-          She is currently honing her skills in scoring for
-          story-telling through an MA (Master of Arts) in Professional
-          Media Composition at ThinkSpace Education, Arts University
+          I am currently honing my skills in scoring for story-telling
+          through an MA (Master of Arts) in Professional Media
+          Composition at ThinkSpace Education, Arts University
           Bournemouth.
         </p>
 
-        <p>She is open to new projects and collaborations.</p>
+        <p>I am open to new projects and collaborations.</p>
 
         <p className="font-size-1-5 flex gap-1 mt-1">
           <Button

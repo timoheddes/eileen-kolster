@@ -61,7 +61,7 @@ export const Navigation = () => {
               size={linkSize}
               active={biographyActive}
             >
-              Biography
+              My Journey
             </AnimatedLink>
           </motion.span>
         </Link>
