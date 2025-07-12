@@ -48,5 +48,29 @@
 .waveform {
   width: 100%;
   height: 80px; /* Set a fixed height for the waveform */
-  cursor: col-resize;
+  /* cursor: col-resize; */
+}
+
+.metadata {
+  width: 30%;
+  max-width: 320px;
+
+  @media screen and (max-width: 640px) {
+    width: auto;
+  }
+}
+
+.player {
+  width: 70%;
+
+  @media screen and (max-width: 640px) {
+    width: auto;
+  }
+
+  button {
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 }

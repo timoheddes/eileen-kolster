@@ -9,7 +9,7 @@
     "url": "https://github.com/timoheddes/eileen-kolster"
   },
   "private": true,
-  "version": "0.1.2",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -25,6 +25,7 @@
     "@fontsource/lato": "^5.2.6",
     "@fontsource/livvic": "^5.2.6",
     "@fontsource/poppins": "^5.2.6",
+    "circletype": "^2.3.0",
     "framer-motion": "^12.18.1",
     "gsap": "^3.13.0",
     "lucide-react": "^0.522.0",

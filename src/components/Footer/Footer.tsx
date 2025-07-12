@@ -1,7 +1,5 @@
-// import { AnimatedLink } from '../AnimatedLink';
 import { AudioWave } from '../AudioWave';
 import './Footer.css';
-// import { ArrowUpRight } from 'lucide-react';
 
 import beneath_the_surface from '../../assets/music/Beneath the Surface.wav';
 import call_of_the_ocean from '../../assets/music/Call of the Ocean.wav';
@@ -18,30 +16,14 @@ const tracks = [
 ];
 
 export const Footer = () => {
-  console.log('footer');
   return (
     <footer className="footer">
       <div className="content">
-        {/* <div className="flex flex-col column-40">
-          <span className="opacity-70">
-            © {new Date().getFullYear()} Eileen Kolster |{' '}
-          </span>
-          <a
-            href="https://www.instagram.com/eileenkolster/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginLeft: '0.3em' }}
-          >
-            <AnimatedLink effect="circle" variant={2} size={2}>
-              Find me on Instagram <ArrowUpRight size={12} />
-            </AnimatedLink>
-          </a>
-        </div> */}
         <AudioWave
           tracks={tracks}
           theme="footer"
           options={{
-            cursorWidth: 1,
+            cursorWidth: 0,
             height: 40,
           }}
         />

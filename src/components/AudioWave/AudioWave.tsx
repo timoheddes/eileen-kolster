@@ -6,7 +6,13 @@ import useAudioState from '../../store/audioState';
 import { squiglyWave } from './waveRender';
 import { RippleOutline } from '../Loaders';
 
-import { Play, SkipForward, SkipBack, Pause } from 'lucide-react';
+import {
+  Play,
+  SkipForward,
+  SkipBack,
+  Pause,
+  // Info,
+} from 'lucide-react';
 
 export const AudioWave = ({
   tracks,
@@ -111,14 +117,24 @@ export const AudioWave = ({
 
   return (
     <>
-      <div className="flex flex-col column-30">
-        <h4 className="font-family-baloo">
-          {tracks[currentTrack].title}
-          <br />
-          <small>Eileen Kolster</small>
+      <div className="flex flex-col metadata">
+        <h4
+          className="font-family-baloo"
+          style={{
+            display: 'flex',
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-flex',
+              gap: '0.3em',
+            }}
+          >
+            {tracks[currentTrack].title}
+          </span>
         </h4>
       </div>
-      <div className="flex flex-col column-70">
+      <div className="flex flex-col player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>
             {!ready ? (

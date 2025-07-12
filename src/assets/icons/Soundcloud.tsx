@@ -1,4 +1,4 @@
-const SoundcloudIcon = ({ size = 24 }: { size?: number }) => {
+export const SoundcloudIcon = ({ size = 24 }: { size?: number }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -37,5 +37,3 @@ const SoundcloudIcon = ({ size = 24 }: { size?: number }) => {
     </svg>
   );
 };
-
-export default SoundcloudIcon;

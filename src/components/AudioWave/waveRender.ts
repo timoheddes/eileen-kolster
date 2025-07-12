@@ -46,7 +46,7 @@ const themeColors = {
   },
   footer: {
     waveColor: '#fff',
-    progressColor: '#3f9ea5',
+    progressColor: '#3794be',
     cursorColor: '#ccc',
   },
 };

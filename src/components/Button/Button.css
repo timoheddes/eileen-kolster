@@ -2,7 +2,7 @@ button {
   all: unset;
   text-shadow: none;
   display: flex;
-  cursor: pointer;
+  align-items: stretch;
 }
 
 .button {
@@ -20,7 +20,6 @@ button {
   padding: 0.5em 1em;
   font-size: 0.8em;
   position: relative;
-  cursor: pointer;
   gap: 0.5em;
   transition: opacity 0.3s ease;
 
@@ -37,6 +36,17 @@ button {
 
 @media screen and (max-width: 768px) {
   .button {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
+  }
+}
+
+.info-button {
+  svg {
+    transition: transform 0.1s ease-in-out;
+  }
+  &:hover {
+    svg {
+      transform: scale(1.15);
+    }
   }
 }

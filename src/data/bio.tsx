@@ -24,8 +24,13 @@ export const timeline: TimelineItemType[] = [
         <h2>Early Melodies</h2>
         <p>
           <strong>
-            Born in 1986, Eileen's musical journey began at the age of
-            five learning the violin with the Suzuki method.
+            Born in the South of London in 1986,{' '}
+            <mark className="highlight">
+              Eileen is a British/Dutch composer
+            </mark>{' '}
+            who's musical journey began at the age of five as she
+            started learning to play the violin with the Suzuki
+            method.
           </strong>
         </p>
         <p>
@@ -56,9 +61,9 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Exploring Sound</h2>
         <p>
-          Driven by a curiosity for how sound works and her{' '}
+          Driven by curiosity and her{' '}
           <mark className="highlight">
-            love for music, maths and physics
+            love for sound, maths and physics
           </mark>
           , she pursued an MEng (Master of Engineering) in Acoustic
           Engineering at the University of Southampton.
@@ -91,10 +96,11 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Engineering Adventures</h2>
         <p>
-          Her engineering career took her into diverse fields, from
-          acoustic consultancies to engineering research in underwater
-          acoustics and dolphin echolocation at the National
-          University of Singapore.
+          Her engineering career took her around the world as she
+          worked in diverse fields, from acoustic consultancies to
+          engineering research in underwater acoustics and{' '}
+          <mark className="highlight">dolphin echolocation</mark> at
+          the National University of Singapore.
         </p>
         <ImageCollage
           rotate
@@ -116,10 +122,14 @@ export const timeline: TimelineItemType[] = [
       <>
         <h2>Ensemble Performance</h2>
         <p>
-          During her engineering career, she kept her passion for
-          performance alive, regularly playing in vibrant ensembles
-          like the London Gypsy Orchestra (2011-2013), folk groups and
-          the Paris Fantasy Orchestra (2015-2017).
+          Although heavily invested in her engineering career, she
+          kept her passion for performance alive. Following her work,
+          she lived in various cities where she regularly play in
+          vibrant ensembles like the{' '}
+          <mark className="highlight">London Gypsy Orchestra</mark>{' '}
+          <small>(2011-2013)</small>, folk groups and the{' '}
+          <mark className="highlight">Paris Fantasy Orchestra</mark>{' '}
+          <small>(2015-2017)</small>.
         </p>
         <iframe
           className="video"
@@ -133,9 +143,7 @@ export const timeline: TimelineItemType[] = [
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         ></iframe>
-        <p>
-          <small>Eileen can be seen briefly at around 3:32</small>
-        </p>
+        <small>Eileen can be seen briefly at around 3:32</small>
       </>
     ),
   },
@@ -157,11 +165,7 @@ export const timeline: TimelineItemType[] = [
           Bournemouth.
         </p>
 
-        <p>
-          At the same time, she's establishing herself as a freelance
-          composer and building her portfolio. She is open to new
-          projects and collaborations.
-        </p>
+        <p>She is open to new projects and collaborations.</p>
 
         <p className="font-size-1-5 flex gap-1 mt-1">
           <Button

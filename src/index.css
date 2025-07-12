@@ -39,6 +39,11 @@ body {
   justify-content: center;
 }
 
+html.custom-cursor-active,
+body.custom-cursor-active {
+  cursor: none !important;
+}
+
 #root {
   margin: 0;
   width: 100%;
@@ -120,6 +125,7 @@ hr:before {
   margin: 0.6rem 4rem;
   margin-top: 7em;
   transition: opacity 0.1s ease-in-out;
+  padding-bottom: 7em;
 }
 
 @media screen and (max-width: 1000px) {

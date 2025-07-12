@@ -6,7 +6,7 @@
   width: 100%;
   border-top: 1px solid #ffffff0f;
   z-index: 100;
-  backdrop-filter: blur(20px) brightness(145%);
+  backdrop-filter: blur(10px) brightness(125%);
 
   .content {
     margin-top: auto;
@@ -14,5 +14,21 @@
     align-items: center;
     justify-content: start;
     padding: 0.8rem 4rem;
+  }
+
+  @media screen and (max-width: 640px) {
+    .content {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      flex-direction: column-reverse;
+    }
+
+    .waveform {
+      display: none;
+    }
+
+    .player {
+      margin-bottom: 1rem;
+    }
   }
 }

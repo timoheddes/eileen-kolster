@@ -19,6 +19,7 @@ export class Particle {
   fadeInDuration: number;
   targetOpacity: number; // The final base opacity after fading in
   currentOpacity: number; // The opacity on the current frame
+  supportMouse?: boolean;
 
   constructor(canvasWidth: number, canvasHeight: number) {
     this.canvasWidth = canvasWidth;
@@ -102,7 +103,7 @@ export class Particle {
     const dy = this.y - mouse.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
 
-    if (mouse.isDown) {
+    if (mouse.isDown && this.supportMouse) {
       document.body.style.cursor = 'grabbing';
       // --- ATTRACT FORCE (when mouse is held down) ---
       const attractRadius = 300;
@@ -121,7 +122,7 @@ export class Particle {
         this.speedY -= forceDirectionY * force * attractStrength;
       }
     } else {
-      document.body.style.cursor = 'default';
+      // document.body.style.cursor = 'default';
       // --- REPEL FORCE (on click burst) & HOVER (gentle push) ---
       // This runs only when the mouse button is NOT held down.
 

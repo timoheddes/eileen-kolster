@@ -49,7 +49,7 @@ const Timeline = ({ data }: { data: TimelineItemType[] }) => {
       <aside className="timeline-column column-20">
         <motion.div className="timeline-legend">
           {data.map((item) => (
-            <motion.h4
+            <motion.a
               key={item.title}
               className={activeSection === item.title ? 'active' : ''}
               onClick={() => scrollToSection(item)}
@@ -57,7 +57,7 @@ const Timeline = ({ data }: { data: TimelineItemType[] }) => {
               <span>{item.title}</span>
               <br />
               {item.dates}
-            </motion.h4>
+            </motion.a>
           ))}
         </motion.div>
       </aside>

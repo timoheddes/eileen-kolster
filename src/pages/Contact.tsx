@@ -1,37 +1,43 @@
+import { InstagramIcon } from '../assets/icons/Instagram';
+import { Mail } from 'lucide-react';
+import { SoundcloudIcon } from '../assets/icons/Soundcloud';
+
 const Contact = () => {
   return (
-    <div className="flex-center">
-      <div className="gradient-border column p-1">
-        <p className="flex-center-align">
-          Instagram:
-          <a
-            href="https://www.instagram.com/eileenkolster/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @eileenkolster
-          </a>
-        </p>
-      </div>
-      <div className="gradient-border column p-1">
-        {/* <h2>Get in touch</h2> */}
-        <p className="flex-center-align">
-          Email:
-          <a href="mailto:eileen@eileen.kolster@gmail.com">
-            eileen.kolster@gmail.com
-          </a>
-        </p>
-        <p className="flex-center-align">
-          Soundcloud:
-          <a
-            href="https://soundcloud.com/ai-ling-kolster"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Eileen Kolster
-          </a>
-        </p>
-      </div>
+    <div id="contact">
+      <p style={{ marginBottom: '1em' }}>
+        <a
+          href="mailto:eileen.kolster@gmail.com"
+          className="flex gap-0-5 items-center"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Mail />
+          <mark className="highlight">eileen.kolster@gmail.com</mark>
+        </a>
+      </p>
+      <p style={{ marginBottom: '1em' }}>
+        <a
+          href="https://www.instagram.com/eileenkolster/"
+          className="flex gap-0-5 items-center"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <InstagramIcon />
+          <mark className="highlight">@eileenkolster</mark>
+        </a>
+      </p>
+      <p style={{ marginBottom: '1em' }}>
+        <a
+          href="https://soundcloud.com/ai-ling-kolster"
+          className="flex gap-0-5 items-center"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SoundcloudIcon />
+          <mark className="highlight">Eileen Kolster</mark>
+        </a>
+      </p>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import type { ReactElement, HTMLAttributes } from 'react';
 import './Button.css';
 import { Link } from 'wouter';
 
@@ -7,15 +7,23 @@ const Button = ({
   variant = 'primary',
   icon,
   href,
+  className,
+  ...props
 }: {
   children: React.ReactNode;
   icon?: ReactElement;
   variant?: 'primary' | 'secondary';
   href?: string;
-}) => {
+  className?: string;
+} & HTMLAttributes<HTMLButtonElement>) => {
   return (
     <Link href={href || ''}>
-      <button className={`button ${variant} ${icon ? 'icon' : ''}`}>
+      <button
+        className={`button ${variant} ${icon ? 'icon' : ''} ${
+          className || ''
+        }`}
+        {...props}
+      >
         {children}
         {icon}
       </button>

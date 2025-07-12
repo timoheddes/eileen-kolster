@@ -33,6 +33,7 @@ const Home = () => {
         <Button
           href="/contact"
           icon={<MessageSquareShare size={20} />}
+          data-cursor-text="View Details"
         >
           Get in touch
         </Button>
