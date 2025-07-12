@@ -152,7 +152,9 @@ export const AudioWave = ({
               {!ready ? (
                 <RippleOutline
                   size={
-                    options?.height ? `${options.height}px` : '50px'
+                    options?.height
+                      ? `${Number(options.height) * 0.8}px`
+                      : '50px'
                   }
                 />
               ) : (
