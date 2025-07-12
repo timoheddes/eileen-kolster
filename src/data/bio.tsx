@@ -11,6 +11,10 @@ import eileen_kenley from '../assets/images/photos/eileen-kenley.webp';
 import eileen_fish from '../assets/images/photos/eileen-fish.webp';
 import singapore1 from '../assets/images/photos/singapore1.webp';
 import singapore2 from '../assets/images/photos/singapore2.webp';
+import eileen_engineer from '../assets/images/photos/eileen-engineer.webp';
+import eileen_fantasy from '../assets/images/photos/eileen-fantasy.webp';
+import fantasy from '../assets/images/photos/fantasy.webp';
+import fantasy2 from '../assets/images/photos/fantasy2.webp';
 
 import Button from '../components/Button/Button';
 import { MessageSquareShare } from 'lucide-react';
@@ -112,8 +116,8 @@ export const timeline: TimelineItemType[] = [
           imageSize={300}
           images={[
             { file: eileen_fish, zIndex: 10 },
+            { file: eileen_engineer, zIndex: 30 },
             { file: singapore1, zIndex: 40 },
-            { file: singapore2, zIndex: 20 },
           ]}
         />
       </>
@@ -135,18 +139,17 @@ export const timeline: TimelineItemType[] = [
           <mark className="highlight">Paris Fantasy Orchestra</mark>{' '}
           <small>(2015-2017)</small>.
         </p>
-        <iframe
-          className="video"
-          style={{
-            marginTop: '1em',
-          }}
-          src="https://www.youtube.com/embed/OW-fHJEoXEs?color=white"
-          title="Music Discovery Day 2012 - Cecil Sharp House"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+
+        <ImageCollage
+          rotate
+          magnetic
+          imageSize={315}
+          images={[
+            { file: eileen_fantasy, zIndex: 40 },
+            { file: fantasy, zIndex: 50 },
+            { file: fantasy2, zIndex: 20 },
+          ]}
+        />
         <small>Eileen can be seen briefly at around 3:32</small>
       </>
     ),
