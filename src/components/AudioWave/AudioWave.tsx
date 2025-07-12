@@ -104,6 +104,7 @@ export const AudioWave = ({
 
   const previousTrack = () => {
     destroyMediaElement(tracks[currentTrack].file);
+    setReady(false);
     setCurrentTrack(
       (prev) => (prev - 1 + tracks.length) % tracks.length
     );
@@ -111,6 +112,7 @@ export const AudioWave = ({
   };
   const nextTrack = () => {
     destroyMediaElement(tracks[currentTrack].file);
+    setReady(false);
     setCurrentTrack((prev) => (prev + 1) % tracks.length);
     playButton.current?.focus();
   };
