@@ -97,11 +97,14 @@ export const timeline: TimelineItemType[] = [
         <h2>Engineering Adventures</h2>
         <p>
           Her engineering career took her around the world as she
-          worked in diverse fields, from acoustic consultancies to
+          worked in diverse fields.
+        </p>
+        <p>
+          From acoustic consultancies and risk engineering to
           engineering research in{' '}
           <mark className="highlight">underwater acoustics</mark> and{' '}
           <mark className="highlight">dolphin echolocation</mark> at
-          the National University of Singapore.
+          the National University of Singapore .
         </p>
         <ImageCollage
           rotate
