@@ -25,6 +25,7 @@
     "@fontsource/lato": "^5.2.6",
     "@fontsource/livvic": "^5.2.6",
     "@fontsource/poppins": "^5.2.6",
+    "@vercel/analytics": "^1.5.0",
     "circletype": "^2.3.0",
     "framer-motion": "^12.18.1",
     "gsap": "^3.13.0",
