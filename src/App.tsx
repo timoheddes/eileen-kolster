@@ -8,6 +8,7 @@ import useCustomCursorDetection from './hooks/customCursor';
 import MainContent from './MainContent';
 
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const showCustomCursor = useCustomCursorDetection();
@@ -23,6 +24,7 @@ function App() {
       <Footer />
       {showCustomCursor && <Cursor />}
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
