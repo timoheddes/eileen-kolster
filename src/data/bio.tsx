@@ -16,7 +16,7 @@ import fantasy from '../assets/images/photos/fantasy.webp';
 import fantasy2 from '../assets/images/photos/fantasy2.webp';
 
 import Button from '../components/Button/Button';
-import { MessageSquareShare } from 'lucide-react';
+import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 export const timeline: TimelineItemType[] = [
   {
@@ -201,7 +201,7 @@ export const timeline: TimelineItemType[] = [
         <p className="font-size-1-5 flex gap-1 mt-1">
           <Button
             href="/contact"
-            icon={<MessageSquareShare size={20} />}
+            icon={<MessageSquareShareIcon size={20} />}
           >
             Get in touch
           </Button>

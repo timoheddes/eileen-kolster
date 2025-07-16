@@ -4,6 +4,7 @@ import { AnimatedLink } from '../AnimatedLink/AnimatedLink';
 import { motion } from 'motion/react';
 import { Hamburger } from './Menu/Hamburger';
 import useMenuState from '../../store/menuState';
+import { usePreload } from '../../hooks/usePreload';
 
 const navigationVariants = {
   // The state before the animation begins
@@ -38,6 +39,7 @@ const linkSize = 2;
 export const Navigation = () => {
   const [biographyActive] = useRoute('/biography');
   const [contactActive] = useRoute('/contact');
+  const { preloadComponent } = usePreload();
 
   const { isMenuOpen, setIsMenuOpen } = useMenuState();
 
@@ -54,7 +56,12 @@ export const Navigation = () => {
           className={(active) => (active ? 'active' : '')}
           onClick={() => setIsMenuOpen(false)}
         >
-          <motion.span variants={linkVariants}>
+          <motion.span
+            variants={linkVariants}
+            onMouseEnter={() =>
+              preloadComponent('../pages/Biography')
+            }
+          >
             <AnimatedLink
               effect={linkAnimation}
               variant={linkVariant}
@@ -70,7 +77,10 @@ export const Navigation = () => {
           className={(active) => (active ? 'active' : '')}
           onClick={() => setIsMenuOpen(false)}
         >
-          <motion.span variants={linkVariants}>
+          <motion.span
+            variants={linkVariants}
+            onMouseEnter={() => preloadComponent('../pages/Contact')}
+          >
             <AnimatedLink
               effect={linkAnimation}
               variant={linkVariant}

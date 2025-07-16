@@ -6,13 +6,10 @@ import useAudioState from '../../store/audioState';
 import { squiglyWave } from './waveRender';
 import { RippleOutline } from '../Loaders';
 
-import {
-  Play,
-  SkipForward,
-  SkipBack,
-  Pause,
-  // Info,
-} from 'lucide-react';
+import { PlayIcon } from '../../assets/icons/Play';
+import { PauseIcon } from '../../assets/icons/Pause';
+import { SkipForwardIcon } from '../../assets/icons/SkipForward';
+import { SkipBackIcon } from '../../assets/icons/SkipBack';
 
 export const AudioWave = ({
   tracks,
@@ -140,7 +137,7 @@ export const AudioWave = ({
                 onClick={() => changeTrack('previous')}
                 aria-label="Previous track"
               >
-                <SkipBack
+                <SkipBackIcon
                   size={
                     options?.height
                       ? `${Number(options.height) * 0.5}px`
@@ -163,7 +160,7 @@ export const AudioWave = ({
                   aria-label="Play/Pause"
                 >
                   {!playing ? (
-                    <Play
+                    <PlayIcon
                       size={
                         options?.height
                           ? `${Number(options.height) * 0.8}px`
@@ -171,7 +168,7 @@ export const AudioWave = ({
                       }
                     />
                   ) : (
-                    <Pause
+                    <PauseIcon
                       size={
                         options?.height
                           ? `${Number(options.height) * 0.8}px`
@@ -185,7 +182,7 @@ export const AudioWave = ({
                 onClick={() => changeTrack('next')}
                 aria-label="Next track"
               >
-                <SkipForward
+                <SkipForwardIcon
                   size={
                     options?.height
                       ? `${Number(options.height) * 0.5}px`

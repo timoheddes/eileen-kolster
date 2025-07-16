@@ -1,10 +1,24 @@
 import { Switch, Route, useLocation } from 'wouter';
 import { AnimatePresence } from 'framer-motion';
+import { lazy, Suspense } from 'react';
+import { PageLoader } from '../components/Loaders';
 
-import Biography from './Biography';
-import Home from './Home';
-import NotFound from './NotFound';
-import Contact from './Contact';
+// Lazy load page components
+const Home = lazy(() => import('./Home'));
+const Biography = lazy(() => import('./Biography'));
+const Contact = lazy(() => import('./Contact'));
+const NotFound = lazy(() => import('./NotFound'));
+
+// Wrapper component to handle Suspense
+const LazyRoute = ({
+  component: Component,
+}: {
+  component: React.ComponentType;
+}) => (
+  <Suspense fallback={<PageLoader />}>
+    <Component />
+  </Suspense>
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -12,11 +26,20 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Switch key={location[0]} location={location[0]}>
-        <Route path="/" component={Home} />
-        <Route path="/biography" component={Biography} />
-        <Route path="/contact" component={Contact} />
+        <Route
+          path="/"
+          component={() => <LazyRoute component={Home} />}
+        />
+        <Route
+          path="/biography"
+          component={() => <LazyRoute component={Biography} />}
+        />
+        <Route
+          path="/contact"
+          component={() => <LazyRoute component={Contact} />}
+        />
         <Route>
-          <NotFound />
+          <LazyRoute component={NotFound} />
         </Route>
       </Switch>
     </AnimatePresence>

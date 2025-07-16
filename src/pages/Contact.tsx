@@ -1,5 +1,5 @@
 import { InstagramIcon } from '../assets/icons/Instagram';
-import { Mail } from 'lucide-react';
+import { MailIcon } from '../assets/icons/Mail';
 import { SoundcloudIcon } from '../assets/icons/Soundcloud';
 
 const Contact = () => {
@@ -30,7 +30,7 @@ const Contact = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Mail />
+          <MailIcon />
           <mark className="highlight">eileen.kolster@gmail.com</mark>
         </a>
       </p>

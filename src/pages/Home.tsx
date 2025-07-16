@@ -1,4 +1,4 @@
-import { MessageSquareShare, AudioWaveform } from 'lucide-react';
+import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 import ImageCollage from '../components/ImageCollage/ImageCollage';
 import Button from '../components/Button/Button';
@@ -6,6 +6,7 @@ import Button from '../components/Button/Button';
 import eileen_colourful from '../assets/images/photos/eileen-colourful.webp';
 import eileen_piano2 from '../assets/images/photos/eileen-piano2.webp';
 import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp';
+import { AudioWaveformIcon } from '../assets/icons/AudioWaveform';
 
 const Home = () => {
   return (
@@ -44,7 +45,7 @@ const Home = () => {
       <p className="font-size-1-5 flex gap-1 mt-1">
         <Button
           href="/contact"
-          icon={<MessageSquareShare size={20} />}
+          icon={<MessageSquareShareIcon size={20} />}
           data-cursor-text="View Details"
         >
           Get in touch
@@ -52,7 +53,7 @@ const Home = () => {
         <Button
           href="/biography"
           variant="secondary"
-          icon={<AudioWaveform size={20} />}
+          icon={<AudioWaveformIcon size={20} />}
         >
           My journey
         </Button>
