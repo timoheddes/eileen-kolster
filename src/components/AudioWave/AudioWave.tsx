@@ -82,6 +82,7 @@ export const AudioWave = ({
     });
     wavesurfer.on('ready', () => {
       setReady(true);
+      playButton.current?.focus();
     });
 
     return () => {
@@ -102,19 +103,14 @@ export const AudioWave = ({
     options,
   ]);
 
-  const previousTrack = () => {
+  const changeTrack = (direction: 'previous' | 'next') => {
     destroyMediaElement(tracks[currentTrack].file);
     setReady(false);
-    setCurrentTrack(
-      (prev) => (prev - 1 + tracks.length) % tracks.length
+    setCurrentTrack((prev) =>
+      direction === 'previous'
+        ? (prev - 1 + tracks.length) % tracks.length
+        : (prev + 1) % tracks.length
     );
-    playButton.current?.focus();
-  };
-  const nextTrack = () => {
-    destroyMediaElement(tracks[currentTrack].file);
-    setReady(false);
-    setCurrentTrack((prev) => (prev + 1) % tracks.length);
-    playButton.current?.focus();
   };
 
   return (
@@ -141,7 +137,7 @@ export const AudioWave = ({
           <div className={`audio-wave-container theme-${theme}`}>
             <>
               <button
-                onClick={() => previousTrack()}
+                onClick={() => changeTrack('previous')}
                 aria-label="Previous track"
               >
                 <SkipBack
@@ -186,7 +182,7 @@ export const AudioWave = ({
                 </button>
               )}
               <button
-                onClick={() => nextTrack()}
+                onClick={() => changeTrack('next')}
                 aria-label="Next track"
               >
                 <SkipForward
