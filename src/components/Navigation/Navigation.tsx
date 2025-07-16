@@ -4,7 +4,10 @@ import { AnimatedLink } from '../AnimatedLink/AnimatedLink';
 import { motion } from 'motion/react';
 import { Hamburger } from './Menu/Hamburger';
 import useMenuState from '../../store/menuState';
-import { usePreload } from '../../hooks/usePreload';
+
+// Static dynamic imports for preloading
+const preloadBiography = () => import('../../pages/Biography');
+const preloadContact = () => import('../../pages/Contact');
 
 const navigationVariants = {
   // The state before the animation begins
@@ -39,7 +42,6 @@ const linkSize = 2;
 export const Navigation = () => {
   const [biographyActive] = useRoute('/biography');
   const [contactActive] = useRoute('/contact');
-  const { preloadComponent } = usePreload();
 
   const { isMenuOpen, setIsMenuOpen } = useMenuState();
 
@@ -58,9 +60,7 @@ export const Navigation = () => {
         >
           <motion.span
             variants={linkVariants}
-            onMouseEnter={() =>
-              preloadComponent('../pages/Biography')
-            }
+            onMouseEnter={preloadBiography}
           >
             <AnimatedLink
               effect={linkAnimation}
@@ -79,7 +79,7 @@ export const Navigation = () => {
         >
           <motion.span
             variants={linkVariants}
-            onMouseEnter={() => preloadComponent('../pages/Contact')}
+            onMouseEnter={preloadContact}
           >
             <AnimatedLink
               effect={linkAnimation}
