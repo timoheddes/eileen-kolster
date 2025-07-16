@@ -17,7 +17,7 @@ const Button = ({
   className?: string;
 } & HTMLAttributes<HTMLButtonElement>) => {
   return (
-    <Link href={href || ''}>
+    <Link href={href || ''} asChild>
       <button
         className={`button ${variant} ${icon ? 'icon' : ''} ${
           className || ''
