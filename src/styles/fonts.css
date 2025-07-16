@@ -1,22 +1,6 @@
-@import '@fontsource/dekko';
-
 @import '@fontsource/cute-font';
-@import '@fontsource/lato';
 
-@import '@fontsource/fira-sans/300.css';
-@import '@fontsource/fira-sans/400.css';
-@import '@fontsource/fira-sans/500.css';
-@import '@fontsource/fira-sans/600.css';
-
-@import '@fontsource/poppins/300.css';
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/500.css';
-@import '@fontsource/poppins/600.css';
-
-@import '@fontsource/baloo-da-2/400.css';
 @import '@fontsource/baloo-da-2/500.css';
-@import '@fontsource/baloo-da-2/600.css';
-@import '@fontsource/baloo-da-2/700.css';
 
 @import '@fontsource/livvic/200.css';
 @import '@fontsource/livvic/300.css';
@@ -24,20 +8,8 @@
 @import '@fontsource/livvic/500.css';
 @import '@fontsource/livvic/600.css';
 
-.font-family-poppins {
-  font-family: 'Poppins', sans-serif;
-}
-
 .font-family-cute {
   font-family: 'Cute Font', cursive;
-}
-
-.font-family-dekko {
-  font-family: 'Dekko', cursive;
-}
-
-.font-family-lato {
-  font-family: 'Lato', sans-serif;
 }
 
 .font-family-baloo {
