@@ -14,18 +14,15 @@
   "scripts": {
     "preview": "vite preview",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && bash convert-images.sh && bash convert-audio.sh && vite build",
     "convert-images": "bash convert-images.sh",
+    "convert-audio": "bash convert-audio.sh",
     "lint": "eslint ."
   },
   "dependencies": {
     "@fontsource/baloo-da-2": "^5.2.6",
     "@fontsource/cute-font": "^5.2.6",
-    "@fontsource/dekko": "^5.2.6",
-    "@fontsource/fira-sans": "^5.2.6",
-    "@fontsource/lato": "^5.2.6",
     "@fontsource/livvic": "^5.2.6",
-    "@fontsource/poppins": "^5.2.6",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "circletype": "^2.3.0",
