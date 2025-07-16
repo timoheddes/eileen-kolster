@@ -49,8 +49,13 @@ export const timeline: TimelineItemType[] = [
             {
               file: eileen_child1,
               zIndex: 40,
+              description: 'Eileen as a child with her mother',
             },
-            { file: eileen_child2, zIndex: 20 },
+            {
+              file: eileen_child2,
+              zIndex: 20,
+              description: 'Eileen as a child playing the violin',
+            },
           ]}
         />
       </>
@@ -110,9 +115,21 @@ export const timeline: TimelineItemType[] = [
           magnetic
           imageSize={300}
           images={[
-            { file: eileen_fish, zIndex: 10 },
-            { file: eileen_engineer, zIndex: 30 },
-            { file: singapore1, zIndex: 40 },
+            {
+              file: eileen_fish,
+              zIndex: 10,
+              description: 'Eileen holding a fish',
+            },
+            {
+              file: eileen_engineer,
+              zIndex: 30,
+              description: 'Eileen with hard hat on',
+            },
+            {
+              file: singapore1,
+              zIndex: 40,
+              description: 'Researching underwater acoustics',
+            },
           ]}
         />
       </>
@@ -140,9 +157,22 @@ export const timeline: TimelineItemType[] = [
           magnetic
           imageSize={315}
           images={[
-            { file: eileen_fantasy, zIndex: 40 },
-            { file: fantasy, zIndex: 50 },
-            { file: fantasy2, zIndex: 20 },
+            {
+              file: eileen_fantasy,
+              zIndex: 40,
+              description:
+                'Eileen playing in the Paris Fantasy Orchestra',
+            },
+            {
+              file: fantasy,
+              zIndex: 50,
+              description: 'Paris Fantasy Orchestra',
+            },
+            {
+              file: fantasy2,
+              zIndex: 20,
+              description: 'Paris Fantasy Orchestra',
+            },
           ]}
         />
       </>
@@ -182,12 +212,21 @@ export const timeline: TimelineItemType[] = [
           magnetic
           imageSize={315}
           images={[
-            { file: eileen_kenley, zIndex: 40 },
+            {
+              file: eileen_kenley,
+              zIndex: 40,
+              description: 'Playing the violin in London',
+            },
             {
               file: studio,
               zIndex: 30,
+              description: 'Studio in Amsterdam',
             },
-            { file: studio2, zIndex: 20 },
+            {
+              file: studio2,
+              zIndex: 20,
+              description: 'Studio in Amsterdam',
+            },
           ]}
         />
       </>

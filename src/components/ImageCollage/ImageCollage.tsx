@@ -11,6 +11,7 @@ export type ImageCollageImage = {
   magnetic?: boolean;
   rotate?: boolean;
   zIndex?: number;
+  description?: string;
 };
 
 const ImageCollage = ({
@@ -115,7 +116,7 @@ const ImageCollage = ({
             <figcaption>{image.caption}</figcaption>
             <img
               src={image.file}
-              alt={image.caption}
+              alt={image.description || image.caption}
               onLoad={() => setRerender(true)}
             />
           </figure>

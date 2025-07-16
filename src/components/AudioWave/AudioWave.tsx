@@ -120,8 +120,8 @@ export const AudioWave = ({
   return (
     <>
       <div className="flex flex-col metadata">
-        <h4
-          className="font-family-baloo"
+        <h3
+          className="font-family-baloo h4"
           style={{
             display: 'flex',
           }}
@@ -134,13 +134,16 @@ export const AudioWave = ({
           >
             {tracks[currentTrack].title}
           </span>
-        </h4>
+        </h3>
       </div>
       <div className="flex flex-col player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>
             <>
-              <button onClick={() => previousTrack()}>
+              <button
+                onClick={() => previousTrack()}
+                aria-label="Previous track"
+              >
                 <SkipBack
                   size={
                     options?.height
@@ -161,6 +164,7 @@ export const AudioWave = ({
                 <button
                   onClick={() => wavesurferRef.current?.playPause()}
                   ref={playButton}
+                  aria-label="Play/Pause"
                 >
                   {!playing ? (
                     <Play
@@ -181,7 +185,10 @@ export const AudioWave = ({
                   )}
                 </button>
               )}
-              <button onClick={() => nextTrack()}>
+              <button
+                onClick={() => nextTrack()}
+                aria-label="Next track"
+              >
                 <SkipForward
                   size={
                     options?.height

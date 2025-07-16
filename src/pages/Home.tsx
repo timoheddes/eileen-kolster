@@ -15,9 +15,21 @@ const Home = () => {
         magnetic
         imageSize={260}
         images={[
-          { file: eileen_roof_violin, zIndex: 20 },
-          { file: eileen_colourful, zIndex: 30 },
-          { file: eileen_piano2, zIndex: 20 },
+          {
+            file: eileen_roof_violin,
+            zIndex: 20,
+            description: 'Eileen playing the violin on the roof',
+          },
+          {
+            file: eileen_colourful,
+            zIndex: 30,
+            description: 'Eileen with a colourful background',
+          },
+          {
+            file: eileen_piano2,
+            zIndex: 20,
+            description: 'Eileen playing the piano',
+          },
         ]}
       />
       <h2>An Amsterdam-based media composer</h2>
