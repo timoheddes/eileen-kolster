@@ -69,6 +69,8 @@
 
   button {
     border-radius: 20px;
+    background: none;
+    border: none;
     transition: transform 0.2s ease-in-out;
     &:hover {
       transform: scale(1.2);

@@ -9,13 +9,14 @@
     "url": "https://github.com/timoheddes/eileen-kolster"
   },
   "private": true,
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "scripts": {
+    "preview": "vite preview",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "convert-images": "bash convert-images.sh",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@fontsource/baloo-da-2": "^5.2.6",

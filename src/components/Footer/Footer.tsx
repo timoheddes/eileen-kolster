@@ -1,11 +1,11 @@
 import { AudioWave } from '../AudioWave';
 import './Footer.css';
 
-import beneath_the_surface from '../../assets/music/Beneath the Surface.wav';
-import call_of_the_ocean from '../../assets/music/Call of the Ocean.wav';
-import golden_hour_immersion from '../../assets/music/Golden Hour Immersion.wav';
-import shared_shores from '../../assets/music/Shared Shores.wav';
-import timeless_tides from '../../assets/music/Timeless Tides.wav';
+import beneath_the_surface from '../../assets/music/Beneath the Surface.mp3';
+import call_of_the_ocean from '../../assets/music/Call of the Ocean.mp3';
+import golden_hour_immersion from '../../assets/music/Golden Hour Immersion.mp3';
+import shared_shores from '../../assets/music/Shared Shores.mp3';
+import timeless_tides from '../../assets/music/Timeless Tides.mp3';
 
 const tracks = [
   { title: 'Beneath the Surface', file: beneath_the_surface },
