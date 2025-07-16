@@ -14,7 +14,8 @@
   "scripts": {
     "preview": "vite preview",
     "dev": "vite",
-    "build": "tsc -b && bash convert-images.sh && bash convert-audio.sh && vite build",
+    "build": "tsc -b && vite build",
+    "optimize": "bash convert-images.sh && bash convert-audio.sh",
     "convert-images": "bash convert-images.sh",
     "convert-audio": "bash convert-audio.sh",
     "lint": "eslint ."
