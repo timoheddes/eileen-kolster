@@ -48,7 +48,7 @@
 .waveform {
   width: 100%;
   height: 80px; /* Set a fixed height for the waveform */
-  /* cursor: col-resize; */
+  cursor: col-resize;
 }
 
 .metadata {
@@ -70,10 +70,11 @@
   button {
     border-radius: 20px;
     background: none;
+    cursor: pointer;
     border: none;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease-in-out;
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.15);
     }
   }
 }

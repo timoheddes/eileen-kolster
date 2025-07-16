@@ -24,7 +24,7 @@ export const Cursor = () => {
         x: event.clientX,
         y: event.clientY,
         ease: 'power3.out',
-        duration: 0.3,
+        duration: 0,
         overwrite: 'auto',
       });
 
