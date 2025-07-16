@@ -115,6 +115,11 @@ hr:before {
   padding-bottom: 7em;
 }
 
+::selection {
+  background: #154c57;
+  color: #fff;
+}
+
 @media screen and (max-width: 1000px) {
   .main-content {
     margin-left: 4rem;
