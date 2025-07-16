@@ -22,6 +22,7 @@
   }
 
   .timeline-legend {
+    list-style-type: none;
     position: fixed;
     top: 7em;
 
