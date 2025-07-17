@@ -179,11 +179,11 @@ export const timeline: TimelineItemType[] = [
     ),
   },
   {
-    title: 'Composing Her Path',
+    title: 'Composing My Path',
     dates: '2024 — Present',
     body: (
       <>
-        <h2>Composing Her Path</h2>
+        <h2>Composing My Path</h2>
         <p>
           Now <mark className="highlight">based in Amsterdam</mark>, I
           have left my corporate career behind to fully focus on my
