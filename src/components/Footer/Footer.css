@@ -9,11 +9,12 @@
   backdrop-filter: blur(10px) brightness(125%);
 
   .content {
-    margin-top: auto;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: start;
     padding: 0.8rem 4rem;
+    max-width: 1600px;
   }
 
   @media screen and (max-width: 640px) {
