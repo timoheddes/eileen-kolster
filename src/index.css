@@ -50,7 +50,6 @@ body.custom-cursor-active {
   font-family: 'Livvic', sans-serif;
   font-size: 1rem;
   box-sizing: border-box;
-  max-width: 1600px;
   /* display: grid;
   grid-template-rows: fit-content(40%);
   align-content: space-between;
@@ -107,13 +106,45 @@ hr:before {
   border-radius: 20px;
 }
 
-.main-content {
+main {
+  width: 100vw;
+
+  .content {
+    display: block;
+    margin: 5em auto;
+  }
+
+  @media screen and (max-width: 1800px) {
+    .content {
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .content {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+/*
+main.content {
   min-height: calc(100vh - 12em);
   margin: 0.6rem 4rem;
   margin-top: 5em;
   transition: opacity 0.1s ease-in-out;
   padding-bottom: 7em;
-}
+  display: block;
+} */
 
 ::selection {
   background: #154c57;

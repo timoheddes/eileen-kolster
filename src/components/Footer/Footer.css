@@ -9,12 +9,24 @@
   backdrop-filter: blur(10px) brightness(125%);
 
   .content {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
     justify-content: start;
     padding: 0.8rem 4rem;
-    max-width: 1600px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .content {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .metadata {
+      min-width: 240px;
+      justify-content: center;
+
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
   }
 
   @media screen and (max-width: 640px) {
@@ -22,6 +34,14 @@
       padding-left: 1rem;
       padding-right: 1rem;
       flex-direction: column-reverse;
+    }
+
+    .metadata {
+      min-width: 200px;
+
+      h3 {
+        font-size: 1.2rem;
+      }
     }
 
     .waveform {

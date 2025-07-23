@@ -6,11 +6,10 @@ const MainContent = () => {
 
   return (
     <>
-      <main
-        className="main-content"
-        style={{ visibility: isMenuOpen ? 'hidden' : 'visible' }}
-      >
-        <AnimatedRoutes />
+      <main style={{ visibility: isMenuOpen ? 'hidden' : 'visible' }}>
+        <div className="content">
+          <AnimatedRoutes />
+        </div>
       </main>
     </>
   );
