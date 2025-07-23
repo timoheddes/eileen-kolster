@@ -13,7 +13,7 @@ const tracks = [
   { title: 'Golden Hour Immersion', file: golden_hour_immersion },
   { title: 'Shared Shores', file: shared_shores },
   { title: 'Timeless Tides', file: timeless_tides },
-];
+].sort(() => Math.random() - 0.5);
 
 export const Footer = () => {
   return (
