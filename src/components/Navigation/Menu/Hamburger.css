@@ -14,8 +14,8 @@
   fill: none;
   transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
   stroke: #ffffff;
-  strokewidth: 3.5;
-  strokelinecap: round;
+  stroke-width: 3.5;
+  stroke-linecap: round;
 }
 .ham1 .top {
   stroke-dasharray: 40 139;
