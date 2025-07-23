@@ -12,6 +12,8 @@ const Home = () => {
         className="image-border overlay"
         style={{
           margin: '0 0 2em 0',
+          width: '100%',
+          maxWidth: '420px',
         }}
       >
         <img

@@ -2,9 +2,21 @@ import { InstagramIcon } from '../assets/icons/Instagram';
 import { MailIcon } from '../assets/icons/Mail';
 import { SoundcloudIcon } from '../assets/icons/Soundcloud';
 
+import eileen_piano2 from '../assets/images/photos/eileen-piano2.webp';
+
 const Contact = () => {
   return (
     <div id="contact">
+      <figure
+        className="image-border overlay"
+        style={{
+          margin: '0 0 2em 0',
+          width: '100%',
+          maxWidth: '420px',
+        }}
+      >
+        <img src={eileen_piano2} alt="Eileen playing piano" />
+      </figure>
       <h2>Biography</h2>
       <p>
         Based in Amsterdam, Eileen Kolster is a British/Dutch media
