@@ -7,7 +7,7 @@ import golden_hour_immersion from '../../assets/music/Golden Hour Immersion.mp3'
 import shared_shores from '../../assets/music/Shared Shores.mp3';
 import timeless_tides from '../../assets/music/Timeless Tides.mp3';
 import mystic_trees from '../../assets/music/Mystic Trees.mp3';
-import period_drama from '../../assets/music/Period Drama.mp3';
+import period_drama from '../../assets/music/period Drama.mp3';
 
 const tracks = [
   { title: 'Beneath the Surface', file: beneath_the_surface },
