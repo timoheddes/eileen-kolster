@@ -1,38 +1,24 @@
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
-import ImageCollage from '../components/ImageCollage/ImageCollage';
 import Button from '../components/Button/Button';
 
-import eileen_colourful from '../assets/images/photos/eileen-colourful.webp';
-import eileen_piano2 from '../assets/images/photos/eileen-piano2.webp';
 import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp';
 import { AudioWaveformIcon } from '../assets/icons/AudioWaveform';
 
 const Home = () => {
   return (
     <>
-      <ImageCollage
-        rotate
-        magnetic
-        imageSize={260}
-        images={[
-          {
-            file: eileen_roof_violin,
-            zIndex: 20,
-            description: 'Eileen playing the violin on the roof',
-          },
-          {
-            file: eileen_colourful,
-            zIndex: 30,
-            description: 'Eileen with a colourful background',
-          },
-          {
-            file: eileen_piano2,
-            zIndex: 20,
-            description: 'Eileen playing the piano',
-          },
-        ]}
-      />
+      <figure
+        className="image-border overlay"
+        style={{
+          margin: '0 0 2em 0',
+        }}
+      >
+        <img
+          src={eileen_roof_violin}
+          alt="Eileen on a rooftop terrace with her violin"
+        />
+      </figure>
       <h2>An Amsterdam-based media composer</h2>
       <p className="font-size-1-2" style={{ maxWidth: '800px' }}>
         My music ranges from intimate acoustic and ambient textures to

@@ -110,7 +110,7 @@ hr:before {
 .main-content {
   min-height: calc(100vh - 12em);
   margin: 0.6rem 4rem;
-  margin-top: 7em;
+  margin-top: 6em;
   transition: opacity 0.1s ease-in-out;
   padding-bottom: 7em;
 }
@@ -124,7 +124,6 @@ hr:before {
   .main-content {
     margin-left: 4rem;
     margin-right: 4rem;
-    margin-top: 7em;
   }
 }
 
