@@ -4,8 +4,8 @@
 
 # --- CONFIGURATION ---
 ROOT_DIR="src/assets/images"
-MAX_WIDTH=1200  # Maximum width for images in pixels
-MAX_HEIGHT=1200 # Maximum height for images in pixels
+MAX_WIDTH=600  # Maximum width for images in pixels
+MAX_HEIGHT=600 # Maximum height for images in pixels
 QUALITY=80
 # --- END CONFIGURATION ---
 
