@@ -208,5 +208,5 @@ export const Particles = ({ numParticles = 300 }) => {
     };
   }, [numParticles, analyser]);
 
-  return <canvas id="particles" ref={canvasRef} />;
+  return <canvas id="particles" ref={canvasRef} aria-hidden="true" />;
 };
