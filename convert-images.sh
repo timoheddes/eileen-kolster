@@ -25,7 +25,7 @@ fi
 echo "Starting image processing in '$ROOT_DIR'..."
 echo "Maximum dimensions set to ${MAX_WIDTH}x${MAX_HEIGHT}px. Quality set to ${QUALITY}."
 
-find "$ROOT_DIR" \( -iname "*.jpg" -o -iname "*.jpeg" \) -exec sh -c '
+find "$ROOT_DIR" \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec sh -c '
   MAX_WIDTH_ARG="'$MAX_WIDTH'"
   MAX_HEIGHT_ARG="'$MAX_HEIGHT'"
   QUALITY_ARG="'$QUALITY'"
