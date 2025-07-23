@@ -18,6 +18,8 @@ const Home = () => {
       >
         <img
           src={eileen_roof_violin}
+          sizes="(max-width: 768px) 100vw, 390px"
+          fetchPriority="high"
           alt="Eileen on a rooftop terrace with her violin"
         />
       </figure>
