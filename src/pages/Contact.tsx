@@ -12,7 +12,7 @@ const Contact = () => {
         style={{
           margin: '0 0 2em 0',
           width: '100%',
-          maxWidth: '420px',
+          maxWidth: '400px',
         }}
       >
         <img src={eileen_piano2} alt="Eileen playing piano" />
