@@ -15,7 +15,7 @@ const Contact = () => {
           maxWidth: '400px',
         }}
       >
-        <img src={eileen_piano2} alt="Eileen playing piano" />
+        <img src={eileen_piano2} alt="Eileen playing piano at home" />
       </figure>
       <h2>Biography</h2>
       <p>
