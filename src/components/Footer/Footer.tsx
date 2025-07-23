@@ -6,6 +6,8 @@ import call_of_the_ocean from '../../assets/music/Call of the Ocean.mp3';
 import golden_hour_immersion from '../../assets/music/Golden Hour Immersion.mp3';
 import shared_shores from '../../assets/music/Shared Shores.mp3';
 import timeless_tides from '../../assets/music/Timeless Tides.mp3';
+import mystic_trees from '../../assets/music/Mystic Trees.mp3';
+import period_drama from '../../assets/music/Period Drama.mp3';
 
 const tracks = [
   { title: 'Beneath the Surface', file: beneath_the_surface },
@@ -13,6 +15,8 @@ const tracks = [
   { title: 'Golden Hour Immersion', file: golden_hour_immersion },
   { title: 'Shared Shores', file: shared_shores },
   { title: 'Timeless Tides', file: timeless_tides },
+  { title: 'Mystic Trees', file: mystic_trees },
+  { title: 'Period Drama', file: period_drama },
 ].sort(() => Math.random() - 0.5);
 
 export const Footer = () => {
