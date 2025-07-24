@@ -5,6 +5,17 @@
   --color-link: #ffffff;
   --color-link-hover: #d7d7d7;
 
+  --shadow-offset: 0;
+  --shadow-blur: 20px;
+  --shadow-spread: -5px;
+  --shadow-color: rgba(255, 255, 255, 0.7);
+  --tint-color: 255, 255, 255;
+  --tint-opacity: 0.4;
+  --frost-blur: 2px;
+  --noise-frequency: 0.008;
+  --distortion-strength: 77;
+  --outer-shadow-blur: 24px;
+
   --main-background: url(../assets/images/background/noise.webp),
     radial-gradient(ellipse at top, #1d383b, transparent),
     radial-gradient(ellipse at bottom, #3c2014, transparent);
