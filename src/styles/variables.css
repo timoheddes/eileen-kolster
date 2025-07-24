@@ -5,9 +5,27 @@
   --color-link: #ffffff;
   --color-link-hover: #d7d7d7;
 
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-dark: #121212;
+
+  --color-light-azure: #154c57;
+  --color-dark-azure: #1d383b;
+  --color-dark-brown: #3c2014;
+  --color-hot-pink: #df2d55;
+  --color-dark-blue: #343f49;
+
   --main-background: url(../assets/images/background/noise.webp),
-    radial-gradient(ellipse at top, #1d383b, transparent),
-    radial-gradient(ellipse at bottom, #3c2014, transparent);
+    radial-gradient(
+      ellipse at top,
+      var(--color-dark-azure),
+      transparent
+    ),
+    radial-gradient(
+      ellipse at bottom,
+      var(--color-dark-brown),
+      transparent
+    );
   --main-background-size: 200px, 100%, 200%;
   --main-background-attachment: fixed;
 }

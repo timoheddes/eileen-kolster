@@ -49,7 +49,7 @@ a:hover {
 a,
 button {
   &:focus-visible {
-    outline: 2px solid #df2d55;
+    outline: 2px solid var(--color-hot-pink);
   }
 }
 
@@ -101,5 +101,5 @@ p {
 }
 
 .color-white {
-  color: white;
+  color: var(--color-white);
 }

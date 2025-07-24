@@ -50,11 +50,11 @@
 
 .animated-link--circle .animated-link-deco {
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid var(--color-white);
 }
 
 .animated-link--box .animated-link-deco {
-  border: 1px solid white;
+  border: 1px solid var(--color-white);
 }
 
 .animated-link--diagonal .animated-link-deco {

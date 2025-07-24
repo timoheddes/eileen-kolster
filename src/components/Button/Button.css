@@ -6,8 +6,8 @@ button {
 }
 
 .button {
-  background: #fff;
-  color: #154c57;
+  background: var(--color-white);
+  color: var(--color-light-azure);
   cursor: pointer;
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -31,7 +31,7 @@ button {
   &.secondary {
     background: rgba(80, 108, 131, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: var(--color-white);
   }
 }
 

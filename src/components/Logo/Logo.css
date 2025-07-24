@@ -3,7 +3,7 @@
   display: flex;
   margin: 0;
   font-weight: 400;
-  color: #fff;
+  color: var(--color-white);
 
   .splitting .char:hover {
     opacity: 0.5 !important;

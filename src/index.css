@@ -1,16 +1,14 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #121212;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-dark);
+  color-scheme: light dark;
+  color: var(--color-text);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
 }
 
 html,
@@ -21,13 +19,13 @@ body {
 
 body {
   color: var(--color-text);
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  min-height: 100vh;
-  position: relative;
   display: flex;
   justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  position: relative;
+  width: 100vw;
 }
 
 html.custom-cursor-active,
@@ -36,11 +34,11 @@ body.custom-cursor-active {
 }
 
 #root {
-  margin: 0;
-  width: 100vw;
+  box-sizing: border-box;
   font-family: 'Livvic', sans-serif;
   font-size: 1rem;
-  box-sizing: border-box;
+  margin: 0;
+  width: 100vw;
 }
 
 @media screen and (max-width: 768px) {
@@ -50,40 +48,40 @@ body.custom-cursor-active {
 }
 
 .hidden {
-  position: absolute;
-  overflow: hidden;
-  width: 0;
   height: 0;
+  overflow: hidden;
   pointer-events: none;
+  position: absolute;
+  width: 0;
 }
 
 hr {
-  width: 100%;
-  overflow: visible; /* For IE */
-  height: 30px;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px 0 0 0;
+  border-color: var(--color-black);
   border-radius: 20px;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  height: 30px;
+  overflow: visible; /* For IE */
+  width: 100%;
 }
 
 hr:before {
-  display: block;
+  border-color: var(--color-white);
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 0 0 1px 0;
   content: '';
+  display: block;
   height: 30px;
   margin-top: -31px;
-  border-style: solid;
-  border-color: rgb(255, 255, 255);
-  border-width: 0 0 1px 0;
-  border-radius: 20px;
 }
 
 .content {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  max-width: 1600px;
   margin: 0 auto;
+  max-width: 1600px;
 }
 
 main {
@@ -111,6 +109,6 @@ main {
 }
 
 ::selection {
-  background: #154c57;
-  color: #fff;
+  background: var(--color-light-azure);
+  color: var(--color-white);
 }
