@@ -4,8 +4,13 @@ import Button from '../components/Button/Button';
 
 import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp';
 import { AudioWaveformIcon } from '../assets/icons/AudioWaveform';
+import useShareState from '../store/shareState';
 
 const Home = () => {
+  const { track } = useShareState();
+  if (track) {
+    window.location.reload();
+  }
   return (
     <>
       <figure
