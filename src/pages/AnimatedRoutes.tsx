@@ -7,7 +7,6 @@ import { PageLoader } from '../components/Loaders';
 const Home = lazy(() => import('./Home'));
 const Biography = lazy(() => import('./Biography'));
 const Contact = lazy(() => import('./Contact'));
-const NotFound = lazy(() => import('./NotFound'));
 
 // Wrapper component to handle Suspense
 const LazyRoute = ({
@@ -39,7 +38,7 @@ const AnimatedRoutes = () => {
           component={() => <LazyRoute component={Contact} />}
         />
         <Route>
-          <LazyRoute component={NotFound} />
+          <LazyRoute component={Contact} />
         </Route>
       </Switch>
     </AnimatePresence>
