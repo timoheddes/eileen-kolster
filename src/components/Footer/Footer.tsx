@@ -38,7 +38,7 @@ export const Footer = () => {
       sharedTrack[0].hidden = false;
       tracks = sharedTrack;
     } else {
-      return setLocation('/');
+      setLocation('/');
     }
   }
 
