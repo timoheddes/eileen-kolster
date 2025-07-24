@@ -17,7 +17,6 @@ const Contact = () => {
       >
         <img src={eileen_piano2} alt="Eileen playing piano at home" />
       </figure>
-      <h2>Biography</h2>
       <p>
         Based in Amsterdam, Eileen Kolster is a British/Dutch media
         composer focusing on scoring for film and television.
