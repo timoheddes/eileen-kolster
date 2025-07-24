@@ -19,7 +19,9 @@ function App() {
       <Header />
       <Router>
         <MainContent />
-        <Particles numParticles={100} />
+        <Particles
+          numParticles={window.innerWidth > 768 ? 100 : 50}
+        />
       </Router>
       <Footer />
       {/* {showCustomCursor && <Cursor />} */}
