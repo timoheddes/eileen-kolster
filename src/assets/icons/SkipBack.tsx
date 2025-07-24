@@ -1,7 +1,9 @@
 export const SkipBackIcon = ({
   size = 24,
+  color = 'currentColor',
 }: {
   size?: number | string;
+  color?: string;
 }) => {
   return (
     <svg
@@ -10,7 +12,7 @@ export const SkipBackIcon = ({
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke={color}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

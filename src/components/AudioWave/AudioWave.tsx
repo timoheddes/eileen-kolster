@@ -145,6 +145,7 @@ export const AudioWave = ({
                 aria-label="Previous track"
               >
                 <SkipBackIcon
+                  color="white"
                   size={
                     options?.height
                       ? `${Number(options.height) * 0.5}px`
@@ -168,6 +169,7 @@ export const AudioWave = ({
                 >
                   {!playing ? (
                     <PlayIcon
+                      color="white"
                       size={
                         options?.height
                           ? `${Number(options.height) * 0.8}px`
@@ -176,6 +178,7 @@ export const AudioWave = ({
                     />
                   ) : (
                     <PauseIcon
+                      color="white"
                       size={
                         options?.height
                           ? `${Number(options.height) * 0.8}px`
@@ -197,6 +200,7 @@ export const AudioWave = ({
                 }}
               >
                 <SkipForwardIcon
+                  color="white"
                   size={
                     options?.height
                       ? `${Number(options.height) * 0.5}px`
