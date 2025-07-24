@@ -134,7 +134,14 @@ export const AudioWave = ({
           <div className={`audio-wave-container theme-${theme}`}>
             <>
               <button
-                onClick={() => changeTrack('previous')}
+                onClick={() =>
+                  tracks.length > 1 && changeTrack('previous')
+                }
+                style={{
+                  opacity: tracks.length === 1 ? '0.5' : '1',
+                  pointerEvents:
+                    tracks.length === 1 ? 'none' : 'auto',
+                }}
                 aria-label="Previous track"
               >
                 <SkipBackIcon
@@ -179,8 +186,15 @@ export const AudioWave = ({
                 </button>
               )}
               <button
-                onClick={() => changeTrack('next')}
+                onClick={() =>
+                  tracks.length > 1 && changeTrack('next')
+                }
                 aria-label="Next track"
+                style={{
+                  opacity: tracks.length === 1 ? '0.5' : '1',
+                  pointerEvents:
+                    tracks.length === 1 ? 'none' : 'auto',
+                }}
               >
                 <SkipForwardIcon
                   size={
