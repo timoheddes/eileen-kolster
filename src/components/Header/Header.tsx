@@ -1,4 +1,4 @@
-import { Link } from 'wouter';
+import { Link, useRoute } from 'wouter';
 import { Logo } from '../Logo';
 import './Header.css';
 import { Navigation } from '../Navigation';
@@ -15,6 +15,7 @@ export const Header = () => {
   const { scrollY } = useScroll();
   const triggerScrollAt = 50;
   const { isMenuOpen } = useMenuState();
+  const [shareActive] = useRoute('/share/:track');
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     // If the user scrolls down more than 50px, set isScrolled to true, otherwise false
@@ -50,7 +51,7 @@ export const Header = () => {
         <Link href="/" style={{ zIndex: 100 }}>
           <Logo text="Eileen Kolster" size={3} />
         </Link>
-        <Navigation />
+        {!shareActive && <Navigation />}
       </div>
     </motion.header>
   );

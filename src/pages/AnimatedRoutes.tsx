@@ -7,6 +7,7 @@ import { PageLoader } from '../components/Loaders';
 const Home = lazy(() => import('./Home'));
 const Biography = lazy(() => import('./Biography'));
 const Contact = lazy(() => import('./Contact'));
+const Share = lazy(() => import('./Share'));
 
 // Wrapper component to handle Suspense
 const LazyRoute = ({
@@ -36,6 +37,10 @@ const AnimatedRoutes = () => {
         <Route
           path="/contact"
           component={() => <LazyRoute component={Contact} />}
+        />
+        <Route
+          path="/share/:track"
+          component={() => <LazyRoute component={Share} />}
         />
         <Route>
           <LazyRoute component={Contact} />
