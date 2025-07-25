@@ -1,29 +1,57 @@
 export class Particle {
+  // Position and size
   x: number;
   y: number;
   size: number;
+
+  // Base speed (before any audio influence)
   baseSpeedX: number;
   baseSpeedY: number;
+
+  // Current speed (after audio influence)
   speedX: number;
   speedY: number;
+
+  // Opacity (0-1)
   opacity: number;
+
+  // Canvas dimensions
   canvasWidth: number;
   canvasHeight: number;
+
+  // Twinkle offset (for twinkling effect)
   twinkleOffset: number;
+
+  // Punch speed (for drum hits)
   punchSpeedX: number;
   punchSpeedY: number;
+
+  // Color (optional)
   color?: string;
 
+  // Creation time
   creationTime: number;
+
+  // Fade in delay
   fadeInDelay: number;
+  // Fade in duration
   fadeInDuration: number;
-  targetOpacity: number; // The final base opacity after fading in
-  currentOpacity: number; // The opacity on the current frame
-  supportMouse?: boolean;
+
+  // Target opacity (final base opacity after fading in)
+  targetOpacity: number;
+  // Current opacity (opacity on the current frame)
+  currentOpacity: number;
+
+  supportMouseDown?: boolean;
 
   constructor(canvasWidth: number, canvasHeight: number) {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
+
+    // Support mouse down
+    this.supportMouseDown = false;
+
+    // Size, speed, and opacity
     const depth = Math.random();
     this.size = depth * 2 + 0.5;
     this.baseSpeedX = (Math.random() - 0.5) * depth * 0.1;
@@ -31,16 +59,25 @@ export class Particle {
     this.speedX = this.baseSpeedX;
     this.speedY = this.baseSpeedY;
     this.opacity = depth * 0.5 + 0.1;
+
+    // Position
     this.x = Math.random() * canvasWidth;
     this.y = Math.random() * canvasHeight;
+
+    // Twinkle offset
     this.twinkleOffset = Math.random() * Math.PI * 2;
+
+    // Color
     this.color = '255, 255, 255';
 
-    // Initialize punch speed at zero
+    // Punch speed
     this.punchSpeedX = 0;
     this.punchSpeedY = 0;
 
+    // Creation time
     this.creationTime = Date.now();
+
+    // Fade in delay and duration
     // Each particle waits for a random time before starting to fade in (e.g., up to 2 seconds)
     this.fadeInDelay = Math.random() * 10000;
     // Each particle takes a random amount of time to complete its fade-in (e.g., 1 to 3 seconds)
@@ -51,9 +88,17 @@ export class Particle {
     this.currentOpacity = 0;
   }
 
-  // The update method now accepts an object with all our audio data
+  // The update method accepts an object with all our audio data
+  // subBass (20-60 Hz), bass (60-250 Hz), mids (250-2000 Hz), highMids (2000-20000 Hz), presence (6000-20000 Hz), punch
   update(
-    audio: { bass: number; highMids: number; punch: number },
+    audio: {
+      subBass: number;
+      bass: number;
+      mids: number;
+      highMids: number;
+      presence: number;
+      punch: number;
+    },
     mouse: {
       x: number;
       y: number;
@@ -103,7 +148,7 @@ export class Particle {
     const dy = this.y - mouse.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
 
-    if (mouse.isDown && this.supportMouse) {
+    if (mouse.isDown && this.supportMouseDown) {
       document.body.style.cursor = 'grabbing';
       // --- ATTRACT FORCE (when mouse is held down) ---
       const attractRadius = 300;
@@ -147,6 +192,8 @@ export class Particle {
       }
     }
 
+    // --- HOVER FORCE ---
+    // A gentle push towards the mouse when the particle is close
     if (dist < 150) {
       const forceDirectionX = dx / dist;
       const forceDirectionY = dy / dist;
@@ -172,10 +219,18 @@ export class Particle {
     }
   }
 
-  // The draw method also accepts the audio object
+  // Presence affects the brightness of the particle
+  // Mids affect the size of the particle
   draw(
     ctx: CanvasRenderingContext2D,
-    audio: { mids: number; presence: number }
+    audio: {
+      subBass: number;
+      bass: number;
+      mids: number;
+      highMids: number;
+      presence: number;
+      punch: number;
+    }
   ) {
     // --- SIZE ---
     // The "body" of the sound (mids) subtly increases the particle's size

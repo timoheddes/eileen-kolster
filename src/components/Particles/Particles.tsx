@@ -180,15 +180,22 @@ export const Particles = ({ numParticles = 300 }) => {
       particlesRef.current.forEach((p) => {
         p.update(
           {
+            subBass: audioData.subBass,
             bass: audioData.bass,
+            mids: audioData.mids,
             highMids: audioData.highMids,
+            presence: audioData.presence,
             punch: audioData.punch,
           },
           mouseRef.current
         );
         p.draw(ctx, {
+          subBass: audioData.subBass,
+          bass: audioData.bass,
           mids: audioData.mids,
+          highMids: audioData.highMids,
           presence: audioData.presence,
+          punch: audioData.punch,
         });
       });
 
