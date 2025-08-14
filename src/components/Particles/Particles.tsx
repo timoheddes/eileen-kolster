@@ -3,7 +3,10 @@ import './Particles.css';
 import useAudioState from '../../store/audioState';
 import { Particle } from './particle';
 
-export const Particles = ({ numParticles = 300 }) => {
+export const Particles = ({
+  numParticles = 300,
+  gravityWell = false,
+}) => {
   const canvasRef = useRef(null);
   const { analyser } = useAudioState();
 
@@ -16,6 +19,8 @@ export const Particles = ({ numParticles = 300 }) => {
     lastClickTime: 0,
     isDown: false,
   });
+
+  const supernovaStateRef = useRef({ startTime: 0, duration: 1500 });
 
   const connectParticles = (
     ctx: CanvasRenderingContext2D,
@@ -62,7 +67,7 @@ export const Particles = ({ numParticles = 300 }) => {
 
     setTimeout(() => {
       particlesRef.current.push(
-        new Particle(canvas.width, canvas.height)
+        new Particle(canvas.width, canvas.height, gravityWell)
       );
     }, index * Math.random() * 100);
   };
@@ -106,7 +111,7 @@ export const Particles = ({ numParticles = 300 }) => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
     };
-  }, [numParticles]);
+  }, [numParticles, gravityWell]);
 
   // Main effect for setting up and running the animation
   useEffect(() => {
@@ -177,6 +182,54 @@ export const Particles = ({ numParticles = 300 }) => {
         punch,
       };
 
+      const timeSinceSupernova =
+        Date.now() - supernovaStateRef.current.startTime;
+      let supernovaActive = false;
+      let supernovaProgress = 0;
+
+      if (timeSinceSupernova < supernovaStateRef.current.duration) {
+        supernovaActive = true;
+        // Progress goes from 1 (full strength) down to 0 (faded)
+        supernovaProgress =
+          1 - timeSinceSupernova / supernovaStateRef.current.duration;
+      }
+
+      const supernova = {
+        active: supernovaActive,
+        progress: supernovaProgress,
+      };
+
+      const SUPERNOVA_RADIUS = 60; // The radius of the "core"
+      const DENSITY_THRESHOLD = numParticles / 5; // How many particles trigger a supernova
+      const COOLDOWN = 5000; // The cooldown between supernova events
+      const particlesInCore: Particle[] = [];
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      for (const p of particlesRef.current) {
+        const distFromCenter = Math.sqrt(
+          Math.pow(p.x - centerX, 2) + Math.pow(p.y - centerY, 2)
+        );
+        if (distFromCenter < SUPERNOVA_RADIUS) {
+          particlesInCore.push(p);
+        }
+      }
+
+      // The density factor is a value from 0 to 1 based on how full the core is.
+      const densityFactor = Math.min(
+        particlesInCore.length / DENSITY_THRESHOLD,
+        1
+      );
+
+      if (
+        Date.now() - supernovaStateRef.current.startTime >
+        COOLDOWN
+      ) {
+        if (particlesInCore.length > DENSITY_THRESHOLD) {
+          supernovaStateRef.current.startTime = Date.now();
+        }
+      }
+
       particlesRef.current.forEach((p) => {
         p.update(
           {
@@ -187,16 +240,21 @@ export const Particles = ({ numParticles = 300 }) => {
             presence: audioData.presence,
             punch: audioData.punch,
           },
-          mouseRef.current
+          mouseRef.current,
+          supernova
         );
-        p.draw(ctx, {
-          subBass: audioData.subBass,
-          bass: audioData.bass,
-          mids: audioData.mids,
-          highMids: audioData.highMids,
-          presence: audioData.presence,
-          punch: audioData.punch,
-        });
+        p.draw(
+          ctx,
+          {
+            subBass: audioData.subBass,
+            bass: audioData.bass,
+            mids: audioData.mids,
+            highMids: audioData.highMids,
+            presence: audioData.presence,
+            punch: audioData.punch,
+          },
+          densityFactor
+        );
       });
 
       connectParticles(

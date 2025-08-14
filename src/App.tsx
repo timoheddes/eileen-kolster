@@ -21,6 +21,7 @@ function App() {
         <MainContent />
         <Particles
           numParticles={window.innerWidth > 768 ? 100 : 50}
+          gravityWell={false}
         />
       </Router>
       <Footer />

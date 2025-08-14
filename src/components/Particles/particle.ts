@@ -43,13 +43,19 @@ export class Particle {
   currentOpacity: number;
 
   supportMouseDown?: boolean;
+  gravityWell?: boolean;
 
-  constructor(canvasWidth: number, canvasHeight: number) {
+  constructor(
+    canvasWidth: number,
+    canvasHeight: number,
+    gravityWell: boolean
+  ) {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
 
     // Support mouse down
     this.supportMouseDown = false;
+    this.gravityWell = gravityWell;
 
     // Size, speed, and opacity
     const depth = Math.random();
@@ -104,6 +110,10 @@ export class Particle {
       y: number;
       lastClickTime: number;
       isDown: boolean;
+    },
+    supernova: {
+      active: boolean;
+      progress: number; // A value from 1 (full strength) down to 0
     }
   ) {
     const timeSinceCreation = Date.now() - this.creationTime;
@@ -202,6 +212,66 @@ export class Particle {
       this.speedY += forceDirectionY * force * this.size * 0.5;
     }
 
+    // --- GRAVITY ---
+    // The particle is pulled towards the center of the canvas
+    if (this.gravityWell) {
+      const dxToCenter = this.canvasWidth / 2 - this.x;
+      const dyToCenter = this.canvasHeight / 2 - this.y;
+      const distFromCenter = Math.sqrt(
+        dxToCenter * dxToCenter + dyToCenter * dyToCenter
+      );
+
+      const maxGravityRadius = this.canvasWidth; // The "gravity well" starts at 1/2 of the canvas width
+      const maxGravityStrength = 0.05; // The maximum force at the very center
+
+      let gravityForce = 0;
+
+      // Only apply gravity if the particle is inside the well
+      if (distFromCenter < maxGravityRadius) {
+        // Calculate strength (from 0 to 1). 1 at the center, 0 at the edge of the radius.
+        const strength = 1 - distFromCenter / maxGravityRadius;
+
+        // The force is the strength squared (for a more dramatic falloff) multiplied by the max strength
+        gravityForce = Math.pow(strength, 2) * maxGravityStrength;
+      }
+
+      // Apply the calculated force towards the center
+      if (distFromCenter > 0) {
+        // Avoid division by zero at the exact center
+        this.speedX += (dxToCenter / distFromCenter) * gravityForce;
+        this.speedY += (dyToCenter / distFromCenter) * gravityForce;
+      }
+
+      if (supernova.active) {
+        const distFromCenter = Math.sqrt(
+          dxToCenter * dxToCenter + dyToCenter * dyToCenter
+        );
+        // The force is strongest near the center and weakens with distance
+        const forceFalloff = Math.max(
+          0,
+          1 - distFromCenter / (this.canvasWidth / 2)
+        );
+
+        // The force direction is away from the center
+        const forceDirectionX = -dxToCenter / (distFromCenter || 1);
+        const forceDirectionY = -dyToCenter / (distFromCenter || 1);
+
+        const repelStrength = 5;
+
+        // Apply the force, scaled by the supernova's fading progress
+        this.speedX +=
+          forceDirectionX *
+          forceFalloff *
+          supernova.progress *
+          repelStrength;
+        this.speedY +=
+          forceDirectionY *
+          forceFalloff *
+          supernova.progress *
+          repelStrength;
+      }
+    }
+
     // --- FINAL POSITION UPDATE ---
     // Combine the sustained speed with the fading punch speed
     this.x += this.speedX + this.punchSpeedX;
@@ -230,7 +300,8 @@ export class Particle {
       highMids: number;
       presence: number;
       punch: number;
-    }
+    },
+    densityFactor: number
   ) {
     // --- SIZE ---
     // The "body" of the sound (mids) subtly increases the particle's size
@@ -246,12 +317,41 @@ export class Particle {
       twinkle +
       audio.presence * this.size * 0.5;
 
+    // --- VIBRATION ---
+    // The particle vibrates when it's near the center of the canvas
+    const vibrationRadius = 250;
+    const maxVibrationStrength = 3;
+
+    const dxToCenter = this.canvasWidth / 2 - this.x;
+    const dyToCenter = this.canvasHeight / 2 - this.y;
+    const distFromCenter = Math.sqrt(
+      dxToCenter * dxToCenter + dyToCenter * dyToCenter
+    );
+
+    let vibrationX = 0;
+    let vibrationY = 0;
+
+    if (distFromCenter < vibrationRadius) {
+      const distanceStrength = 1 - distFromCenter / vibrationRadius;
+
+      // The final strength is a combination of its distance from the center
+      // AND the overall density of the core.
+      const finalVibrationStrength =
+        maxVibrationStrength * distanceStrength * densityFactor;
+
+      vibrationX = (Math.random() - 0.5) * finalVibrationStrength;
+      vibrationY = (Math.random() - 0.5) * finalVibrationStrength;
+    }
+
+    const finalX = this.x + vibrationX;
+    const finalY = this.y + vibrationY;
+
     ctx.beginPath();
     ctx.fillStyle = `rgba(${this.color}, ${Math.min(
       finalOpacity,
       1.0
     )})`;
-    ctx.arc(this.x, this.y, finalSize, 0, Math.PI * 2);
+    ctx.arc(finalX, finalY, finalSize, 0, Math.PI * 2);
     ctx.fill();
   }
 }

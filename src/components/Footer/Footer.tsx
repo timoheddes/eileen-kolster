@@ -1,4 +1,3 @@
-import { useLocation, useRoute } from 'wouter';
 import { AudioWave } from '../AudioWave';
 import './Footer.css';
 
@@ -10,9 +9,8 @@ import timeless_tides from '../../assets/music/Timeless Tides.mp3';
 import mystic_trees from '../../assets/music/Mystic Trees.mp3';
 import period_drama from '../../assets/music/period Drama.mp3';
 import night_flight from '../../assets/music/Night Flight.mp3';
-import useShareState from '../../store/shareState';
 
-let tracks = [
+const tracks = [
   { title: 'Beneath the Surface', file: beneath_the_surface },
   { title: 'Call of the Ocean', file: call_of_the_ocean },
   { title: 'Golden Hour Immersion', file: golden_hour_immersion },
@@ -24,24 +22,6 @@ let tracks = [
 ].sort(() => Math.random() - 0.5);
 
 export const Footer = () => {
-  const [shareActive] = useRoute('/share/:track');
-  const { track } = useShareState();
-  const [, setLocation] = useLocation();
-
-  if (shareActive && track) {
-    const sharedTrack = tracks.filter(
-      (t) =>
-        t.title.toLowerCase().replace(' ', '') ===
-        track.toLowerCase().replace(' ', '')
-    );
-    if (sharedTrack[0]) {
-      sharedTrack[0].hidden = false;
-      tracks = sharedTrack;
-    } else {
-      setLocation('/');
-    }
-  }
-
   return (
     <footer className="footer">
       <div className="content">
