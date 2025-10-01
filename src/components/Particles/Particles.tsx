@@ -140,8 +140,10 @@ export const Particles = ({
       let punch = 0;
 
       if (analyser && dataArray) {
+        // @ts-expect-error -- IGNORE --
         analyser.getByteFrequencyData(dataArray);
         if (timeDomainArray) {
+          // @ts-expect-error -- IGNORE --
           analyser.getByteTimeDomainData(timeDomainArray);
           for (let i = 0; i < timeDomainArray.length; i++) {
             // Get the absolute distance from the "silent" center point
