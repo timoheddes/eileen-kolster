@@ -4,6 +4,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import compression from 'vite-plugin-compression';
 import legacy from '@vitejs/plugin-legacy';
+import critical from 'rollup-plugin-critical';
 
 export default defineConfig({
   plugins: [
@@ -25,6 +26,18 @@ export default defineConfig({
       open: true,
       gzipSize: true,
       brotliSize: true,
+    }),
+    critical({
+      criticalBase: 'dist/',
+      criticalUrl: 'https://eileenkolster.com',
+      criticalPages: [{ uri: '/', template: 'index' }],
+      criticalConfig: {
+        inline: true,
+        base: 'dist/',
+        extract: false,
+        width: 1300,
+        height: 900,
+      },
     }),
   ],
   build: {
