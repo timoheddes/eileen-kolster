@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { InstagramIcon } from '../assets/icons/Instagram';
 import { MailIcon } from '../assets/icons/Mail';
 import { SoundcloudIcon } from '../assets/icons/Soundcloud';
@@ -10,17 +9,20 @@ import './contact.css';
 const Contact = () => {
   return (
     <>
-      <Helmet>
-        <title>Eileen Kolster - Get in Touch</title>
-        <meta
-          name="description"
-          content="Get in touch with Eileen Kolster, a British/Dutch composer based in Amsterdam."
-        />
-      </Helmet>
+      <title>Eileen Kolster - Get in Touch</title>
+      <meta
+        name="description"
+        content="Get in touch with Eileen Kolster, a British/Dutch composer based in Amsterdam."
+      />
       <div id="contact">
         <figure className="header-image image-border overlay">
           <img
             src={eileen_piano2}
+            sizes="(max-width: 768px) 100vw, 400px"
+            fetchPriority="high"
+            width="400"
+            height="301"
+            loading="eager"
             alt="Eileen playing piano at home"
           />
         </figure>

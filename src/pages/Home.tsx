@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 import Button from '../components/Button/Button';
@@ -16,9 +15,7 @@ const Home = () => {
   }
   return (
     <>
-      <Helmet>
-        <link rel="preload" href={eileen_roof_violin} as="image" />
-      </Helmet>
+      <link rel="preload" href={eileen_roof_violin} as="image" />
       <div id="home">
         <figure className="header-image image-border overlay">
           <img

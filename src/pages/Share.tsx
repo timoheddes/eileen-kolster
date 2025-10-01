@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { useParams } from 'wouter';
 import useShareState from '../store/shareState';
 import { useEffect } from 'react';
@@ -13,9 +12,7 @@ const Share = () => {
 
   return (
     <>
-      <Helmet>
-        <meta name="robots" content="noindex" />
-      </Helmet>
+      <meta name="robots" content="noindex" />
     </>
   );
 };

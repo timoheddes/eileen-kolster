@@ -4,7 +4,6 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import compression from 'vite-plugin-compression';
 import legacy from '@vitejs/plugin-legacy';
-import critical from 'rollup-plugin-critical';
 
 export default defineConfig({
   plugins: [
@@ -26,16 +25,6 @@ export default defineConfig({
       open: true,
       gzipSize: true,
       brotliSize: true,
-    }),
-    critical({
-      criticalUrl: './dist/index.html',
-      criticalBase: './dist',
-      criticalPages: [
-        {
-          uri: 'index.html',
-          template: 'index.html',
-        },
-      ],
     }),
   ],
   build: {
