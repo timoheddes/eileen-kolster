@@ -5,6 +5,8 @@ import { SoundcloudIcon } from '../assets/icons/Soundcloud';
 
 import eileen_piano2 from '../assets/images/photos/eileen-piano2.webp';
 
+import './contact.css';
+
 const Contact = () => {
   return (
     <>
@@ -16,14 +18,7 @@ const Contact = () => {
         />
       </Helmet>
       <div id="contact">
-        <figure
-          className="image-border overlay"
-          style={{
-            margin: '0 0 2em 0',
-            width: '100%',
-            maxWidth: '400px',
-          }}
-        >
+        <figure className="header-image image-border overlay">
           <img
             src={eileen_piano2}
             alt="Eileen playing piano at home"
