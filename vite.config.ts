@@ -1,10 +1,51 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import compression from 'vite-plugin-compression';
 import legacy from '@vitejs/plugin-legacy';
 import critical from 'rollup-plugin-critical';
+import * as fs from 'fs';
+import * as path from 'path';
+
+const inlineCriticalCss = (): Plugin => {
+  return {
+    name: 'inline-critical-css',
+    apply: 'build',
+    enforce: 'post',
+    closeBundle: () => {
+      const distPath = path.resolve(__dirname, 'dist');
+      const criticalCssPath = path.join(
+        distPath,
+        'index_critical.min.css'
+      );
+      const indexPath = path.join(distPath, 'index.html');
+
+      try {
+        if (
+          fs.existsSync(criticalCssPath) &&
+          fs.existsSync(indexPath)
+        ) {
+          const criticalCss = fs.readFileSync(
+            criticalCssPath,
+            'utf-8'
+          );
+          let indexHtml = fs.readFileSync(indexPath, 'utf-8');
+
+          const styleTag = `<style>${criticalCss}</style>`;
+          indexHtml = indexHtml.replace(
+            '</head>',
+            `${styleTag}</head>`
+          );
+
+          fs.writeFileSync(indexPath, indexHtml, 'utf-8');
+        }
+      } catch (error) {
+        console.error('Error inlining critical CSS:', error);
+      }
+    },
+  };
+};
 
 export default defineConfig({
   plugins: [
@@ -32,13 +73,14 @@ export default defineConfig({
       criticalUrl: 'https://eileenkolster.com',
       criticalPages: [{ uri: '/', template: 'index' }],
       criticalConfig: {
-        inline: true,
+        inline: false,
         base: 'dist/',
-        extract: false,
+        extract: true,
         width: 1300,
         height: 900,
       },
     }),
+    inlineCriticalCss(),
   ],
   build: {
     rollupOptions: {
