@@ -12,6 +12,7 @@ import { SkipForwardIcon } from '../../assets/icons/SkipForward';
 import { SkipBackIcon } from '../../assets/icons/SkipBack';
 import useShareState from '../../store/shareState';
 import type { Track } from '../../types/tracks';
+import { useLocation } from 'wouter';
 
 export const AudioWave = ({
   tracks,
@@ -29,6 +30,7 @@ export const AudioWave = ({
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const { sharedTrack } = useShareState();
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     if (sharedTrack) {
@@ -42,7 +44,7 @@ export const AudioWave = ({
     } else {
       setAvailableTracks(tracks.filter((t) => !t.hidden));
     }
-  }, [sharedTrack, tracks]);
+  }, [sharedTrack, tracks, navigate]);
 
   const wavesurferRef = useRef<WaveSurfer | null>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
@@ -128,7 +130,7 @@ export const AudioWave = ({
     );
   };
 
-  return (
+  return availableTracks[currentTrack] ? (
     <>
       <div className="flex flex-col metadata">
         <h3
@@ -241,5 +243,7 @@ export const AudioWave = ({
         </div>
       </div>
     </>
+  ) : (
+    navigate('/')
   );
 };
