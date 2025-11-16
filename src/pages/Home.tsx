@@ -9,8 +9,8 @@ import useShareState from '../store/shareState';
 import './home.css';
 
 const Home = () => {
-  const { track } = useShareState();
-  if (track) {
+  const { sharedTrack } = useShareState();
+  if (sharedTrack) {
     window.location.reload();
   }
   return (

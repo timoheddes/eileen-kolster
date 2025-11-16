@@ -4,12 +4,11 @@ import { useEffect } from 'react';
 
 const Share = () => {
   const { track } = useParams();
-  const { setTrack } = useShareState();
+  const { setSharedTrack } = useShareState();
 
   useEffect(() => {
-    setTrack(track || '');
-  }, [track, setTrack]);
-
+    setSharedTrack(track || '');
+  }, [track, setSharedTrack]);
   return (
     <>
       <meta name="robots" content="noindex" />

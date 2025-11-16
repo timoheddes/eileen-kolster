@@ -1,5 +1,6 @@
 import type WaveSurfer from 'wavesurfer.js';
 import { create } from 'zustand';
+import type { Track } from '../types/tracks';
 
 export type AudioState = {
   activeInstance: WaveSurfer | null;
@@ -7,6 +8,8 @@ export type AudioState = {
   isPlaying: boolean;
   audioContext: AudioContext | null;
   analyser: AnalyserNode | null;
+  tracks: Track[];
+  setTracks: (tracks: Track[]) => void;
   initAudio: (mediaElement: HTMLAudioElement, file: string) => void;
   destroyMediaElement: (file: string) => void;
   setActiveAndPlayPause: (instance: WaveSurfer) => void;
@@ -29,7 +32,9 @@ const useAudioState = create<AudioState>((set) => ({
   isPlaying: false,
   audioContext: null,
   analyser: null,
+  tracks: [],
 
+  setTracks: (tracks: Track[]) => set(() => ({ tracks })),
   initAudio: (mediaElement: HTMLAudioElement, file: string) =>
     set(() => {
       // const time = new Date().getTime();

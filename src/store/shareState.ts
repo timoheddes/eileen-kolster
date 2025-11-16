@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
 export type ShareState = {
-  track: string | null;
-  setTrack: (track: string | null) => void;
+  sharedTrack: string | null;
+  setSharedTrack: (track: string | null) => void;
 };
 
 const useShareState = create<ShareState>((set) => ({
-  track: null,
-  setTrack: (track) => set({ track }),
+  sharedTrack: null,
+  setSharedTrack: (sharedTrack) => set({ sharedTrack }),
 }));
 
 export default useShareState;

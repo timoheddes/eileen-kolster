@@ -26,7 +26,7 @@ export const Footer = () => {
     <footer className="footer">
       <div className="content">
         <AudioWave
-          tracks={tracks.filter((t) => !t.hidden)}
+          tracks={tracks}
           theme="footer"
           options={{
             cursorWidth: 0,

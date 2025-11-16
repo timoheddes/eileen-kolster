@@ -10,6 +10,8 @@ import { PlayIcon } from '../../assets/icons/Play';
 import { PauseIcon } from '../../assets/icons/Pause';
 import { SkipForwardIcon } from '../../assets/icons/SkipForward';
 import { SkipBackIcon } from '../../assets/icons/SkipBack';
+import useShareState from '../../store/shareState';
+import type { Track } from '../../types/tracks';
 
 export const AudioWave = ({
   tracks,
@@ -17,14 +19,30 @@ export const AudioWave = ({
   style,
   options,
 }: {
-  tracks: { file: string; title: string }[];
+  tracks: Track[];
   theme?: 'light' | 'dark' | 'footer';
   style?: React.CSSProperties;
   options?: Partial<WaveSurferOptions>;
 }) => {
+  const [availableTracks, setAvailableTracks] = useState(tracks);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const { sharedTrack } = useShareState();
+
+  useEffect(() => {
+    if (sharedTrack) {
+      setAvailableTracks(
+        tracks.filter(
+          (t) =>
+            t.title.toLowerCase().replace(' ', '') ===
+            sharedTrack.toLowerCase().replace(' ', '')
+        )
+      );
+    } else {
+      setAvailableTracks(tracks.filter((t) => !t.hidden));
+    }
+  }, [sharedTrack, tracks]);
 
   const wavesurferRef = useRef<WaveSurfer | null>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
@@ -45,7 +63,7 @@ export const AudioWave = ({
     const loadAudio = async () => {
       try {
         wavesurferRef.current = wavesurfer;
-        await wavesurfer.load(tracks[currentTrack].file);
+        await wavesurfer.load(availableTracks[currentTrack].file);
         if (playing) {
           wavesurfer.play();
         }
@@ -60,11 +78,11 @@ export const AudioWave = ({
 
     wavesurfer.on('play', () => {
       const mediaElement = wavesurfer.getMediaElement();
-      initAudio(mediaElement, tracks[currentTrack].file);
+      initAudio(mediaElement, availableTracks[currentTrack].file);
 
       useAudioState.setState({
         isPlaying: true,
-        audioFile: tracks[currentTrack].file,
+        audioFile: availableTracks[currentTrack].file,
       });
       setPlaying(true);
       setActiveAndPlayPause(wavesurfer);
@@ -92,7 +110,7 @@ export const AudioWave = ({
       wavesurfer.destroy();
     };
   }, [
-    tracks,
+    availableTracks,
     currentTrack,
     initAudio,
     setActiveAndPlayPause,
@@ -101,12 +119,12 @@ export const AudioWave = ({
   ]);
 
   const changeTrack = (direction: 'previous' | 'next') => {
-    destroyMediaElement(tracks[currentTrack].file);
+    destroyMediaElement(availableTracks[currentTrack].file);
     setReady(false);
     setCurrentTrack((prev) =>
       direction === 'previous'
-        ? (prev - 1 + tracks.length) % tracks.length
-        : (prev + 1) % tracks.length
+        ? (prev - 1 + availableTracks.length) % availableTracks.length
+        : (prev + 1) % availableTracks.length
     );
   };
 
@@ -125,7 +143,7 @@ export const AudioWave = ({
               gap: '0.3em',
             }}
           >
-            {tracks[currentTrack].title}
+            {availableTracks[currentTrack].title}
           </span>
         </h3>
       </div>
@@ -135,12 +153,13 @@ export const AudioWave = ({
             <>
               <button
                 onClick={() =>
-                  tracks.length > 1 && changeTrack('previous')
+                  availableTracks.length > 1 &&
+                  changeTrack('previous')
                 }
                 style={{
-                  opacity: tracks.length === 1 ? '0.5' : '1',
+                  opacity: availableTracks.length === 1 ? '0.5' : '1',
                   pointerEvents:
-                    tracks.length === 1 ? 'none' : 'auto',
+                    availableTracks.length === 1 ? 'none' : 'auto',
                 }}
                 aria-label="Previous track"
               >
@@ -190,13 +209,13 @@ export const AudioWave = ({
               )}
               <button
                 onClick={() =>
-                  tracks.length > 1 && changeTrack('next')
+                  availableTracks.length > 1 && changeTrack('next')
                 }
                 aria-label="Next track"
                 style={{
-                  opacity: tracks.length === 1 ? '0.5' : '1',
+                  opacity: availableTracks.length === 1 ? '0.5' : '1',
                   pointerEvents:
-                    tracks.length === 1 ? 'none' : 'auto',
+                    availableTracks.length === 1 ? 'none' : 'auto',
                 }}
               >
                 <SkipForwardIcon
