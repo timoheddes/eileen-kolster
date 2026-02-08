@@ -1,7 +1,10 @@
-module.exports = {
+import autoprefixer from 'autoprefixer';
+import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
+
+export default {
   plugins: [
-    require('autoprefixer'),
-    require('@fullhuman/postcss-purgecss')({
+    autoprefixer(),
+    purgeCSSPlugin({
       content: ['./index.html', './src/**/*.{js,jsx,ts,tsx,html}'],
       // safelist: ['class-to-keep', /^dynamic-/],
       defaultExtractor: (content) =>

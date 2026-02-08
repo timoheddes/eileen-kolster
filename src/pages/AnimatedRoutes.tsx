@@ -3,8 +3,9 @@ import { AnimatePresence } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 import { PageLoader } from '../components/Loaders';
 
-// Lazy load page components
-const Home = lazy(() => import('./Home'));
+// Home is eager-loaded for faster LCP on landing page
+import Home from './Home';
+// Other pages lazy-loaded to reduce initial bundle
 const Biography = lazy(() => import('./Biography'));
 const Contact = lazy(() => import('./Contact'));
 const Share = lazy(() => import('./Share'));

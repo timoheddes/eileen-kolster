@@ -28,6 +28,7 @@ export default defineConfig({
       brotliSize: true,
     }),
     critical({
+      criticalUrl: 'dist',
       criticalBase: 'dist/',
       criticalPages: [{ uri: '/', template: 'index' }],
       criticalConfig: {
@@ -56,11 +57,5 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
-  css: {
-    postcss: {
-      plugins: [
-        // Add autoprefixer and cssnano
-      ],
-    },
-  },
+  // PostCSS config is in postcss.config.js (autoprefixer + PurgeCSS)
 });

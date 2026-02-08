@@ -21,7 +21,6 @@ const Home = () => {
 
   return (
     <>
-      <link rel="preload" href={eileen_roof_violin} as="image" />
       <div id="home">
         <figure className="header-image image-border overlay">
           <img
