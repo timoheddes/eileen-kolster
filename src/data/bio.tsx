@@ -89,6 +89,7 @@ export const timeline: TimelineItemType[] = [
           <img
             src={eileen_chamber}
             alt="Testing in an anechoic chamber"
+            loading="lazy"
           />
         </figure>
       </>

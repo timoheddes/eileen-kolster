@@ -46,32 +46,33 @@ const Timeline = ({ data }: { data: TimelineItemType[] }) => {
 
   return (
     <div className="timeline">
-      <menu
+      <nav
         className="timeline-column column-20"
         tabIndex={-1}
-        role="navigation"
+        aria-label="Timeline navigation"
       >
-        <motion.li className="timeline-legend">
+        <motion.ul className="timeline-legend">
           {data.map((item) => (
-            <motion.a
-              key={item.title}
-              className={activeSection === item.title ? 'active' : ''}
-              onClick={() => scrollToSection(item)}
-              onKeyDown={(e) => {
-                if (e.code === 'Space' || e.code === 'Enter') {
-                  e.preventDefault();
-                  scrollToSection(item);
-                }
-              }}
-              tabIndex={0}
-            >
-              <span>{item.title}</span>
-              <br />
-              {item.dates}
-            </motion.a>
+            <li key={item.title}>
+              <motion.a
+                className={activeSection === item.title ? 'active' : ''}
+                onClick={() => scrollToSection(item)}
+                onKeyDown={(e) => {
+                  if (e.code === 'Space' || e.code === 'Enter') {
+                    e.preventDefault();
+                    scrollToSection(item);
+                  }
+                }}
+                tabIndex={0}
+              >
+                <span>{item.title}</span>
+                <br />
+                {item.dates}
+              </motion.a>
+            </li>
           ))}
-        </motion.li>
-      </menu>
+        </motion.ul>
+      </nav>
       <motion.div className="timeline-column column-70">
         {data.map((item) => (
           <TimelineItem

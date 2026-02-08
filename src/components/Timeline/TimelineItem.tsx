@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { type TimelineItemType } from './Timeline';
 import useTimelineScroll from './useTimelineScroll';
 
-export const TimelineItem = ({
-  item,
-  id,
-}: {
+interface TimelineItemProps {
   item: TimelineItemType;
   id: string;
-}) => {
+}
+
+export const TimelineItem = memo(function TimelineItem({
+  item,
+  id,
+}: TimelineItemProps) {
   const { updateSection } = useTimelineScroll();
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -44,4 +46,4 @@ export const TimelineItem = ({
       {item.body}
     </div>
   );
-};
+});

@@ -22,40 +22,90 @@ export const Particles = ({
 
   const supernovaStateRef = useRef({ startTime: 0, duration: 1500 });
 
+  // Spatial partitioning grid for O(n) particle connections instead of O(n²)
   const connectParticles = (
     ctx: CanvasRenderingContext2D,
-    distance: number,
+    maxDistance: number,
     transparency: number
   ) => {
-    // This is the maximum distance between particles to draw a line
-    const maxDistance = distance;
     const particles = particlesRef.current;
+    const canvas = canvasRef.current as unknown as HTMLCanvasElement;
+    if (!canvas || particles.length === 0) return;
 
-    // Use a nested loop to check every particle against every other particle
+    // Cell size should be at least maxDistance to ensure we only need to check adjacent cells
+    const cellSize = maxDistance;
+    const cols = Math.ceil(canvas.width / cellSize);
+    const rows = Math.ceil(canvas.height / cellSize);
+
+    // Build spatial grid - Map<cellIndex, particleIndices[]>
+    const grid = new Map<number, number[]>();
+
     for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        // Start j at i+1 to avoid duplicates
-        const p1 = particles[i];
-        const p2 = particles[j];
+      const p = particles[i];
+      const cellX = Math.floor(p.x / cellSize);
+      const cellY = Math.floor(p.y / cellSize);
+      const cellIndex = cellY * cols + cellX;
 
-        const distance = Math.sqrt(
-          Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
-        );
+      if (!grid.has(cellIndex)) {
+        grid.set(cellIndex, []);
+      }
+      grid.get(cellIndex)!.push(i);
+    }
 
-        // If the particles are close enough, draw a line
-        if (distance < maxDistance) {
-          // Calculate opacity based on distance.
-          // Closer particles get a stronger line (opacity approaches 1).
-          const opacity = 1 - distance / maxDistance;
+    // Track which pairs we've already checked to avoid duplicates
+    const checked = new Set<string>();
 
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(255, 255, 255, ${
-            opacity * transparency
-          })`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+    // For each cell, check particles against same cell and neighboring cells
+    for (const [cellIndex, cellParticles] of grid) {
+      const cellY = Math.floor(cellIndex / cols);
+      const cellX = cellIndex % cols;
+
+      // Check neighboring cells (including self)
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const neighborY = cellY + dy;
+          const neighborX = cellX + dx;
+
+          // Skip out of bounds
+          if (neighborX < 0 || neighborX >= cols || neighborY < 0 || neighborY >= rows) {
+            continue;
+          }
+
+          const neighborIndex = neighborY * cols + neighborX;
+          const neighborParticles = grid.get(neighborIndex);
+          if (!neighborParticles) continue;
+
+          // Check all pairs between current cell and neighbor cell
+          for (const i of cellParticles) {
+            for (const j of neighborParticles) {
+              // Avoid checking same particle or duplicate pairs
+              if (i >= j) continue;
+
+              const pairKey = `${i}-${j}`;
+              if (checked.has(pairKey)) continue;
+              checked.add(pairKey);
+
+              const p1 = particles[i];
+              const p2 = particles[j];
+
+              const distX = p1.x - p2.x;
+              const distY = p1.y - p2.y;
+              const distance = Math.sqrt(distX * distX + distY * distY);
+
+              // If the particles are close enough, draw a line
+              if (distance < maxDistance) {
+                // Calculate opacity based on distance
+                const opacity = 1 - distance / maxDistance;
+
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * transparency})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+              }
+            }
+          }
         }
       }
     }
@@ -110,6 +160,7 @@ export const Particles = ({
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
   }, [numParticles, gravityWell]);
 
@@ -122,10 +173,13 @@ export const Particles = ({
     let dataArray: Uint8Array | null = null;
     let timeDomainArray: Uint8Array | null = null;
 
+    // Capture analyser reference for use in animation loop
+    const currentAnalyser = analyser;
+
     // Set up the dataArray only if the analyser is available
-    if (analyser) {
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
-      timeDomainArray = new Uint8Array(analyser.fftSize);
+    if (currentAnalyser) {
+      dataArray = new Uint8Array(currentAnalyser.frequencyBinCount);
+      timeDomainArray = new Uint8Array(currentAnalyser.fftSize);
     }
 
     // Animation loop
@@ -139,12 +193,10 @@ export const Particles = ({
       let presence = 0;
       let punch = 0;
 
-      if (analyser && dataArray) {
-        // @ts-expect-error -- IGNORE --
-        analyser.getByteFrequencyData(dataArray);
+      if (currentAnalyser && dataArray) {
+        currentAnalyser.getByteFrequencyData(dataArray);
         if (timeDomainArray) {
-          // @ts-expect-error -- IGNORE --
-          analyser.getByteTimeDomainData(timeDomainArray);
+          currentAnalyser.getByteTimeDomainData(timeDomainArray);
           for (let i = 0; i < timeDomainArray.length; i++) {
             // Get the absolute distance from the "silent" center point
             const value = Math.abs(timeDomainArray[i] - 128);

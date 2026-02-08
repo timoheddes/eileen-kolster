@@ -6,16 +6,20 @@ export default function useIsVisible(
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
     // Create an IntersectionObserver to observe the ref's visibility
     const observer = new IntersectionObserver(([entry]) =>
       setIntersecting(entry.isIntersecting)
     );
 
     // Start observing the element
-    observer.observe(ref.current);
+    observer.observe(element);
 
     // Cleanup the observer when the component unmounts or ref changes
     return () => {
+      observer.unobserve(element);
       observer.disconnect();
     };
   }, [ref]);

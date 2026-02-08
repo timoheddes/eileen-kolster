@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 import Button from '../components/Button/Button';
@@ -9,10 +10,15 @@ import useShareState from '../store/shareState';
 import './home.css';
 
 const Home = () => {
-  const { sharedTrack } = useShareState();
-  if (sharedTrack) {
-    window.location.reload();
-  }
+  const { sharedTrack, setSharedTrack } = useShareState();
+
+  // Clear shared track state when navigating to home
+  useEffect(() => {
+    if (sharedTrack) {
+      setSharedTrack(null);
+    }
+  }, [sharedTrack, setSharedTrack]);
+
   return (
     <>
       <link rel="preload" href={eileen_roof_violin} as="image" />

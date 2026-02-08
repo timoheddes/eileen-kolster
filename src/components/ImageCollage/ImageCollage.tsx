@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo, useCallback } from 'react';
 import { getRandomPosition } from '../../utils';
 import MagneticWrapper from '../Magnetic/MagneticWrapper';
 import useWindowDimensions from '../../hooks/windowDimensions';
@@ -14,17 +14,19 @@ export type ImageCollageImage = {
   description?: string;
 };
 
-const ImageCollage = ({
-  images,
-  magnetic = false,
-  imageSize = 300,
-  rotate = false,
-}: {
+interface ImageCollageProps {
   images: ImageCollageImage[];
   magnetic?: boolean;
   imageSize?: number;
   rotate?: boolean;
-}) => {
+}
+
+const ImageCollage = memo(function ImageCollage({
+  images,
+  magnetic = false,
+  imageSize = 300,
+  rotate = false,
+}: ImageCollageProps) {
   const [location] = useLocation();
   const [rerender, setRerender] = useState(false);
   const [adjustImageSize, setAdjustImageSize] = useState<number>(0);
@@ -58,13 +60,17 @@ const ImageCollage = ({
     setLargestImage(largestImage);
   }, [refs, largestImage, screenWidth, rerender]);
 
-  useEffect(() => {
-    function handleResize() {
-      setRerender(true);
-    }
+  const handleResize = useCallback(() => {
+    setRerender(true);
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, [handleResize]);
+
+  const handleImageLoad = useCallback(() => {
+    setRerender(true);
   }, []);
 
   return (
@@ -117,13 +123,14 @@ const ImageCollage = ({
             <img
               src={image.file}
               alt={image.description || image.caption}
-              onLoad={() => setRerender(true)}
+              loading="lazy"
+              onLoad={handleImageLoad}
             />
           </figure>
         </MagneticWrapper>
       ))}
     </div>
   );
-};
+});
 
 export default ImageCollage;

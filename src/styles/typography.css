@@ -86,10 +86,6 @@ p {
   align-items: center;
 }
 
-.gap-1 {
-  gap: 1rem;
-}
-
 .highlight {
   color: rgba(0, 0, 0, 0.9);
   box-decoration-break: clone;

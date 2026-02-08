@@ -177,7 +177,6 @@ export class Particle {
         this.speedY -= forceDirectionY * force * attractStrength;
       }
     } else {
-      // document.body.style.cursor = 'default';
       // --- REPEL FORCE (on click burst) & HOVER (gentle push) ---
       // This runs only when the mouse button is NOT held down.
 
