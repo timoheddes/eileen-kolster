@@ -29,7 +29,7 @@ const scrollIntoViewWithOffset = (
 const scrollToSection = (section: TimelineItemType) => {
   const sectionElement = document.getElementById(section.title);
   if (sectionElement) {
-    scrollIntoViewWithOffset(sectionElement.id, 110);
+    scrollIntoViewWithOffset(sectionElement.id, 150);
   }
 };
 

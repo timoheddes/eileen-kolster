@@ -94,8 +94,9 @@ export const AudioWave = ({
       setPlaying(false);
     });
     wavesurfer.on('finish', () => {
-      useAudioState.setState({ isPlaying: false, audioFile: null });
-      setPlaying(false);
+      // play next track
+      changeTrack('next');
+      setPlaying(true);
     });
     wavesurfer.on('ready', () => {
       setReady(true);
@@ -244,6 +245,6 @@ export const AudioWave = ({
       </div>
     </>
   ) : (
-    navigate('/')
+    <>{navigate('/')}</>
   );
 };

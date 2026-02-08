@@ -170,16 +170,16 @@ export const Particles = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let dataArray: Uint8Array | null = null;
-    let timeDomainArray: Uint8Array | null = null;
+    let dataArray: Uint8Array<ArrayBuffer> | null = null;
+    let timeDomainArray: Uint8Array<ArrayBuffer> | null = null;
 
     // Capture analyser reference for use in animation loop
     const currentAnalyser = analyser;
 
     // Set up the dataArray only if the analyser is available
     if (currentAnalyser) {
-      dataArray = new Uint8Array(currentAnalyser.frequencyBinCount);
-      timeDomainArray = new Uint8Array(currentAnalyser.fftSize);
+      dataArray = new Uint8Array(currentAnalyser.frequencyBinCount) as Uint8Array<ArrayBuffer>;
+      timeDomainArray = new Uint8Array(currentAnalyser.fftSize) as Uint8Array<ArrayBuffer>;
     }
 
     // Animation loop
