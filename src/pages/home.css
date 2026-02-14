@@ -13,7 +13,9 @@
 }
 
 #home div:nth-child(n) {
-  margin-left: 1em;
+  @media (max-width: 768px) {
+    margin-left: 1em;
+  }
 }
 
 .home-description {
