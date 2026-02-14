@@ -9,6 +9,7 @@
   backdrop-filter: blur(10px) brightness(125%);
 
   .content {
+    align-items: center;
     justify-content: start;
     padding: 0.8rem 4rem;
   }

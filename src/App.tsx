@@ -1,5 +1,4 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { AnimatedLinkSVG } from './components/AnimatedLink/AnimatedLinkSVG';
 import { Router } from 'wouter';
 import { Header } from './components/Header';
 import MainContent from './MainContent';
@@ -34,7 +33,6 @@ function App() {
 
   return (
     <>
-      <AnimatedLinkSVG />
       <Header />
       <Router>
         <MainContent />

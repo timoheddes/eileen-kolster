@@ -1,10 +1,13 @@
+@import '@fontsource-variable/work-sans';
 @import '@fontsource/cute-font';
-@import '@fontsource/baloo-da-2/500.css';
-@import '@fontsource/livvic/400.css';
-@import '@fontsource/livvic/500.css';
+@import '@fontsource/baloo-da-2';
 
-.font-family-cute {
-  font-family: 'Cute Font', cursive;
+.font-family-work-sans {
+  font-family: 'Work Sans Variable', sans-serif;
+}
+
+.font-family-cute-font {
+  font-family: 'Cute Font', system-ui;
 }
 
 .font-family-baloo {

@@ -3,20 +3,18 @@ import { paths } from './paths';
 import useMenuState from '../../../store/menuState';
 
 type HamburgerProps = {
-  variant?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  variant?: 1;
 };
 
-const rotates = [1, 4, 7, 8];
-
-export const Hamburger = ({ variant = 4 }: HamburgerProps) => {
+export const Hamburger = ({ variant = 1 }: HamburgerProps) => {
   const { isMenuOpen, setIsMenuOpen } = useMenuState();
   return (
     <svg
-      className={`ham ${
-        rotates.includes(variant) ? 'hamRotate' : ''
-      } ham${variant} ${isMenuOpen ? 'active' : ''}`}
+      className={`menu ${
+        isMenuOpen ? 'opened' : ''
+      }`}
       viewBox="0 0 100 100"
-      width="60"
+      width="45"
       onClick={() => setIsMenuOpen(!isMenuOpen)}
     >
       {paths[variant]}

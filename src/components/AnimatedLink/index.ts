@@ -1,1 +1,0 @@
-export { AnimatedLink } from './AnimatedLink';

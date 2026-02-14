@@ -1,6 +1,5 @@
-import { Link, useRoute } from 'wouter';
+import { Link } from 'wouter';
 import './Navigation.css';
-import { AnimatedLink } from '../AnimatedLink/AnimatedLink';
 import { motion } from 'motion/react';
 import { Hamburger } from './Menu/Hamburger';
 import useMenuState from '../../store/menuState';
@@ -35,14 +34,7 @@ const linkVariants = {
   },
 };
 
-const linkAnimation = 'line';
-const linkVariant = 2;
-const linkSize = 2;
-
 export const Navigation = () => {
-  const [biographyActive] = useRoute('/biography');
-  const [contactActive] = useRoute('/contact');
-
   const { isMenuOpen, setIsMenuOpen } = useMenuState();
 
   return (
@@ -62,14 +54,7 @@ export const Navigation = () => {
             variants={linkVariants}
             onMouseEnter={preloadBiography}
           >
-            <AnimatedLink
-              effect={linkAnimation}
-              variant={linkVariant}
-              size={linkSize}
-              active={biographyActive}
-            >
-              My Journey
-            </AnimatedLink>
+            My Journey
           </motion.span>
         </Link>
         <Link
@@ -81,18 +66,11 @@ export const Navigation = () => {
             variants={linkVariants}
             onMouseEnter={preloadContact}
           >
-            <AnimatedLink
-              effect={linkAnimation}
-              variant={linkVariant}
-              size={linkSize}
-              active={contactActive}
-            >
-              Get in touch
-            </AnimatedLink>
+            Get in touch
           </motion.span>
         </Link>
       </motion.nav>
-      <Hamburger variant={4} />
+      <Hamburger variant={1} />
     </>
   );
 };
