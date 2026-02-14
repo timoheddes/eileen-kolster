@@ -199,14 +199,14 @@ export const timeline: TimelineItemType[] = [
 
         <p>I am open to new projects and collaborations.</p>
 
-        <p className="font-size-1-5 flex gap-1 mt-1 mb-2">
+        <div className="font-size-1-5 flex gap-1 mt-1 mb-2 ml-1">
           <Button
             href="/contact"
             icon={<MessageSquareShareIcon size={20} />}
           >
             Get in touch
           </Button>
-        </p>
+        </div>
 
         <ImageCollage
           rotate

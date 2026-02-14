@@ -133,38 +133,24 @@ export const AudioWave = ({
 
   return availableTracks[currentTrack] ? (
     <>
-      <div className="flex flex-col metadata">
-        <h3
-          className="font-family-baloo h4"
-          style={{
-            display: 'flex',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-flex',
-              gap: '0.3em',
-            }}
-          >
+      <div className="metadata">
+        <h3 className="font-family-baloo h4 metadata-title">
+          <span className="metadata-title-text">
             {availableTracks[currentTrack].title}
           </span>
         </h3>
       </div>
-      <div className="flex flex-col player">
+      <div className="player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>
-            <>
               <button
+                className={availableTracks.length === 1 ? 'track-nav--disabled' : ''}
                 onClick={() =>
                   availableTracks.length > 1 &&
                   changeTrack('previous')
                 }
-                style={{
-                  opacity: availableTracks.length === 1 ? '0.5' : '1',
-                  pointerEvents:
-                    availableTracks.length === 1 ? 'none' : 'auto',
-                }}
                 aria-label="Previous track"
+                aria-disabled={availableTracks.length === 1}
               >
                 <SkipBackIcon
                   color="white"
@@ -211,15 +197,12 @@ export const AudioWave = ({
                 </button>
               )}
               <button
+                className={availableTracks.length === 1 ? 'track-nav--disabled' : ''}
                 onClick={() =>
                   availableTracks.length > 1 && changeTrack('next')
                 }
                 aria-label="Next track"
-                style={{
-                  opacity: availableTracks.length === 1 ? '0.5' : '1',
-                  pointerEvents:
-                    availableTracks.length === 1 ? 'none' : 'auto',
-                }}
+                aria-disabled={availableTracks.length === 1}
               >
                 <SkipForwardIcon
                   color="white"
@@ -230,7 +213,6 @@ export const AudioWave = ({
                   }
                 />
               </button>
-            </>
             <div
               className={`waveform ${playing ? 'playing' : 'paused'}`}
               style={{

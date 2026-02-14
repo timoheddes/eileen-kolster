@@ -5,9 +5,13 @@
   max-height: 430px;
   max-width: 400px;
   
-  @media screen and (max-width: 768px) {
+  @media (max-width: 768px) {
     max-width: 104%;
     width: 104%;
     margin-left: -2%;
   }
+}
+
+.home-description {
+  max-width: 800px;
 }

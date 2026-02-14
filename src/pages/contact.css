@@ -5,9 +5,17 @@
   max-height: 301px;
   max-width: 400px;
   
-  @media screen and (max-width: 768px) {
+  @media (max-width: 768px) {
     max-width: 104%;
     width: 104%;
     margin-left: -2%;
   }
+}
+
+.contact-link {
+  margin-left: 1em;
+}
+
+.contact-link:nth-child(n) {
+  margin-top: 2em;
 }

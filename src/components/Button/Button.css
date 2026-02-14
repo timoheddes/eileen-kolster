@@ -1,15 +1,9 @@
-button {
+.button {
   all: unset;
   text-shadow: none;
-  display: flex;
-  align-items: stretch;
-}
-
-.button {
   background: var(--color-white);
   color: var(--color-light-azure);
   cursor: pointer;
-  outline: none;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
   backdrop-filter: blur(2px);
@@ -33,14 +27,8 @@ button {
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--color-white);
   }
-}
 
-.button:hover {
-  opacity: 0.85;
-}
-
-@media screen and (max-width: 768px) {
-  .button {
+  @media (max-width: 768px) {
     font-size: 1.1rem;
   }
 }

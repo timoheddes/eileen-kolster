@@ -1,5 +1,5 @@
-button,
-a {
+.custom-cursor-active button,
+.custom-cursor-active a {
   cursor: none;
 }
 

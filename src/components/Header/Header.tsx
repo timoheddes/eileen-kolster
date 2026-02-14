@@ -50,20 +50,11 @@ export const Header = () => {
       initial="transparent"
     >
       <div
-        className="content"
-        style={{
-          justifyContent: shareActive ? 'center' : 'space-between',
-        }}
+        className={`header-content ${shareActive ? 'header-content--share' : ''}`}
       >
         <Link
           href="/"
-          style={{
-            zIndex: 100,
-            display: shareActive ? 'flex' : 'block',
-            flexDirection: shareActive ? 'column' : 'row',
-            alignItems: shareActive ? 'center' : 'flex-start',
-            pointerEvents: shareActive ? 'none' : 'auto',
-          }}
+          className={`header-logo-link ${shareActive ? 'header-logo-link--share' : ''}`}
         >
           <Logo text="Eileen Kolster" size={3} />
           {shareActive && !isPlaying && <div>Play to listen</div>}

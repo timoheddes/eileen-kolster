@@ -24,7 +24,7 @@ const tracks = [
 export const Footer = () => {
   return (
     <footer className="footer">
-      <div className="content">
+      <div className="footer-content">
         <AudioWave
           tracks={tracks}
           theme="footer"

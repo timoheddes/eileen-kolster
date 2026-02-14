@@ -52,6 +52,8 @@ export const RippleOutline = ({
         position: 'relative',
         width: `${size}`,
         height: `${size}`,
+        minHeight: '50px',
+        minWidth: '50px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

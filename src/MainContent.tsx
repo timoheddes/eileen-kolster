@@ -5,13 +5,11 @@ const MainContent = () => {
   const { isMenuOpen } = useMenuState();
 
   return (
-    <>
-      <main style={{ visibility: isMenuOpen ? 'hidden' : 'visible' }}>
-        <div className="content">
-          <AnimatedRoutes />
-        </div>
-      </main>
-    </>
+    <main style={{ visibility: isMenuOpen ? 'hidden' : 'visible' }}>
+      <div className="page-content">
+        <AnimatedRoutes />
+      </div>
+    </main>
   );
 };
 

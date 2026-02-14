@@ -2,7 +2,6 @@
 @import './styles/reset.css';
 @import './styles/fonts.css';
 @import './styles/variables.css';
-@import './styles/animations.css';
 @import './styles/typography.css';
 @import './styles/layout.css';
 @import './styles/media.css';
@@ -13,17 +12,12 @@
   background-color: var(--color-dark);
   color-scheme: light dark;
   color: var(--color-text);
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Work Sans Variable', system-ui, sans-serif;
   font-synthesis: none;
   font-weight: 400;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
-
-/* html {
-  overflow: clip;
-  overflow-x: clip;
-} */
 
 body {
   color: var(--color-text);
@@ -46,7 +40,6 @@ body.custom-cursor-active {
 
 #root {
   box-sizing: border-box;
-  font-family: 'Work Sans Variable', sans-serif;
   font-size: 1rem;
   margin: 0;
   max-width: 100%;
@@ -54,18 +47,10 @@ body.custom-cursor-active {
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   #root {
     font-size: 0.85rem;
   }
-}
-
-.hidden {
-  height: 0;
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  width: 0;
 }
 
 hr {
@@ -88,39 +73,28 @@ hr:before {
   margin-top: -31px;
 }
 
-.content {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1600px;
-}
-
 main {
   width: 100%;
+}
 
-  .content {
-    display: block;
-    margin: 5em auto;
+.page-content {
+  display: block;
+  margin: var(--space-xl) auto;
+  max-width: var(--content-max-width);
+
+  @media (max-width: 1800px) {
+    margin-left: var(--space-lg);
+    margin-right: var(--space-lg);
   }
 
-  @media screen and (max-width: 1800px) {
-    .content {
-      margin-left: 4rem;
-      margin-right: 4rem;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .content {
-      margin-left: 0;
-      margin-right: 0;
-      padding-bottom: 3em;
-    }
+  @media (max-width: 768px) {
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 3em;
 
     h1, h2, h3, h4, p, .image-grid {
-      margin-left: 1rem;
-      margin-right: 1rem;
+      margin-left: var(--space-sm);
+      margin-right: var(--space-sm);
     }
   }
 }

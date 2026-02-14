@@ -1,4 +1,5 @@
 :root {
+  /* Colors */
   --color-text: #eeeeee;
   --color-bg: #948e81;
   --color-title: var(--color-text);
@@ -15,6 +16,17 @@
   --color-hot-pink: #df2d55;
   --color-dark-blue: #343f49;
 
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 5rem;
+
+  /* Layout */
+  --content-max-width: 1600px;
+
+  /* Background */
   --main-background: url(../assets/images/background/noise.webp),
     radial-gradient(
       ellipse at top,

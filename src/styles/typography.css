@@ -18,11 +18,14 @@ h1,
 h2,
 h3,
 h4 {
-  font-size: 3.2em;
   font-weight: 500;
   line-height: 1.1;
   font-family: 'Baloo Da 2', system-ui;
   margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
 }
 
 h2,
@@ -69,23 +72,6 @@ p {
   }
 }
 
-.opacity-70 {
-  opacity: 0.7;
-}
-
-.opacity-50 {
-  opacity: 0.5;
-}
-
-.opacity-30 {
-  opacity: 0.3;
-}
-
-.flex-center-align {
-  display: flex;
-  align-items: center;
-}
-
 .highlight {
   color: rgba(0, 0, 0, 0.9);
   box-decoration-break: clone;
@@ -94,8 +80,4 @@ p {
   padding: 1px 0.5rem;
   text-shadow: none;
   font-weight: 500;
-}
-
-.color-white {
-  color: var(--color-white);
 }

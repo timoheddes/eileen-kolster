@@ -54,21 +54,14 @@ const Timeline = ({ data }: { data: TimelineItemType[] }) => {
         <motion.ul className="timeline-legend">
           {data.map((item) => (
             <li key={item.title}>
-              <motion.a
-                className={activeSection === item.title ? 'active' : ''}
+              <motion.button
+                className={`timeline-nav-btn ${activeSection === item.title ? 'active' : ''}`}
                 onClick={() => scrollToSection(item)}
-                onKeyDown={(e) => {
-                  if (e.code === 'Space' || e.code === 'Enter') {
-                    e.preventDefault();
-                    scrollToSection(item);
-                  }
-                }}
-                tabIndex={0}
               >
                 <span>{item.title}</span>
                 <br />
                 {item.dates}
-              </motion.a>
+              </motion.button>
             </li>
           ))}
         </motion.ul>

@@ -14,7 +14,7 @@ const Contact = () => {
         name="description"
         content="Get in touch with Eileen Kolster, a British/Dutch composer based in Amsterdam."
       />
-      <div id="contact">
+      <section id="contact">
         <figure className="header-image image-border overlay">
           <img
             src={eileen_piano2}
@@ -43,7 +43,7 @@ const Contact = () => {
           Bournemouth, and is always interested in contributing to new
           and intriguing projects.
         </p>
-        <p style={{ marginBottom: '1em', marginTop: '2em' }}>
+        <div className="contact-link">
           <a
             href="mailto:eileen.kolster@gmail.com"
             className="flex gap-0-5 items-center"
@@ -55,8 +55,8 @@ const Contact = () => {
               eileen.kolster@gmail.com
             </mark>
           </a>
-        </p>
-        <p style={{ marginBottom: '1em' }}>
+        </div>
+        <div className="contact-link">
           <a
             href="https://www.instagram.com/eileenkolster/"
             className="flex gap-0-5 items-center"
@@ -66,8 +66,8 @@ const Contact = () => {
             <InstagramIcon />
             <mark className="highlight">@eileenkolster</mark>
           </a>
-        </p>
-        <p style={{ marginBottom: '1em' }}>
+        </div>
+        <div className="contact-link">
           <a
             href="https://soundcloud.com/ai-ling-kolster"
             className="flex gap-0-5 items-center"
@@ -77,8 +77,8 @@ const Contact = () => {
             <SoundcloudIcon />
             <mark className="highlight">Eileen Kolster</mark>
           </a>
-        </p>
-      </div>
+        </div>
+      </section>
     </>
   );
 };
