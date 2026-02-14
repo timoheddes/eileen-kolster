@@ -41,7 +41,7 @@ const Home = () => {
         I am passionate about contributing to new and intriguing
         projects.
       </p>
-      <div className="font-size-1-5 flex gap-1 mt-1 ml-1">
+      <div className="font-size-1-5 flex gap-1 mt-1">
         <Button
           href="/contact"
           icon={<MessageSquareShareIcon size={20} />}
