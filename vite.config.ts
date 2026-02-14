@@ -4,12 +4,21 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import compression from 'vite-plugin-compression';
 import legacy from '@vitejs/plugin-legacy';
-import critical from 'rollup-plugin-critical';
 
 export default defineConfig({
   plugins: [
     react(),
-    ViteImageOptimizer(),
+    ViteImageOptimizer({
+      webp: {
+        quality: 60,
+      },
+      png: {
+        quality: 70,
+      },
+      jpeg: {
+        quality: 70,
+      },
+    }),
     compression({
       algorithm: 'gzip',
       ext: '.gz',
@@ -26,18 +35,6 @@ export default defineConfig({
       open: true,
       gzipSize: true,
       brotliSize: true,
-    }),
-    critical({
-      criticalUrl: 'dist',
-      criticalBase: 'dist/',
-      criticalPages: [{ uri: '/', template: 'index' }],
-      criticalConfig: {
-        inline: true,
-        base: 'dist/',
-        extract: true,
-        width: 1300,
-        height: 900,
-      },
     }),
   ],
   build: {

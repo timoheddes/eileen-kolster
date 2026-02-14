@@ -1,6 +1,6 @@
-@import '@fontsource-variable/work-sans';
-@import '@fontsource/cute-font';
-@import '@fontsource/baloo-da-2';
+@import '@fontsource-variable/work-sans/wght.css';
+@import '@fontsource/cute-font/latin-400.css';
+@import '@fontsource/baloo-da-2/latin-500.css';
 
 .font-family-work-sans {
   font-family: 'Work Sans Variable', sans-serif;

@@ -6,7 +6,12 @@ export default {
     autoprefixer(),
     purgeCSSPlugin({
       content: ['./index.html', './src/**/*.{js,jsx,ts,tsx,html}'],
-      // safelist: ['class-to-keep', /^dynamic-/],
+      keyframes: true,
+      safelist: {
+        // Splitting.js injects these classes dynamically at runtime
+        standard: ['splitting', 'char', 'word'],
+        greedy: [/^splitting/, /^char--/, /^word--/],
+      },
       defaultExtractor: (content) =>
         content.match(/[\w-/:]+(?<!:)/g) || [],
     }),
