@@ -91,7 +91,6 @@ main {
     h3,
     h4,
     p,
-    .image-grid,
     .video-player-thumbnail,
     small {
       margin-left: var(--space-sm);
