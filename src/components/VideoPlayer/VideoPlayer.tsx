@@ -7,6 +7,7 @@ interface VideoPlayerProps {
   src: string;
   caption?: string;
   posterTime?: number;
+  startAt?: number;
   style?: React.CSSProperties;
 }
 
@@ -14,6 +15,7 @@ export default function VideoPlayer({
   src,
   caption,
   posterTime,
+  startAt,
   style,
 }: VideoPlayerProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,7 +108,7 @@ export default function VideoPlayer({
             <div className="video-lightbox-content">
               <video
                 ref={lightboxVideoRef}
-                src={src}
+                src={startAt != null ? `${src}#t=${startAt}` : src}
                 controls
                 controlsList="nodownload"
                 playsInline

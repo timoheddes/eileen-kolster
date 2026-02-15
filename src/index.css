@@ -19,6 +19,11 @@
   text-rendering: optimizeLegibility;
 }
 
+html {
+  /* Always show scrollbar to prevent layout shift between pages */
+  overflow-y: scroll;
+}
+
 body {
   color: var(--color-text);
   display: flex;

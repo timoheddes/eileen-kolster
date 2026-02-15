@@ -40,6 +40,7 @@ export const work: TimelineItemType[] = [
         <VideoPlayer
           src={iMomClimax}
           posterTime={10}
+          startAt={2.5}
           style={{
             width: '80%',
             maxWidth: '700px',

@@ -5,7 +5,7 @@ const MainContent = () => {
   const { isMenuOpen } = useMenuState();
 
   return (
-    <main style={{ visibility: isMenuOpen ? 'hidden' : 'visible' }}>
+    <main style={{ visibility: isMenuOpen ? 'hidden' : 'visible' }} role="main">
       <div className="page-content">
         <AnimatedRoutes />
       </div>
