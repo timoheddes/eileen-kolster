@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Source video files (large, pre-conversion originals)
+# Only the -web.mp4 compressed outputs should be tracked
+src/assets/video/*.mp4
+!src/assets/video/*-web.mp4

@@ -1,16 +1,15 @@
-.custom-cursor-active button,
+/* .custom-cursor-active button,
 .custom-cursor-active a {
   cursor: none;
-}
+} */
 
 .cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 100000;
+  will-change: transform;
 }
 
 .cursor .cursor--small,
@@ -32,9 +31,39 @@
 
 .cursor .cursor--large {
   --cursor-size: 30px;
-  /* border: 2px solid #ffffff; */
 }
 
 .cursor--hovering .cursor--small {
   background: #ffffff80;
+}
+
+/* Zoom / close icon */
+.cursor--icon {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.2s ease;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+.cursor--icon-zoom {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.cursor--icon-close {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(135deg);
+}
+
+/* Hide default cursor elements when icon is active */
+.cursor--icon-active .cursor--small,
+.cursor--icon-active .cursor--large {
+  opacity: 0 !important;
+  transition: opacity 0.15s ease;
 }

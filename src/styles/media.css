@@ -4,7 +4,8 @@
   position: relative;
   margin: 0;
 
-  > img {
+  > img,
+  > video {
     width: 100%;
     object-fit: cover;
     border-radius: 6px;
@@ -33,12 +34,28 @@
     height: 100%;
     display: block;
     position: absolute;
+    pointer-events: none;
     background: linear-gradient(
       315deg,
       rgb(0 0 0 / 20%) 0%,
       rgba(0, 0, 0, 0) 50%
     );
   }
+}
+
+.video-border {
+  transition: box-shadow 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  > video {
+    border-radius: 6px;
+    border: 1px solid rgb(0 0 0 / 10%);
+  }
+  &.overlay::before {
+    border-radius: 6px;
+  }
+}
+
+.video-border:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
 }
 
 .image-grid {

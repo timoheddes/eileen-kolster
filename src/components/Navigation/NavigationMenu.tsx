@@ -9,6 +9,7 @@ import {
 // You can customize your navigation links here
 const navItems = [
   { title: 'Biography', href: '/biography' },
+  { title: 'Work', href: '/work' },
   { title: 'Get in touch', href: '/contact' },
 ];
 

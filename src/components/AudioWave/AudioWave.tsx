@@ -88,6 +88,7 @@ export const AudioWave = ({
       });
       setPlaying(true);
       setActiveAndPlayPause(wavesurfer);
+      document.querySelectorAll('video').forEach(video => video.pause());
     });
     wavesurfer.on('pause', () => {
       useAudioState.setState({ isPlaying: false, audioFile: null });

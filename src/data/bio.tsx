@@ -18,7 +18,7 @@ import fantasy2 from '../assets/images/photos/fantasy2.webp';
 import Button from '../components/Button/Button';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
-export const timeline: TimelineItemType[] = [
+export const bio: TimelineItemType[] = [
   {
     title: 'Early Melodies',
     dates: '1991 — 2004',
@@ -44,6 +44,7 @@ export const timeline: TimelineItemType[] = [
         <ImageCollage
           rotate
           magnetic
+          zoom
           imageSize={315}
           images={[
             {
@@ -114,6 +115,7 @@ export const timeline: TimelineItemType[] = [
         <ImageCollage
           rotate
           magnetic
+          zoom
           imageSize={300}
           images={[
             {
@@ -156,6 +158,7 @@ export const timeline: TimelineItemType[] = [
         <ImageCollage
           rotate
           magnetic
+          zoom
           imageSize={315}
           images={[
             {
@@ -199,7 +202,7 @@ export const timeline: TimelineItemType[] = [
 
         <p>I am open to new projects and collaborations.</p>
 
-        <div className="font-size-1-5 flex gap-1 mt-1 mb-2 ml-1">
+        <div className="font-size-1-5 flex gap-1 mt-1 mb-2 mobile-ml-1">
           <Button
             href="/contact"
             icon={<MessageSquareShareIcon size={20} />}
@@ -211,6 +214,7 @@ export const timeline: TimelineItemType[] = [
         <ImageCollage
           rotate
           magnetic
+          zoom
           imageSize={315}
           images={[
             {

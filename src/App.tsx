@@ -2,6 +2,8 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { Router } from 'wouter';
 import { Header } from './components/Header';
 import MainContent from './MainContent';
+import { Cursor } from './components/Cursor';
+import useCustomCursorDetection from './hooks/customCursor';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -23,6 +25,7 @@ const DESKTOP_BREAKPOINT = 768;
 
 function App() {
   const [numParticles, setNumParticles] = useState(DEFAULT_PARTICLES);
+  const showCustomCursor = useCustomCursorDetection();
 
   useEffect(() => {
     // Update particle count based on screen width after mount
@@ -33,6 +36,7 @@ function App() {
 
   return (
     <>
+      {showCustomCursor && <Cursor />}
       <Header />
       <Router>
         <MainContent />

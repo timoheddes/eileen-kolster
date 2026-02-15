@@ -7,6 +7,7 @@ import { PageLoader } from '../components/Loaders';
 import Home from './Home';
 // Other pages lazy-loaded to reduce initial bundle
 const Biography = lazy(() => import('./Biography'));
+const Work = lazy(() => import('./Work'));
 const Contact = lazy(() => import('./Contact'));
 const Share = lazy(() => import('./Share'));
 
@@ -34,6 +35,10 @@ const AnimatedRoutes = () => {
         <Route
           path="/biography"
           component={() => <LazyRoute component={Biography} />}
+        />
+        <Route
+          path="/work"
+          component={() => <LazyRoute component={Work} />}
         />
         <Route
           path="/contact"

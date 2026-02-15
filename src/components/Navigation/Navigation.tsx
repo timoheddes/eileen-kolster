@@ -6,6 +6,7 @@ import useMenuState from '../../store/menuState';
 
 // Static dynamic imports for preloading
 const preloadBiography = () => import('../../pages/Biography');
+const preloadWork = () => import('../../pages/Work');
 const preloadContact = () => import('../../pages/Contact');
 
 const navigationVariants = {
@@ -55,6 +56,18 @@ export const Navigation = () => {
             onMouseEnter={preloadBiography}
           >
             My Journey
+          </motion.span>
+        </Link>
+        <Link
+          href="/work"
+          className={(active) => (active ? 'active' : '')}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <motion.span
+            variants={linkVariants}
+            onMouseEnter={preloadWork}
+          >
+            My Work
           </motion.span>
         </Link>
         <Link

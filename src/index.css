@@ -35,7 +35,7 @@ body {
 
 html.custom-cursor-active,
 body.custom-cursor-active {
-  cursor: none !important;
+  /* cursor: none !important; */
 }
 
 #root {
@@ -92,7 +92,7 @@ main {
     margin-right: 0;
     padding-bottom: 3em;
 
-    h1, h2, h3, h4, p, .image-grid {
+    h1, h2, h3, h4, p, .image-grid, .video-player-thumbnail {
       margin-left: var(--space-sm);
       margin-right: var(--space-sm);
     }

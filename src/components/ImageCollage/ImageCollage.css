@@ -1,0 +1,104 @@
+/* ── Zoomable image hover ── */
+
+.image-zoom {
+  cursor: zoom-in;
+}
+
+.custom-cursor-active .image-zoom,
+.custom-cursor-active .image-zoom * {
+  cursor: none;
+}
+
+.image-zoom > img {
+  transition: filter 0.3s ease;
+}
+
+.image-zoom:hover > img {
+  filter: brightness(1.15);
+}
+
+/* ── Lightbox overlay ── */
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  cursor: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  animation: lightbox-fade-in 0.35s ease forwards;
+  will-change: background-color, backdrop-filter;
+}
+
+.image-lightbox-img {
+  max-width: 95vw;
+  max-height: 95vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: lightbox-image-in 1s cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+  will-change: transform, opacity;
+}
+
+/* ── Close button ── */
+
+.image-lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 10001;
+  transition: color 0.2s ease;
+}
+
+.image-lightbox-close:hover {
+  color: white;
+}
+
+.image-lightbox-close-icon {
+  transform-origin: 16px 16px;
+  animation: lightbox-rotate-to-x 0.4s cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+/* ── Animations ── */
+
+@keyframes lightbox-fade-in {
+  from {
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0);
+  }
+  to {
+    background-color: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(20px) brightness(50%);
+  }
+}
+
+@keyframes lightbox-image-in {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes lightbox-rotate-to-x {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}

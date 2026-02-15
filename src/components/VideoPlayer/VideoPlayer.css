@@ -1,0 +1,154 @@
+/* ── Inline video thumbnail ── */
+
+.video-player-thumbnail {
+  cursor: pointer;
+  position: relative;
+  margin-top: 1em;
+}
+
+.video-player-thumbnail > video {
+  pointer-events: none;
+}
+
+.video-player-play-icon {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.25s ease;
+}
+
+.video-player-play-icon::before {
+  content: '';
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease;
+}
+
+.video-player-play-icon::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
+  margin-left: 4px;
+}
+
+.video-player-thumbnail:hover .video-player-play-icon::before {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Lightbox ── */
+
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  animation: video-lightbox-fade-in 0.35s ease forwards;
+  will-change: background-color, backdrop-filter;
+}
+
+.video-lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: video-lightbox-in 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.video-lightbox-content > video {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.video-lightbox-caption {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95em;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ── Close button ── */
+
+.video-lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 10001;
+  transition: color 0.2s ease;
+}
+
+.video-lightbox-close:hover {
+  color: white;
+}
+
+.video-lightbox-close svg {
+  transform-origin: center;
+  animation: video-lightbox-rotate-x 0.4s cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+/* ── Animations ── */
+
+@keyframes video-lightbox-fade-in {
+  from {
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0);
+  }
+  to {
+    background-color: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(20px) brightness(50%);
+  }
+}
+
+@keyframes video-lightbox-in {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes video-lightbox-rotate-x {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}

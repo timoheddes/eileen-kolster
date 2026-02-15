@@ -9,6 +9,7 @@ import timeless_tides from '../../assets/music/Timeless Tides.mp3';
 import mystic_trees from '../../assets/music/Mystic Trees.mp3';
 import period_drama from '../../assets/music/period Drama.mp3';
 import night_flight from '../../assets/music/Night Flight.mp3';
+import cave from '../../assets/music/cave.mp3';
 
 const tracks = [
   { title: 'Beneath the Surface', file: beneath_the_surface },
@@ -18,12 +19,14 @@ const tracks = [
   { title: 'Timeless Tides', file: timeless_tides },
   { title: 'Mystic Trees', file: mystic_trees },
   { title: 'Period Drama', file: period_drama },
-  { title: 'Night Flight', file: night_flight, hidden: true },
+  { title: 'Night Flight', file: night_flight },
+  { title: 'Mycelium', file: cave },
 ].sort(() => Math.random() - 0.5);
 
 export const Footer = () => {
   return (
     <footer className="footer">
+      {/* <button>Open</button> */}
       <div className="footer-content">
         <AudioWave
           tracks={tracks}
