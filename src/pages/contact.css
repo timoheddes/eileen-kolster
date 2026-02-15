@@ -13,16 +13,18 @@
 }
 
 .contact-link {
-  margin-left: 1em;
   mark {
     transition: transform 0.2s ease-in-out;
+  }
+  a {
+    padding: 1em 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1em;
   }
 }
 
 .contact-link:hover mark {
   transform: translateX(0.3em);
-}
-
-.contact-link:nth-child(n) {
-  margin-top: 2em;
 }

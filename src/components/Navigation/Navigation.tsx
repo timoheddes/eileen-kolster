@@ -1,35 +1,37 @@
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import './Navigation.css';
 import { motion } from 'motion/react';
 import { Hamburger } from './Menu/Hamburger';
 import useMenuState from '../../store/menuState';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 // Static dynamic imports for preloading
 const preloadBiography = () => import('../../pages/Biography');
 const preloadWork = () => import('../../pages/Work');
 const preloadContact = () => import('../../pages/Contact');
 
+const NAV_ITEMS = [
+  { href: '/biography', label: 'My Journey', preload: preloadBiography },
+  { href: '/work', label: 'My Work', preload: preloadWork },
+  { href: '/contact', label: 'Get in touch', preload: preloadContact },
+];
+
 const navigationVariants = {
-  // The state before the animation begins
   hidden: {
     opacity: 0,
   },
-  // The state to animate to
   visible: {
     opacity: 1,
     transition: {
-      // when: "beforeChildren", // Ensures the container is visible before children animate
-      staggerChildren: 0.2, // The magic property: 0.2s delay between each child
+      staggerChildren: 0.2,
     },
   },
 };
 
-const linkVariants = {
-  // The child starts 20px down and invisible
+const itemVariants = {
   hidden: {
     opacity: 0,
   },
-  // The child animates to its original position and becomes visible
   visible: {
     opacity: 1,
   },
@@ -37,51 +39,99 @@ const linkVariants = {
 
 export const Navigation = () => {
   const { isMenuOpen, setIsMenuOpen } = useMenuState();
+  const [location] = useLocation();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [sliderStyle, setSliderStyle] = useState({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+    opacity: 0,
+  });
+
+  const activeIndex = NAV_ITEMS.findIndex((item) =>
+    location.startsWith(item.href),
+  );
+  const targetIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
+
+  const updateSliderBounds = useCallback(() => {
+    if (targetIndex >= 0 && navRef.current) {
+      const el = itemRefs.current[targetIndex];
+      if (el) {
+        const navRect = navRef.current.getBoundingClientRect();
+        const elRect = el.getBoundingClientRect();
+        setSliderStyle({
+          left: elRect.left - navRect.left,
+          top: elRect.top - navRect.top + (elRect.height * 0.04),
+          width: elRect.width,
+          height: elRect.height * 0.9,
+          opacity: 1,
+        });
+      }
+    } else {
+      setSliderStyle((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [targetIndex]);
+
+  useEffect(() => {
+    updateSliderBounds();
+  }, [updateSliderBounds]);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateSliderBounds);
+    return () => window.removeEventListener('resize', updateSliderBounds);
+  }, [updateSliderBounds]);
 
   return (
     <>
       <motion.nav
+        ref={navRef}
         className={`navigation ${isMenuOpen ? 'open' : ''}`}
         variants={navigationVariants}
         initial="hidden"
         animate="visible"
+        onMouseLeave={() => setHoveredIndex(null)}
+        onBlur={(e: React.FocusEvent) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+            setHoveredIndex(null);
+          }
+        }}
       >
-        <Link
-          href="/biography"
-          className={(active) => (active ? 'active' : '')}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <motion.span
-            variants={linkVariants}
-            onMouseEnter={preloadBiography}
+        <motion.div
+          className="nav-slider"
+          initial={false}
+          animate={sliderStyle}
+          transition={{
+            type: 'spring',
+            stiffness: 500,
+            damping: 30,
+            opacity: { duration: 0.2 },
+          }}
+        />
+        {NAV_ITEMS.map((item, index) => (
+          <motion.div
+            key={item.href}
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
+            className="nav-item"
+            variants={itemVariants}
+            onMouseEnter={() => {
+              item.preload();
+              setHoveredIndex(index);
+            }}
+            onFocus={() => {
+              item.preload();
+              setHoveredIndex(index);
+            }}
           >
-            My Journey
-          </motion.span>
-        </Link>
-        <Link
-          href="/work"
-          className={(active) => (active ? 'active' : '')}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <motion.span
-            variants={linkVariants}
-            onMouseEnter={preloadWork}
-          >
-            My Work
-          </motion.span>
-        </Link>
-        <Link
-          href="/contact"
-          className={(active) => (active ? 'active' : '')}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <motion.span
-            variants={linkVariants}
-            onMouseEnter={preloadContact}
-          >
-            Get in touch
-          </motion.span>
-        </Link>
+            <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
+              {item.label}
+            </Link>
+          </motion.div>
+        ))}
       </motion.nav>
       <Hamburger variant={1} />
     </>

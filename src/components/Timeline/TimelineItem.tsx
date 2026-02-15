@@ -21,8 +21,9 @@ export const TimelineItem = memo(function TimelineItem({
         setIsVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.95,
-      }
+        threshold: 0,
+        rootMargin: '0px 0px -40% 0px',
+      },
     );
 
     if (elementRef.current) {
@@ -37,12 +38,7 @@ export const TimelineItem = memo(function TimelineItem({
   }, [isVisible, item.title, updateSection]);
 
   return (
-    <div
-      id={id}
-      className="timeline-item"
-      key={item.title}
-      ref={elementRef}
-    >
+    <div id={id} className="timeline-item" key={item.title} ref={elementRef}>
       {item.body}
     </div>
   );

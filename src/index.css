@@ -54,23 +54,8 @@ body.custom-cursor-active {
 }
 
 hr {
-  border-color: var(--color-black);
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 1px 0 0 0;
-  height: 30px;
-  width: 100%;
-}
-
-hr:before {
-  border-color: var(--color-white);
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  content: '';
-  display: block;
-  height: 30px;
-  margin-top: -31px;
+  margin: 1em 0;
+  border-color: rgba(80, 108, 131, 0.45);
 }
 
 main {
@@ -92,7 +77,7 @@ main {
     margin-right: 0;
     padding-bottom: 3em;
 
-    h1, h2, h3, h4, p, .image-grid, .video-player-thumbnail {
+    h1, h2, h3, h4, p, .image-grid, .video-player-thumbnail, small {
       margin-left: var(--space-sm);
       margin-right: var(--space-sm);
     }

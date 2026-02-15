@@ -8,6 +8,7 @@ type Section = {
 interface TimelineState {
   sections: Section[];
   updateSection: (section: Section) => void;
+  resetSections: () => void;
 }
 
 const useTimelineScroll = create<TimelineState>((set) => ({
@@ -30,6 +31,7 @@ const useTimelineScroll = create<TimelineState>((set) => ({
       }
     });
   },
+  resetSections: () => set({ sections: [] }),
 }));
 
 export default useTimelineScroll;

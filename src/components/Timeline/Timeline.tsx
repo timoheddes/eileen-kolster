@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { motion } from 'motion/react';
 
 import './Timeline.css';
@@ -37,7 +37,11 @@ const Timeline = ({ data }: { data: TimelineItemType[] }) => {
   const [activeSection, setActiveSection] = useState<string | null>(
     null
   );
-  const { sections } = useTimelineScroll();
+  const { sections, resetSections } = useTimelineScroll();
+
+  useLayoutEffect(() => {
+    resetSections();
+  }, [data, resetSections]);
 
   useEffect(() => {
     const lastVisibleSection = sections.findLast((s) => s.visible);

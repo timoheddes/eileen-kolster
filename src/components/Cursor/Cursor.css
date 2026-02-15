@@ -10,6 +10,10 @@
   pointer-events: none;
   z-index: 100000;
   will-change: transform;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .cursor .cursor--small,
@@ -49,6 +53,10 @@
     opacity 0.2s ease;
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
   pointer-events: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .cursor--icon-zoom {

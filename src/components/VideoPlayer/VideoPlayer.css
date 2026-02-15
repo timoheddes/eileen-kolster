@@ -3,7 +3,6 @@
 .video-player-thumbnail {
   cursor: pointer;
   position: relative;
-  margin-top: 1em;
 }
 
 .video-player-thumbnail > video {

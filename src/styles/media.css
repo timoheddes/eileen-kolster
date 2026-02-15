@@ -4,6 +4,10 @@
   position: relative;
   margin: 0;
 
+  @media (max-width: 768px) {
+    margin-left: 1em;
+  }
+
   > img,
   > video {
     width: 100%;
@@ -44,6 +48,7 @@
 }
 
 .video-border {
+  margin-top: 1.5em;
   transition: box-shadow 1.5s cubic-bezier(0.16, 1, 0.3, 1);
   > video {
     border-radius: 6px;
@@ -51,6 +56,12 @@
   }
   &.overlay::before {
     border-radius: 6px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 2em;
+    margin-left: -1% !important;
+    width: 102% !important;
   }
 }
 
