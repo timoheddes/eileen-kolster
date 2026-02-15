@@ -129,9 +129,10 @@ export const work: TimelineItemType[] = [
   {
     title: 'Migratory Birds',
     dates: 'Upcoming',
+    order: -1,
     body: (
       <>
-        <h2>Migratory Birds (Original Score)</h2>
+        <h2>Migratory Birds (Upcoming)</h2>
         <small>Film by Sanskriti Shrivastava</small>
         <p>
           A story of displacement and resilience following Laura, a South
@@ -147,6 +148,7 @@ export const work: TimelineItemType[] = [
           className="image-border overlay"
           style={{
             width: '80%',
+            maxWidth: '700px',
           }}
         >
           <figcaption>Migratory Birds</figcaption>
@@ -165,7 +167,7 @@ export const work: TimelineItemType[] = [
           the character&apos;s spoken word without intruding, capturing her
           sentiment as she moves through different memories and surroundings.
         </p>
-        <br />
+        <hr className="white" />
       </>
     ),
   },

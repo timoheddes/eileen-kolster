@@ -1,12 +1,9 @@
 export const isDeviceTouchFriendly = (): boolean => {
   let isMobile =
-    (navigator?.maxTouchPoints > 0 ||
-      navigator?.maxTouchPoints > 0) ??
-    false;
+    (navigator?.maxTouchPoints > 0 || navigator?.maxTouchPoints > 0) ?? false;
   if (!isMobile) {
     const mQ =
-      (window.matchMedia !== undefined &&
-        matchMedia('(pointer:coarse)')) ||
+      (window.matchMedia !== undefined && matchMedia('(pointer:coarse)')) ||
       null;
     if (mQ?.media === '(pointer:coarse)') {
       isMobile = !!mQ.matches;

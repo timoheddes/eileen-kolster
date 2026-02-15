@@ -3,10 +3,7 @@ import './Particles.css';
 import useAudioState from '../../store/audioState';
 import { Particle } from './particle';
 
-export const Particles = ({
-  numParticles = 300,
-  gravityWell = false,
-}) => {
+export const Particles = ({ numParticles = 300, gravityWell = false }) => {
   const canvasRef = useRef(null);
   const { analyser } = useAudioState();
 
@@ -26,7 +23,7 @@ export const Particles = ({
   const connectParticles = (
     ctx: CanvasRenderingContext2D,
     maxDistance: number,
-    transparency: number
+    transparency: number,
   ) => {
     const particles = particlesRef.current;
     const canvas = canvasRef.current as unknown as HTMLCanvasElement;
@@ -67,7 +64,12 @@ export const Particles = ({
           const neighborX = cellX + dx;
 
           // Skip out of bounds
-          if (neighborX < 0 || neighborX >= cols || neighborY < 0 || neighborY >= rows) {
+          if (
+            neighborX < 0 ||
+            neighborX >= cols ||
+            neighborY < 0 ||
+            neighborY >= rows
+          ) {
             continue;
           }
 
@@ -115,11 +117,14 @@ export const Particles = ({
     const canvas = canvasRef.current as unknown as HTMLCanvasElement;
     if (!canvas) return;
 
-    setTimeout(() => {
-      particlesRef.current.push(
-        new Particle(canvas.width, canvas.height, gravityWell)
-      );
-    }, index * Math.random() * 100);
+    setTimeout(
+      () => {
+        particlesRef.current.push(
+          new Particle(canvas.width, canvas.height, gravityWell),
+        );
+      },
+      index * Math.random() * 100,
+    );
   };
 
   useEffect(() => {
@@ -178,8 +183,12 @@ export const Particles = ({
 
     // Set up the dataArray only if the analyser is available
     if (currentAnalyser) {
-      dataArray = new Uint8Array(currentAnalyser.frequencyBinCount) as Uint8Array<ArrayBuffer>;
-      timeDomainArray = new Uint8Array(currentAnalyser.fftSize) as Uint8Array<ArrayBuffer>;
+      dataArray = new Uint8Array(
+        currentAnalyser.frequencyBinCount,
+      ) as Uint8Array<ArrayBuffer>;
+      timeDomainArray = new Uint8Array(
+        currentAnalyser.fftSize,
+      ) as Uint8Array<ArrayBuffer>;
     }
 
     // Animation loop
@@ -207,24 +216,19 @@ export const Particles = ({
         }
 
         // ~20-60 Hz
-        subBass =
-          dataArray.slice(0, 2).reduce((a, b) => a + b) / 2 / 255;
+        subBass = dataArray.slice(0, 2).reduce((a, b) => a + b) / 2 / 255;
 
         // ~60-250 Hz
-        bass =
-          dataArray.slice(2, 8).reduce((a, b) => a + b) / 6 / 255;
+        bass = dataArray.slice(2, 8).reduce((a, b) => a + b) / 6 / 255;
 
         // ~250-2000 Hz
-        mids =
-          dataArray.slice(8, 40).reduce((a, b) => a + b) / 32 / 255;
+        mids = dataArray.slice(8, 40).reduce((a, b) => a + b) / 32 / 255;
 
         // ~2000-20000 Hz
-        highMids =
-          dataArray.slice(40, 60).reduce((a, b) => a + b) / 20 / 255;
+        highMids = dataArray.slice(40, 60).reduce((a, b) => a + b) / 20 / 255;
 
         // ~6000-20000 Hz
-        presence =
-          dataArray.slice(60, 128).reduce((a, b) => a + b) / 68 / 255;
+        presence = dataArray.slice(60, 128).reduce((a, b) => a + b) / 68 / 255;
       }
 
       const audioData = {
@@ -262,7 +266,7 @@ export const Particles = ({
 
       for (const p of particlesRef.current) {
         const distFromCenter = Math.sqrt(
-          Math.pow(p.x - centerX, 2) + Math.pow(p.y - centerY, 2)
+          Math.pow(p.x - centerX, 2) + Math.pow(p.y - centerY, 2),
         );
         if (distFromCenter < SUPERNOVA_RADIUS) {
           particlesInCore.push(p);
@@ -272,13 +276,10 @@ export const Particles = ({
       // The density factor is a value from 0 to 1 based on how full the core is.
       const densityFactor = Math.min(
         particlesInCore.length / DENSITY_THRESHOLD,
-        1
+        1,
       );
 
-      if (
-        Date.now() - supernovaStateRef.current.startTime >
-        COOLDOWN
-      ) {
+      if (Date.now() - supernovaStateRef.current.startTime > COOLDOWN) {
         if (particlesInCore.length > DENSITY_THRESHOLD) {
           supernovaStateRef.current.startTime = Date.now();
         }
@@ -295,7 +296,7 @@ export const Particles = ({
             punch: audioData.punch,
           },
           mouseRef.current,
-          supernova
+          supernova,
         );
         p.draw(
           ctx,
@@ -307,14 +308,14 @@ export const Particles = ({
             presence: audioData.presence,
             punch: audioData.punch,
           },
-          densityFactor
+          densityFactor,
         );
       });
 
       connectParticles(
         ctx,
         Math.max(mids * 300, 100),
-        Math.min(highMids * 20, 0.8)
+        Math.min(highMids * 20, 0.8),
       );
 
       animationFrameId.current = requestAnimationFrame(animate);

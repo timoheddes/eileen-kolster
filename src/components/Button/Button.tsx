@@ -19,9 +19,7 @@ const Button = ({
   return (
     <Link href={href || ''} asChild>
       <button
-        className={`button ${variant} ${icon ? 'icon' : ''} ${
-          className || ''
-        }`}
+        className={`button ${variant} ${icon ? 'icon' : ''} ${className || ''}`}
         {...props}
       >
         {children}

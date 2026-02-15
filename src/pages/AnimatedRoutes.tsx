@@ -28,18 +28,12 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Switch key={location[0]} location={location[0]}>
-        <Route
-          path="/"
-          component={() => <LazyRoute component={Home} />}
-        />
+        <Route path="/" component={() => <LazyRoute component={Home} />} />
         <Route
           path="/biography"
           component={() => <LazyRoute component={Biography} />}
         />
-        <Route
-          path="/work"
-          component={() => <LazyRoute component={Work} />}
-        />
+        <Route path="/work" component={() => <LazyRoute component={Work} />} />
         <Route
           path="/contact"
           component={() => <LazyRoute component={Contact} />}

@@ -2,11 +2,7 @@ import { Link, useRoute } from 'wouter';
 import { Logo } from '../Logo';
 import './Header.css';
 import { Navigation } from '../Navigation';
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-} from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
 import useMenuState from '../../store/menuState';
 import useAudioState from '../../store/audioState';

@@ -78,6 +78,7 @@ export const bio: TimelineItemType[] = [
           className="image-border overlay"
           style={{
             width: '80%',
+            maxWidth: '700px',
           }}
         >
           <figcaption>Testing in an anechoic chamber</figcaption>

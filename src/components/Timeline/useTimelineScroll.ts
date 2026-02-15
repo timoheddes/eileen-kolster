@@ -16,12 +16,12 @@ const useTimelineScroll = create<TimelineState>((set) => ({
   updateSection: (section) => {
     set((state) => {
       const sectionExists = state.sections.find(
-        (s) => s.title === section.title
+        (s) => s.title === section.title,
       );
       if (sectionExists) {
         return {
           sections: state.sections.map((s) =>
-            s.title === section.title ? section : s
+            s.title === section.title ? section : s,
           ),
         };
       } else {

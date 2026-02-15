@@ -2,13 +2,7 @@ import { AnimatedTypography } from '../AnimatedTypography';
 import './Logo.css';
 import useMenuState from '../../store/menuState';
 
-export const Logo = ({
-  text,
-  size,
-}: {
-  text: string;
-  size: number;
-}) => {
+export const Logo = ({ text, size }: { text: string; size: number }) => {
   const { setIsMenuOpen } = useMenuState();
 
   return (

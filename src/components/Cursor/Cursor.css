@@ -29,8 +29,7 @@
 
 .cursor .cursor--small {
   --cursor-size: 10px;
-  backdrop-filter: blur(1px) brightness(125%) hue-rotate(120deg)
-    invert(100%);
+  backdrop-filter: blur(1px) brightness(125%) hue-rotate(120deg) invert(100%);
 }
 
 .cursor .cursor--large {

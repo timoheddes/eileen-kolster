@@ -38,8 +38,8 @@ export const AudioWave = ({
         tracks.filter(
           (t) =>
             t.title.toLowerCase().replace(' ', '') ===
-            sharedTrack.toLowerCase().replace(' ', '')
-        )
+            sharedTrack.toLowerCase().replace(' ', ''),
+        ),
       );
     } else {
       setAvailableTracks(tracks.filter((t) => !t.hidden));
@@ -88,7 +88,7 @@ export const AudioWave = ({
       });
       setPlaying(true);
       setActiveAndPlayPause(wavesurfer);
-      document.querySelectorAll('video').forEach(video => video.pause());
+      document.querySelectorAll('video').forEach((video) => video.pause());
     });
     wavesurfer.on('pause', () => {
       useAudioState.setState({ isPlaying: false, audioFile: null });
@@ -128,7 +128,7 @@ export const AudioWave = ({
     setCurrentTrack((prev) =>
       direction === 'previous'
         ? (prev - 1 + availableTracks.length) % availableTracks.length
-        : (prev + 1) % availableTracks.length
+        : (prev + 1) % availableTracks.length,
     );
   };
 
@@ -144,82 +144,75 @@ export const AudioWave = ({
       <div className="player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>
-              <button
-                className={availableTracks.length === 1 ? 'track-nav--disabled' : ''}
-                onClick={() =>
-                  availableTracks.length > 1 &&
-                  changeTrack('previous')
+            <button
+              className={
+                availableTracks.length === 1 ? 'track-nav--disabled' : ''
+              }
+              onClick={() =>
+                availableTracks.length > 1 && changeTrack('previous')
+              }
+              aria-label="Previous track"
+              aria-disabled={availableTracks.length === 1}
+            >
+              <SkipBackIcon
+                color="white"
+                size={
+                  options?.height ? `${Number(options.height) * 0.5}px` : '50px'
                 }
-                aria-label="Previous track"
-                aria-disabled={availableTracks.length === 1}
-              >
-                <SkipBackIcon
-                  color="white"
-                  size={
-                    options?.height
-                      ? `${Number(options.height) * 0.5}px`
-                      : '50px'
-                  }
-                />
-              </button>
-              {!ready ? (
-                <RippleOutline
-                  size={
-                    options?.height
-                      ? `${Number(options.height) * 0.8}px`
-                      : '50px'
-                  }
-                />
-              ) : (
-                <button
-                  onClick={() => wavesurferRef.current?.playPause()}
-                  ref={playButton}
-                  aria-label="Play/Pause"
-                >
-                  {!playing ? (
-                    <PlayIcon
-                      color="white"
-                      size={
-                        options?.height
-                          ? `${Number(options.height) * 0.8}px`
-                          : '50px'
-                      }
-                    />
-                  ) : (
-                    <PauseIcon
-                      color="white"
-                      size={
-                        options?.height
-                          ? `${Number(options.height) * 0.8}px`
-                          : '50px'
-                      }
-                    />
-                  )}
-                </button>
-              )}
-              <button
-                className={availableTracks.length === 1 ? 'track-nav--disabled' : ''}
-                onClick={() =>
-                  availableTracks.length > 1 && changeTrack('next')
+              />
+            </button>
+            {!ready ? (
+              <RippleOutline
+                size={
+                  options?.height ? `${Number(options.height) * 0.8}px` : '50px'
                 }
-                aria-label="Next track"
-                aria-disabled={availableTracks.length === 1}
+              />
+            ) : (
+              <button
+                onClick={() => wavesurferRef.current?.playPause()}
+                ref={playButton}
+                aria-label="Play/Pause"
               >
-                <SkipForwardIcon
-                  color="white"
-                  size={
-                    options?.height
-                      ? `${Number(options.height) * 0.5}px`
-                      : '50px'
-                  }
-                />
+                {!playing ? (
+                  <PlayIcon
+                    color="white"
+                    size={
+                      options?.height
+                        ? `${Number(options.height) * 0.8}px`
+                        : '50px'
+                    }
+                  />
+                ) : (
+                  <PauseIcon
+                    color="white"
+                    size={
+                      options?.height
+                        ? `${Number(options.height) * 0.8}px`
+                        : '50px'
+                    }
+                  />
+                )}
               </button>
+            )}
+            <button
+              className={
+                availableTracks.length === 1 ? 'track-nav--disabled' : ''
+              }
+              onClick={() => availableTracks.length > 1 && changeTrack('next')}
+              aria-label="Next track"
+              aria-disabled={availableTracks.length === 1}
+            >
+              <SkipForwardIcon
+                color="white"
+                size={
+                  options?.height ? `${Number(options.height) * 0.5}px` : '50px'
+                }
+              />
+            </button>
             <div
               className={`waveform ${playing ? 'playing' : 'paused'}`}
               style={{
-                height: options?.height
-                  ? `${options.height}px`
-                  : '80px',
+                height: options?.height ? `${options.height}px` : '80px',
               }}
               ref={waveformRef}
             ></div>

@@ -42,8 +42,7 @@ const useAudioState = create<AudioState>((set) => ({
         const audioCtx = new AudioContext();
         const analyser = audioCtx.createAnalyser();
         analyser.fftSize = 256;
-        const source =
-          audioCtx.createMediaElementSource(mediaElement);
+        const source = audioCtx.createMediaElementSource(mediaElement);
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
 

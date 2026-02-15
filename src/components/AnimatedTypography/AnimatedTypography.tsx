@@ -2,10 +2,7 @@ import 'splitting/dist/splitting.css';
 import 'splitting/dist/splitting-cells.css';
 import Splitting from 'splitting';
 import { useEffect, useRef, useState } from 'react';
-import type {
-  TypographyEffect,
-  TypographyOptions,
-} from './animations';
+import type { TypographyEffect, TypographyOptions } from './animations';
 import {
   construct,
   type,
@@ -22,7 +19,7 @@ const applyEffect = (
   options: TypographyOptions,
   chars: NodeListOf<Element>,
   title: HTMLHeadingElement,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   switch (effect) {
     case 'construct':
@@ -84,13 +81,7 @@ export const AnimatedTypography = ({
       applyEffect(effect, options, chars, title.current);
       if (effectOut) {
         setTimeout(() => {
-          applyEffect(
-            effectOut,
-            options,
-            chars,
-            title.current!,
-            true
-          );
+          applyEffect(effectOut, options, chars, title.current!, true);
         }, options.time);
       }
     }

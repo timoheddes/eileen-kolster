@@ -7,18 +7,17 @@
 export const scrollToElement = (
   element: string,
   smooth = true,
-  delay = 0
+  delay = 0,
 ): ReturnType<typeof setTimeout> =>
   setTimeout(() => {
-    const domElement: HTMLElement | null =
-      document.querySelector(element);
+    const domElement: HTMLElement | null = document.querySelector(element);
     if (domElement) {
       requestAnimationFrame(() =>
         domElement.scrollIntoView({
           behavior: smooth ? 'smooth' : 'auto',
           block: 'center',
           inline: 'center',
-        })
+        }),
       );
     }
   }, delay);
@@ -29,7 +28,7 @@ export const getRandomPosition = (
   rotate: boolean,
   minHeight?: number | 'auto',
   zIndex?: number,
-  position?: 'absolute' | 'relative'
+  position?: 'absolute' | 'relative',
 ) => {
   const leftOffset = index < 2 ? 0 : index * 10;
   return {
@@ -38,9 +37,7 @@ export const getRandomPosition = (
       index * (Math.random() * 0.3 + 0.7 * imageSize) - leftOffset
     }px)`,
     transform: rotate
-      ? `rotate(${Math.random() < 0.5 ? '-' : ''}${
-          Math.random() * 5
-        }deg)`
+      ? `rotate(${Math.random() < 0.5 ? '-' : ''}${Math.random() * 5}deg)`
       : 'none',
     zIndex: zIndex || Math.round(Math.random() * 10),
     position: position || 'relative',

@@ -40,8 +40,7 @@
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  animation: lightbox-image-in 1s cubic-bezier(0.16, 1, 0.3, 1)
-    forwards;
+  animation: lightbox-image-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity;
 }
 
@@ -66,8 +65,7 @@
 
 .image-lightbox-close-icon {
   transform-origin: 16px 16px;
-  animation: lightbox-rotate-to-x 0.4s cubic-bezier(0.16, 1, 0.3, 1)
-    forwards;
+  animation: lightbox-rotate-to-x 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ── Animations ── */

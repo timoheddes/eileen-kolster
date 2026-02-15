@@ -41,11 +41,7 @@ const Outline = ({ size = '5rem' }: { size?: string }) => {
   );
 };
 
-export const RippleOutline = ({
-  size = '5rem',
-}: {
-  size?: string;
-}) => {
+export const RippleOutline = ({ size = '5rem' }: { size?: string }) => {
   return (
     <motion.div
       style={{

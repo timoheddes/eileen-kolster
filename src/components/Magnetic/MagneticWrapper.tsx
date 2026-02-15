@@ -33,7 +33,7 @@ const MagneticWrapper = memo(function MagneticWrapper({
         y: deltaY * force,
       });
     },
-    [force]
+    [force],
   );
 
   const handleMouseLeave = useCallback(() => {

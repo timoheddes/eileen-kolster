@@ -22,7 +22,7 @@ export const TimelineItem = memo(function TimelineItem({
       },
       {
         threshold: 0,
-        rootMargin: '0px 0px -40% 0px',
+        rootMargin: '0px 0px -45% 0px',
       },
     );
 

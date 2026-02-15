@@ -10,12 +10,12 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Lazy-load Particles (decorative, below fold) to improve FCP/LCP
 const Particles = lazy(() =>
-  import('./components/Particles').then((m) => ({ default: m.Particles }))
+  import('./components/Particles').then((m) => ({ default: m.Particles })),
 );
 
 // Lazy-load Footer (contains audio player with heavy MP3 imports) to improve FCP/LCP
 const Footer = lazy(() =>
-  import('./components/Footer').then((m) => ({ default: m.Footer }))
+  import('./components/Footer').then((m) => ({ default: m.Footer })),
 );
 
 // SSR-safe default for particle count
@@ -30,7 +30,9 @@ function App() {
   useEffect(() => {
     // Update particle count based on screen width after mount
     setNumParticles(
-      window.innerWidth > DESKTOP_BREAKPOINT ? DESKTOP_PARTICLES : DEFAULT_PARTICLES
+      window.innerWidth > DESKTOP_BREAKPOINT
+        ? DESKTOP_PARTICLES
+        : DEFAULT_PARTICLES,
     );
   }, []);
 

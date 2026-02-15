@@ -11,8 +11,8 @@ const preloadWork = () => import('../../pages/Work');
 const preloadContact = () => import('../../pages/Contact');
 
 const NAV_ITEMS = [
-  { href: '/biography', label: 'My Journey', preload: preloadBiography },
   { href: '/work', label: 'My Work', preload: preloadWork },
+  { href: '/biography', label: 'My Journey', preload: preloadBiography },
   { href: '/contact', label: 'Get in touch', preload: preloadContact },
 ];
 
@@ -64,7 +64,7 @@ export const Navigation = () => {
         const elRect = el.getBoundingClientRect();
         setSliderStyle({
           left: elRect.left - navRect.left,
-          top: elRect.top - navRect.top + (elRect.height * 0.04),
+          top: elRect.top - navRect.top + elRect.height * 0.04,
           width: elRect.width,
           height: elRect.height * 0.9,
           opacity: 1,

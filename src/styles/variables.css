@@ -27,17 +27,10 @@
   --content-max-width: 1600px;
 
   /* Background */
-  --main-background: url(../assets/images/background/noise.webp),
-    radial-gradient(
-      ellipse at top,
-      var(--color-dark-azure),
-      transparent
-    ),
-    radial-gradient(
-      ellipse at bottom,
-      var(--color-dark-brown),
-      transparent
-    );
+  --main-background:
+    url(../assets/images/background/noise.webp),
+    radial-gradient(ellipse at top, var(--color-dark-azure), transparent),
+    radial-gradient(ellipse at bottom, var(--color-dark-brown), transparent);
   --main-background-size: 200px, 100%, 200%;
   --main-background-attachment: fixed;
 }

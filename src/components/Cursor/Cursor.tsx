@@ -51,7 +51,7 @@ export const Cursor = () => {
       updateCursorMode(target);
 
       const interactableElement = target.closest(
-        'button, a'
+        'button, a',
       ) as HTMLElement | null;
 
       if (
@@ -80,9 +80,7 @@ export const Cursor = () => {
 
       if (
         currentHoveredElement.current &&
-        !currentHoveredElement.current.contains(
-          event.relatedTarget as Node
-        )
+        !currentHoveredElement.current.contains(event.relatedTarget as Node)
       ) {
         currentHoveredElement.current = null;
         setHovering(false);
@@ -129,29 +127,9 @@ export const Cursor = () => {
         height="32"
         fill="none"
       >
-        <circle
-          cx="16"
-          cy="16"
-          r="14"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="16"
-          y1="9"
-          x2="16"
-          y2="23"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="9"
-          y1="16"
-          x2="23"
-          y2="16"
-          stroke="white"
-          strokeWidth="1.5"
-        />
+        <circle cx="16" cy="16" r="14" stroke="white" strokeWidth="1.5" />
+        <line x1="16" y1="9" x2="16" y2="23" stroke="white" strokeWidth="1.5" />
+        <line x1="9" y1="16" x2="23" y2="16" stroke="white" strokeWidth="1.5" />
       </svg>
     </div>
   );

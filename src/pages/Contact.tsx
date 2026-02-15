@@ -27,21 +27,19 @@ const Contact = () => {
           />
         </figure>
         <p>
-          Based in Amsterdam, Eileen Kolster is a British/Dutch media
-          composer focusing on scoring for film and television.
+          Based in Amsterdam, Eileen Kolster is a British/Dutch media composer
+          focusing on scoring for film and television.
         </p>
         <p>
-          A violinist and pianist, her music ranges from intimate
-          acoustic and ambient textures to expansive orchestral and
-          synth-driven soundscapes. Her work aims to evoke deep
-          emotion by crafting layered scores to capture the
-          intricacies of human narratives.
+          A violinist and pianist, her music ranges from intimate acoustic and
+          ambient textures to expansive orchestral and synth-driven soundscapes.
+          Her work aims to evoke deep emotion by crafting layered scores to
+          capture the intricacies of human narratives.
         </p>
         <p>
-          She is currently studying an MA in Professional Media
-          Composition at ThinkSpace Education, Arts University
-          Bournemouth, and is always interested in contributing to new
-          and intriguing projects.
+          She is currently studying an MA in Professional Media Composition at
+          ThinkSpace Education, Arts University Bournemouth, and is always
+          interested in contributing to new and intriguing projects.
         </p>
         <div className="contact-link">
           <a
@@ -51,9 +49,7 @@ const Contact = () => {
             rel="noopener noreferrer"
           >
             <MailIcon />
-            <mark className="highlight">
-              eileen.kolster@gmail.com
-            </mark>
+            <mark className="highlight">eileen.kolster@gmail.com</mark>
           </a>
         </div>
         <div className="contact-link">

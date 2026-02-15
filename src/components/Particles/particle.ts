@@ -45,11 +45,7 @@ export class Particle {
   supportMouseDown?: boolean;
   gravityWell?: boolean;
 
-  constructor(
-    canvasWidth: number,
-    canvasHeight: number,
-    gravityWell: boolean
-  ) {
+  constructor(canvasWidth: number, canvasHeight: number, gravityWell: boolean) {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
 
@@ -114,14 +110,14 @@ export class Particle {
     supernova: {
       active: boolean;
       progress: number; // A value from 1 (full strength) down to 0
-    }
+    },
   ) {
     const timeSinceCreation = Date.now() - this.creationTime;
     if (timeSinceCreation > this.fadeInDelay) {
       const fadeInElapsedTime = timeSinceCreation - this.fadeInDelay;
       const fadeInProgress = Math.min(
         fadeInElapsedTime / this.fadeInDuration,
-        1
+        1,
       );
       this.currentOpacity = fadeInProgress * this.targetOpacity;
     }
@@ -187,16 +183,13 @@ export class Particle {
         const clickRadius = 250;
         if (dist < clickRadius) {
           const force = 1 - dist / clickRadius;
-          const timeFalloff =
-            1 - clickTimeDelta / clickEffectDuration;
+          const timeFalloff = 1 - clickTimeDelta / clickEffectDuration;
           const forceDirectionX = dx / dist;
           const forceDirectionY = dy / dist;
           const repelStrength = 30;
 
-          this.speedX +=
-            forceDirectionX * force * timeFalloff * repelStrength;
-          this.speedY +=
-            forceDirectionY * force * timeFalloff * repelStrength;
+          this.speedX += forceDirectionX * force * timeFalloff * repelStrength;
+          this.speedY += forceDirectionY * force * timeFalloff * repelStrength;
         }
       }
     }
@@ -217,7 +210,7 @@ export class Particle {
       const dxToCenter = this.canvasWidth / 2 - this.x;
       const dyToCenter = this.canvasHeight / 2 - this.y;
       const distFromCenter = Math.sqrt(
-        dxToCenter * dxToCenter + dyToCenter * dyToCenter
+        dxToCenter * dxToCenter + dyToCenter * dyToCenter,
       );
 
       const maxGravityRadius = this.canvasWidth; // The "gravity well" starts at 1/2 of the canvas width
@@ -243,12 +236,12 @@ export class Particle {
 
       if (supernova.active) {
         const distFromCenter = Math.sqrt(
-          dxToCenter * dxToCenter + dyToCenter * dyToCenter
+          dxToCenter * dxToCenter + dyToCenter * dyToCenter,
         );
         // The force is strongest near the center and weakens with distance
         const forceFalloff = Math.max(
           0,
-          1 - distFromCenter / (this.canvasWidth / 2)
+          1 - distFromCenter / (this.canvasWidth / 2),
         );
 
         // The force direction is away from the center
@@ -259,15 +252,9 @@ export class Particle {
 
         // Apply the force, scaled by the supernova's fading progress
         this.speedX +=
-          forceDirectionX *
-          forceFalloff *
-          supernova.progress *
-          repelStrength;
+          forceDirectionX * forceFalloff * supernova.progress * repelStrength;
         this.speedY +=
-          forceDirectionY *
-          forceFalloff *
-          supernova.progress *
-          repelStrength;
+          forceDirectionY * forceFalloff * supernova.progress * repelStrength;
       }
     }
 
@@ -300,7 +287,7 @@ export class Particle {
       presence: number;
       punch: number;
     },
-    densityFactor: number
+    densityFactor: number,
   ) {
     // --- SIZE ---
     // The "body" of the sound (mids) subtly increases the particle's size
@@ -308,13 +295,10 @@ export class Particle {
 
     // --- OPACITY ---
     const twinkle =
-      Math.abs(Math.sin(this.twinkleOffset + Date.now() * 0.0005)) *
-      0.2;
+      Math.abs(Math.sin(this.twinkleOffset + Date.now() * 0.0005)) * 0.2;
     // The "sparkle" of the sound (presence) affects the glow
     const finalOpacity =
-      this.currentOpacity +
-      twinkle +
-      audio.presence * this.size * 0.5;
+      this.currentOpacity + twinkle + audio.presence * this.size * 0.5;
 
     // --- VIBRATION ---
     // The particle vibrates when it's near the center of the canvas
@@ -324,7 +308,7 @@ export class Particle {
     const dxToCenter = this.canvasWidth / 2 - this.x;
     const dyToCenter = this.canvasHeight / 2 - this.y;
     const distFromCenter = Math.sqrt(
-      dxToCenter * dxToCenter + dyToCenter * dyToCenter
+      dxToCenter * dxToCenter + dyToCenter * dyToCenter,
     );
 
     let vibrationX = 0;
@@ -346,10 +330,7 @@ export class Particle {
     const finalY = this.y + vibrationY;
 
     ctx.beginPath();
-    ctx.fillStyle = `rgba(${this.color}, ${Math.min(
-      finalOpacity,
-      1.0
-    )})`;
+    ctx.fillStyle = `rgba(${this.color}, ${Math.min(finalOpacity, 1.0)})`;
     ctx.arc(finalX, finalY, finalSize, 0, Math.PI * 2);
     ctx.fill();
   }

@@ -12,8 +12,7 @@ const useAnimationState = create<AnimationState>((set) => ({
   splashScreenPlayed: false,
   setIsSplashScreenVisible: (isSplashScreenVisible) =>
     set({ isSplashScreenVisible }),
-  setSplashScreenPlayed: (splashScreenPlayed) =>
-    set({ splashScreenPlayed }),
+  setSplashScreenPlayed: (splashScreenPlayed) => set({ splashScreenPlayed }),
 }));
 
 export default useAnimationState;

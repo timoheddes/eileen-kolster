@@ -56,6 +56,10 @@ body.custom-cursor-active {
 hr {
   margin: 1em 0;
   border-color: rgba(80, 108, 131, 0.45);
+
+  &.white {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
 }
 
 main {
@@ -77,7 +81,14 @@ main {
     margin-right: 0;
     padding-bottom: 3em;
 
-    h1, h2, h3, h4, p, .image-grid, .video-player-thumbnail, small {
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .image-grid,
+    .video-player-thumbnail,
+    small {
       margin-left: var(--space-sm);
       margin-right: var(--space-sm);
     }

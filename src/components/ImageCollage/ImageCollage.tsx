@@ -46,10 +46,8 @@ const ImageCollage = memo(function ImageCollage({
   // Horizontal sizing
   useEffect(() => {
     setRerender(false);
-    let adjustImageSize =
-      Math.round(screenWidth / images.length) * 1.2;
-    adjustImageSize =
-      adjustImageSize > imageSize ? imageSize : adjustImageSize;
+    let adjustImageSize = Math.round(screenWidth / images.length) * 1.2;
+    adjustImageSize = adjustImageSize > imageSize ? imageSize : adjustImageSize;
     setAdjustImageSize(adjustImageSize);
   }, [images, imageSize, screenWidth, rerender]);
 
@@ -111,9 +109,7 @@ const ImageCollage = memo(function ImageCollage({
         ref={grid}
         style={{
           height: `${
-            largestImage > adjustImageSize
-              ? adjustImageSize
-              : largestImage
+            largestImage > adjustImageSize ? adjustImageSize : largestImage
           }px`,
           minHeight: `${largestImage}px`,
         }}
@@ -144,7 +140,7 @@ const ImageCollage = memo(function ImageCollage({
                     rotate,
                     'auto',
                     image.zIndex,
-                    'absolute'
+                    'absolute',
                   ),
                   width: `${adjustImageSize}px`,
                 }}
@@ -154,11 +150,7 @@ const ImageCollage = memo(function ImageCollage({
                 onMouseLeave={() => {
                   refs.current[index]?.classList.remove('hover');
                 }}
-                onClick={
-                  isZoomable
-                    ? () => openLightbox(index)
-                    : undefined
-                }
+                onClick={isZoomable ? () => openLightbox(index) : undefined}
               >
                 <figcaption>{image.caption}</figcaption>
                 <img
@@ -175,20 +167,16 @@ const ImageCollage = memo(function ImageCollage({
 
       {zoomedIndex !== null &&
         createPortal(
-          <div
-            className="image-lightbox"
-            onClick={closeLightbox}
-          >
+          <div className="image-lightbox" onClick={closeLightbox}>
             <img
               className="image-lightbox-img"
               src={images[zoomedIndex].file}
               alt={
-                images[zoomedIndex].description ||
-                images[zoomedIndex].caption
+                images[zoomedIndex].description || images[zoomedIndex].caption
               }
             />
           </div>,
-          document.body
+          document.body,
         )}
     </>
   );

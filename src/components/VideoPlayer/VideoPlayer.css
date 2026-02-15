@@ -115,8 +115,7 @@
 
 .video-lightbox-close svg {
   transform-origin: center;
-  animation: video-lightbox-rotate-x 0.4s cubic-bezier(0.16, 1, 0.3, 1)
-    forwards;
+  animation: video-lightbox-rotate-x 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ── Animations ── */

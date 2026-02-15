@@ -18,9 +18,7 @@ export default function VideoPlayer({
 }: VideoPlayerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const lightboxVideoRef = useRef<HTMLVideoElement>(null);
-  const activeAudioInstance = useAudioState(
-    (state) => state.activeInstance
-  );
+  const activeAudioInstance = useAudioState((state) => state.activeInstance);
 
   const open = useCallback(() => {
     // Pause any background audio
@@ -115,13 +113,11 @@ export default function VideoPlayer({
                 preload="auto"
               />
               {caption && (
-                <div className="video-lightbox-caption">
-                  {caption}
-                </div>
+                <div className="video-lightbox-caption">{caption}</div>
               )}
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </>
   );

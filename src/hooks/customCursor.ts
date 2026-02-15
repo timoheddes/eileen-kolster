@@ -14,9 +14,7 @@ const useCustomCursorDetection = (): boolean => {
   useEffect(() => {
     const htmlElement = document.documentElement;
 
-    const mediaQuery = window.matchMedia(
-      '(hover: hover) and (pointer: fine)'
-    );
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 
     const handleMediaQueryChange = (e: MediaQueryListEvent) => {
       if (!inputDetected.current) {
@@ -64,10 +62,7 @@ const useCustomCursorDetection = (): boolean => {
     }
 
     return () => {
-      mediaQuery.removeEventListener(
-        'change',
-        handleMediaQueryChange
-      );
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
       window.removeEventListener('mousemove', handleFirstInput);
       window.removeEventListener('touchstart', handleFirstInput);
     };

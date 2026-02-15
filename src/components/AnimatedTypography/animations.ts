@@ -17,7 +17,7 @@ export type TypographyOptions = {
 export const construct = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   const from = {
     'will-change': 'opacity, transform',
@@ -42,7 +42,7 @@ export const construct = (
 export const type = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   const from = {
     'will-change': 'opacity, transform',
@@ -66,7 +66,7 @@ export const type = (
 export const waveBottom = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   const from = {
     'will-change': 'opacity, transform',
@@ -94,7 +94,7 @@ export const waveBottom = (
 export const waveTop = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   const from = {
     'will-change': 'transform',
@@ -117,7 +117,7 @@ export const waveTop = (
 export const fadeIn = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   const from = {
     'will-change': 'opacity',
@@ -141,7 +141,7 @@ export const waveCurve = (
   chars: NodeListOf<Element>,
   title: HTMLElement,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
   const from1 = {
     'will-change': 'transform',
@@ -173,11 +173,9 @@ export const waveCurve = (
 export const appear = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
-  chars.forEach((char) =>
-    gsap.set(char.parentNode, { perspective: 1000 })
-  );
+  chars.forEach((char) => gsap.set(char.parentNode, { perspective: 1000 }));
 
   const from = {
     'will-change': 'opacity, transform',
@@ -201,11 +199,9 @@ export const appear = (
 export const appearIn = (
   chars: NodeListOf<Element>,
   options: TypographyOptions,
-  reverse: boolean = false
+  reverse: boolean = false,
 ) => {
-  chars.forEach((char) =>
-    gsap.set(char.parentNode, { perspective: 1000 })
-  );
+  chars.forEach((char) => gsap.set(char.parentNode, { perspective: 1000 }));
 
   const from = {
     'will-change': 'opacity, transform',

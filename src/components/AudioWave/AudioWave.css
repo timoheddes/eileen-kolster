@@ -114,7 +114,7 @@
     background: none;
     cursor: pointer;
     border: none;
-    
+
     svg {
       transition: transform 0.1s ease-in-out;
     }

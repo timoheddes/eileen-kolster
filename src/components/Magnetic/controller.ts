@@ -43,10 +43,7 @@ export default class MagneticController {
   performance: number;
   throttleRenderCycle: boolean;
 
-  constructor(
-    el: HTMLElement,
-    performance: 'low' | 'normal' | 'high'
-  ) {
+  constructor(el: HTMLElement, performance: 'low' | 'normal' | 'high') {
     this.performance = throttle[performance];
     this.rect = null;
     this.distanceToTrigger = { x: 0, y: 0 };
@@ -79,7 +76,7 @@ export default class MagneticController {
     if (!window.mousepos) {
       window.addEventListener(
         'mousemove',
-        (ev) => (window.mousepos = getMousePos(ev))
+        (ev) => (window.mousepos = getMousePos(ev)),
       );
     }
     this.onResize = () => this.calculateSizePosition();
@@ -88,9 +85,7 @@ export default class MagneticController {
   render(): void | number {
     if (this.throttleRenderCycle || !window.mousepos || !this.rect) {
       cancelAnimationFrame(this.animation);
-      return (this.animation = requestAnimationFrame(() =>
-        this.render()
-      ));
+      return (this.animation = requestAnimationFrame(() => this.render()));
     }
 
     this.throttleRenderCycle = true;
@@ -103,7 +98,7 @@ export default class MagneticController {
       window.mousepos.x + window.scrollX,
       window.mousepos.y + window.scrollY,
       this.rect.left + this.rect.width / 2,
-      this.rect.top + this.rect.height / 2
+      this.rect.top + this.rect.height / 2,
     );
 
     let x = 0;
@@ -111,7 +106,7 @@ export default class MagneticController {
 
     const distanceToTrigger = Math.max(
       this.distanceToTrigger.x,
-      this.distanceToTrigger.y
+      this.distanceToTrigger.y,
     );
     if (distanceMouseButton < distanceToTrigger) {
       if (!this.state.hover) {
@@ -135,20 +130,15 @@ export default class MagneticController {
     this.renderedStyles['ty'].current = y;
 
     for (const key in this.renderedStyles) {
-      this.renderedStyles[
-        key as keyof typeof this.renderedStyles
-      ].previous = lerp(
-        this.renderedStyles[key as keyof typeof this.renderedStyles]
-          .previous,
-        this.renderedStyles[key as keyof typeof this.renderedStyles]
-          .current,
-        this.renderedStyles[key as keyof typeof this.renderedStyles]
-          .amt
-      );
+      this.renderedStyles[key as keyof typeof this.renderedStyles].previous =
+        lerp(
+          this.renderedStyles[key as keyof typeof this.renderedStyles].previous,
+          this.renderedStyles[key as keyof typeof this.renderedStyles].current,
+          this.renderedStyles[key as keyof typeof this.renderedStyles].amt,
+        );
     }
 
-    const rotate =
-      this.DOM.el.style.transform.match(/rotate\(([^)]+)\)/);
+    const rotate = this.DOM.el.style.transform.match(/rotate\(([^)]+)\)/);
 
     this.DOM.el.style.transform = `translate3d(${
       this.renderedStyles['tx'].previous

@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 // 1. Import the 'Variants' type from Framer Motion
-import {
-  motion,
-  AnimatePresence,
-  type Variants,
-} from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 // You can customize your navigation links here
 const navItems = [
@@ -254,14 +250,8 @@ const Navigation: React.FC = () => {
           >
             <motion.ul>
               {navItems.map((item) => (
-                <motion.li
-                  key={item.title}
-                  variants={menuItemVariants}
-                >
-                  <a
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                  >
+                <motion.li key={item.title} variants={menuItemVariants}>
+                  <a href={item.href} onClick={() => setIsOpen(false)}>
                     {item.title}
                   </a>
                 </motion.li>

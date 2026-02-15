@@ -1,6 +1,6 @@
 export const squiglyWaveform = (
   channels: (Float32Array<ArrayBufferLike> | number[])[],
-  ctx: CanvasRenderingContext2D
+  ctx: CanvasRenderingContext2D,
 ) => {
   const { width, height } = ctx.canvas;
   const scale = channels[0].length / width;
@@ -53,7 +53,7 @@ const themeColors = {
 
 export const squiglyWave = (
   container: HTMLElement,
-  theme: 'light' | 'dark' | 'footer'
+  theme: 'light' | 'dark' | 'footer',
 ) => {
   return {
     container: container,
