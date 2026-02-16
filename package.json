@@ -9,7 +9,7 @@
     "url": "https://github.com/timoheddes/eileen-kolster"
   },
   "private": true,
-  "version": "2.0.3",
+  "version": "2.0.4",
   "type": "module",
   "scripts": {
     "preview": "vite preview",

@@ -53,6 +53,22 @@ export const AudioWave = ({
   const { initAudio, setActiveAndPlayPause, destroyMediaElement } =
     useAudioState();
 
+  const playingRef = useRef(playing);
+  playingRef.current = playing;
+
+  const changeTrack = (direction: 'previous' | 'next') => {
+    destroyMediaElement(availableTracks[currentTrack].file);
+    setReady(false);
+    setCurrentTrack((prev) =>
+      direction === 'previous'
+        ? (prev - 1 + availableTracks.length) % availableTracks.length
+        : (prev + 1) % availableTracks.length,
+    );
+  };
+
+  const changeTrackRef = useRef(changeTrack);
+  changeTrackRef.current = changeTrack;
+
   useEffect(() => {
     if (!waveformRef.current) return;
 
@@ -66,7 +82,7 @@ export const AudioWave = ({
       try {
         wavesurferRef.current = wavesurfer;
         await wavesurfer.load(availableTracks[currentTrack].file);
-        if (playing) {
+        if (playingRef.current) {
           wavesurfer.play();
         }
       } catch (error: unknown) {
@@ -95,8 +111,7 @@ export const AudioWave = ({
       setPlaying(false);
     });
     wavesurfer.on('finish', () => {
-      // play next track
-      changeTrack('next');
+      changeTrackRef.current('next');
       setPlaying(true);
     });
     wavesurfer.on('ready', () => {
@@ -121,16 +136,6 @@ export const AudioWave = ({
     theme,
     options,
   ]);
-
-  const changeTrack = (direction: 'previous' | 'next') => {
-    destroyMediaElement(availableTracks[currentTrack].file);
-    setReady(false);
-    setCurrentTrack((prev) =>
-      direction === 'previous'
-        ? (prev - 1 + availableTracks.length) % availableTracks.length
-        : (prev + 1) % availableTracks.length,
-    );
-  };
 
   return availableTracks[currentTrack] ? (
     <>

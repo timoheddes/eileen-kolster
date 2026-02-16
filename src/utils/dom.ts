@@ -6,8 +6,8 @@
  */
 export const scrollToElement = (
   element: string,
-  smooth = true,
-  delay = 0,
+  smooth: boolean = true,
+  delay: number = 0,
 ): ReturnType<typeof setTimeout> =>
   setTimeout(() => {
     const domElement: HTMLElement | null = document.querySelector(element);

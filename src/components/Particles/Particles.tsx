@@ -127,6 +127,9 @@ export const Particles = ({ numParticles = 300, gravityWell = false }) => {
     );
   };
 
+  const createParticleRef = useRef(createParticle);
+  createParticleRef.current = createParticle;
+
   useEffect(() => {
     const canvas = canvasRef.current as unknown as HTMLCanvasElement;
     if (!canvas) return;
@@ -137,7 +140,7 @@ export const Particles = ({ numParticles = 300, gravityWell = false }) => {
     // Create a persistent array of particles
     particlesRef.current = [];
     for (let i = 0; i < numParticles; i++) {
-      createParticle(i);
+      createParticleRef.current(i);
     }
 
     const handleMouseMove = (e: MouseEvent) => {
