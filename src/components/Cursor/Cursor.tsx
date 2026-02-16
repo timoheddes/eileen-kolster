@@ -24,11 +24,14 @@ export const Cursor = () => {
     }
 
     const updateCursorMode = (target: HTMLElement) => {
-      const lightboxElement = target.closest('.image-lightbox');
-      const zoomElement = target.closest('.image-zoom');
+      const imageLightbox = target.closest('.image-lightbox');
+      const videoLightbox = target.closest('.video-lightbox');
+      const videoLightboxContent = target.closest('.video-lightbox-content');
+      const zoomElement = target.closest('.image-zoom, .video-player-thumbnail');
 
       let newMode: CursorMode = 'default';
-      if (lightboxElement) newMode = 'close';
+      if (imageLightbox) newMode = 'close';
+      else if (videoLightbox && !videoLightboxContent) newMode = 'close';
       else if (zoomElement) newMode = 'zoom';
 
       if (newMode !== cursorModeRef.current) {

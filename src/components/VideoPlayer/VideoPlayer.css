@@ -5,6 +5,11 @@
   position: relative;
 }
 
+.custom-cursor-active .video-player-thumbnail,
+.custom-cursor-active .video-player-thumbnail * {
+  cursor: none;
+}
+
 .video-player-thumbnail > video {
   pointer-events: none;
 }
@@ -57,11 +62,17 @@
   inset: 0;
   z-index: 10000;
   display: flex;
+  cursor: none;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0);
   animation: video-lightbox-fade-in 0.35s ease forwards;
   will-change: background-color, backdrop-filter;
+}
+
+.video-lightbox-content,
+.video-lightbox-content * {
+  cursor: default;
 }
 
 .video-lightbox-content {
