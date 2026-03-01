@@ -1,11 +1,18 @@
-import { useEffect, useRef, useState, memo, useCallback } from 'react';
+import { useEffect, useRef, useState, memo, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { getRandomPosition } from '../../utils';
 import MagneticWrapper from '../Magnetic/MagneticWrapper';
 import useWindowDimensions from '../../hooks/windowDimensions';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { useLocation } from 'wouter';
 import './ImageCollage.css';
+
+type RandomSeeds = {
+  top: number;
+  leftFactor: number;
+  rotateDir: number;
+  rotateAmount: number;
+  zIndex: number;
+};
 
 export type ImageCollageImage = {
   file: string;
@@ -39,6 +46,36 @@ const ImageCollage = memo(function ImageCollage({
   const [zoomedIndex, setZoomedIndex] = useState<number | null>(null);
   const refs = useRef<(HTMLElement | null)[]>([]);
   const grid = useRef<HTMLDivElement>(null);
+
+  const randomSeeds = useRef<RandomSeeds[]>([]);
+  if (randomSeeds.current.length !== images.length) {
+    randomSeeds.current = images.map(() => ({
+      top: Math.random() * 5,
+      leftFactor: Math.random() * 0.3 + 0.7,
+      rotateDir: Math.random() < 0.5 ? -1 : 1,
+      rotateAmount: Math.random() * 5,
+      zIndex: Math.round(Math.random() * 10),
+    }));
+  }
+
+  const positions = useMemo(
+    () =>
+      images.map((image, index) => {
+        const seeds = randomSeeds.current[index];
+        const leftOffset = index < 2 ? 0 : index * 10;
+        return {
+          top: `${seeds.top}%`,
+          left: `calc(${index * (seeds.leftFactor * adjustImageSize) - leftOffset}px)`,
+          transform: rotate
+            ? `rotate(${seeds.rotateDir * seeds.rotateAmount}deg)`
+            : 'none',
+          zIndex: image.zIndex || seeds.zIndex,
+          position: 'absolute' as const,
+          minHeight: 'auto',
+        };
+      }),
+    [images, adjustImageSize, rotate],
+  );
 
   useWindowSize();
   const { width: screenWidth } = useWindowDimensions();
@@ -134,14 +171,7 @@ const ImageCollage = memo(function ImageCollage({
                 }}
                 key={index}
                 style={{
-                  ...getRandomPosition(
-                    index,
-                    adjustImageSize,
-                    rotate,
-                    'auto',
-                    image.zIndex,
-                    'absolute',
-                  ),
+                  ...positions[index],
                   width: `${adjustImageSize}px`,
                 }}
                 onMouseEnter={() => {
