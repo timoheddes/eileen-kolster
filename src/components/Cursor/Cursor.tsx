@@ -3,7 +3,7 @@ import gsap from 'gsap';
 
 import './Cursor.css';
 
-type CursorMode = 'default' | 'zoom' | 'close';
+type CursorMode = 'default' | 'zoom' | 'close' | 'hidden';
 
 export const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -27,7 +27,9 @@ export const Cursor = () => {
       const imageLightbox = target.closest('.image-lightbox');
       const videoLightbox = target.closest('.video-lightbox');
       const videoLightboxContent = target.closest('.video-lightbox-content');
-      const zoomElement = target.closest('.image-zoom, .video-player-thumbnail');
+      const zoomElement = target.closest(
+        '.image-zoom, .video-player-thumbnail',
+      );
 
       let newMode: CursorMode = 'default';
       if (imageLightbox) newMode = 'close';
@@ -66,12 +68,12 @@ export const Cursor = () => {
 
         gsap.to(cursorSmall, {
           scale: 1.5,
-          duration: 0.3,
+          duration: 0.2,
           ease: 'power2.out',
         });
         gsap.to(cursorLarge, {
           opacity: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: 'power2.out',
         });
       }
@@ -90,12 +92,12 @@ export const Cursor = () => {
 
         gsap.to(cursorSmall, {
           scale: 1,
-          duration: 0.3,
+          duration: 0.2,
           ease: 'power2.out',
         });
         gsap.to(cursorLarge, {
           opacity: 1,
-          duration: 0.3,
+          duration: 0.2,
           ease: 'power2.out',
         });
       }

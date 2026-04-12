@@ -1,10 +1,10 @@
 import autoprefixer from 'autoprefixer';
-import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
+import purgecss from '@fullhuman/postcss-purgecss';
 
 export default {
   plugins: [
     autoprefixer(),
-    purgeCSSPlugin({
+    purgecss({
       content: ['./index.html', './src/**/*.{js,jsx,ts,tsx,html}'],
       keyframes: true,
       safelist: {

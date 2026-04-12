@@ -40,10 +40,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion', 'gsap'],
-          audio: ['wavesurfer.js'],
+        manualChunks(id) {
+          if (id.includes('react-dom') || id.includes('react')) return 'vendor';
+          if (id.includes('framer-motion') || id.includes('gsap')) return 'animations';
+          if (id.includes('wavesurfer')) return 'audio';
         },
       },
     },

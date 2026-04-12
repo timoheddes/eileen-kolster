@@ -67,7 +67,7 @@
 .waveform {
   width: 100%;
   height: 80px; /* Set a fixed height for the waveform */
-  cursor: col-resize;
+  /* cursor: col-resize; */
 }
 
 .metadata {
@@ -112,7 +112,7 @@
     min-height: 50px;
     border-radius: 20px;
     background: none;
-    cursor: pointer;
+    /* cursor: pointer; */
     border: none;
 
     svg {

@@ -51,7 +51,7 @@
 
     .timeline-nav-btn {
       all: unset;
-      cursor: pointer;
+      /* cursor: pointer; */
       display: block;
       font-size: 0.9em;
       font-weight: 300;

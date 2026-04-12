@@ -1,7 +1,7 @@
-/* .custom-cursor-active button,
+.custom-cursor-active button,
 .custom-cursor-active a {
   cursor: none;
-} */
+}
 
 .cursor {
   position: fixed;
@@ -28,12 +28,12 @@
 }
 
 .cursor .cursor--small {
-  --cursor-size: 10px;
-  backdrop-filter: blur(1px) brightness(125%) hue-rotate(120deg) invert(100%);
+  --cursor-size: 1.2rem;
+  backdrop-filter: brightness(150%) hue-rotate(10deg) invert(100%);
 }
 
 .cursor .cursor--large {
-  --cursor-size: 30px;
+  --cursor-size: 2rem;
 }
 
 .cursor--hovering .cursor--small {
@@ -48,7 +48,7 @@
   transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
   opacity: 0;
   transition:
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.2s ease;
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
   pointer-events: none;
@@ -73,4 +73,9 @@
 .cursor--icon-active .cursor--large {
   opacity: 0 !important;
   transition: opacity 0.15s ease;
+}
+
+.small {
+  opacity: 1;
+  transform: scale(0.5);
 }

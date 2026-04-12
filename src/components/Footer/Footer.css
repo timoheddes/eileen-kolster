@@ -19,7 +19,7 @@
     @media (max-width: 1000px) {
       padding-left: var(--space-sm);
       padding-right: var(--space-sm);
-      min-height: 70px;
+      min-height: 50px;
     }
 
     @media (max-width: 640px) {

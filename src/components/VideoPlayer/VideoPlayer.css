@@ -70,10 +70,10 @@
   will-change: background-color, backdrop-filter;
 }
 
-.video-lightbox-content,
+/* .video-lightbox-content,
 .video-lightbox-content * {
   cursor: default;
-}
+} */
 
 .video-lightbox-content {
   max-width: 90vw;

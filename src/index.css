@@ -40,7 +40,7 @@ body {
 
 html.custom-cursor-active,
 body.custom-cursor-active {
-  /* cursor: none !important; */
+  cursor: none !important;
 }
 
 #root {
