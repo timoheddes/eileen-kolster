@@ -129,11 +129,11 @@ export const work: TimelineItemType[] = [
 
   {
     title: 'Migratory Birds',
-    dates: 'Upcoming',
+    dates: 'In post-production',
     order: -1,
     body: (
       <>
-        <h2>Migratory Birds (Upcoming)</h2>
+        <h2>Migratory Birds</h2>
         <small>Film by Sanskriti Shrivastava</small>
         <p>
           A story of displacement and resilience following Laura, a South
@@ -141,8 +141,8 @@ export const work: TimelineItemType[] = [
         </p>
         <p>
           The film explores how love and memory migrate across borders through
-          the central metaphor of a saree. I am currently in the process of
-          developing various sonic palettes for this project.
+          the central metaphor of a saree. It is currently in post-production
+          and will be released later this year.
         </p>
         <hr />
         <figure
