@@ -1,7 +1,7 @@
-.custom-cursor-active button,
+/*.custom-cursor-active button,
 .custom-cursor-active a {
   cursor: none;
-}
+}*/
 
 .cursor {
   position: fixed;
@@ -16,7 +16,7 @@
   }
 }
 
-.cursor .cursor--small,
+/*.cursor .cursor--small,
 .cursor .cursor--large {
   position: fixed;
   left: 0;
@@ -34,7 +34,7 @@
 
 .cursor .cursor--large {
   --cursor-size: 2rem;
-}
+}*/
 
 .cursor--hovering .cursor--small {
   background: #ffffff80;

@@ -38,10 +38,10 @@ body {
   width: 100%;
 }
 
-html.custom-cursor-active,
+/*html.custom-cursor-active,
 body.custom-cursor-active {
   cursor: none !important;
-}
+}*/
 
 #root {
   box-sizing: border-box;

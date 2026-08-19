@@ -21,10 +21,12 @@ export const SplashScreen = ({
     useAnimationState();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsSplashScreenVisible(false);
       setSplashScreenPlayed(true);
     }, duration * 0.65);
+
+    return () => clearTimeout(timer);
   }, [duration, setIsSplashScreenVisible, setSplashScreenPlayed]);
 
   return (

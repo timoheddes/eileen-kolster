@@ -69,26 +69,26 @@ export const AnimatedTypography = ({
     time: number;
   };
 }) => {
-  const title = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     if (finished) return;
     Splitting();
-    const chars = title.current?.querySelectorAll('.char');
-    if (chars && title.current) {
-      title.current.style.visibility = 'visible';
-      applyEffect(effect, options, chars, title.current);
+    const chars = titleRef.current?.querySelectorAll('.char');
+    if (chars && titleRef.current) {
+      titleRef.current.style.visibility = 'visible';
+      applyEffect(effect, options, chars, titleRef.current);
       if (effectOut) {
         setTimeout(() => {
-          applyEffect(effectOut, options, chars, title.current!, true);
+          applyEffect(effectOut, options, chars, titleRef.current!, true);
         }, options.time);
       }
     }
     setFinished(true);
     // document.querySelectorAll('.char').forEach((char) => {
     //   char.addEventListener('mouseenter', () => {
-    //     applyEffect('appear', { delay: 0 }, [char, title.current!);
+    //     applyEffect('appear', { delay: 0 }, [char, titleRef.current!);
     //   });
     // });
   }, [effect, options, effectOut, finished]);
@@ -98,14 +98,14 @@ export const AnimatedTypography = ({
   return (
     <div className="animated-typography">
       <span
-        ref={title}
+        ref={titleRef}
         className={`content__title ${className}`}
         style={{ fontSize: `${size}em`, visibility: 'hidden' }}
         data-splitting
         data-effect5
       >
-        {splitText.map((word, index) => (
-          <span key={index}>{word} </span>
+        {splitText.map((word) => (
+          <span key={word}>{word} </span>
         ))}
       </span>
     </div>

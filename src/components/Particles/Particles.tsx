@@ -9,7 +9,7 @@ export const Particles = ({ numParticles = 300, gravityWell = false }) => {
 
   // Use refs for animation state that doesn't trigger re-renders
   const particlesRef = useRef<Particle[]>([]);
-  const animationFrameId = useRef<number>(0);
+  const animationFrameIdRef = useRef<number>(0);
   const mouseRef = useRef({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
@@ -321,13 +321,13 @@ export const Particles = ({ numParticles = 300, gravityWell = false }) => {
         Math.min(highMids * 20, 0.8),
       );
 
-      animationFrameId.current = requestAnimationFrame(animate);
+      animationFrameIdRef.current = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
-      cancelAnimationFrame(animationFrameId.current);
+      cancelAnimationFrame(animationFrameIdRef.current);
     };
   }, [numParticles, analyser]);
 

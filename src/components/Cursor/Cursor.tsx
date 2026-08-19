@@ -11,7 +11,7 @@ export const Cursor = () => {
   const cursorLargeRef = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
   const [cursorMode, setCursorMode] = useState<CursorMode>('default');
-  const currentHoveredElement = useRef<HTMLElement | null>(null);
+  const currentHoveredElementRef = useRef<HTMLElement | null>(null);
   const cursorModeRef = useRef<CursorMode>('default');
 
   useEffect(() => {
@@ -61,9 +61,9 @@ export const Cursor = () => {
 
       if (
         interactableElement &&
-        interactableElement !== currentHoveredElement.current
+        interactableElement !== currentHoveredElementRef.current
       ) {
-        currentHoveredElement.current = interactableElement;
+        currentHoveredElementRef.current = interactableElement;
         setHovering(true);
 
         gsap.to(cursorSmall, {
@@ -84,10 +84,10 @@ export const Cursor = () => {
       if (target) updateCursorMode(target);
 
       if (
-        currentHoveredElement.current &&
-        !currentHoveredElement.current.contains(event.relatedTarget as Node)
+        currentHoveredElementRef.current &&
+        !currentHoveredElementRef.current.contains(event.relatedTarget as Node)
       ) {
-        currentHoveredElement.current = null;
+        currentHoveredElementRef.current = null;
         setHovering(false);
 
         gsap.to(cursorSmall, {

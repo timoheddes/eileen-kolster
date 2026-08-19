@@ -44,12 +44,12 @@ const ImageCollage = memo(function ImageCollage({
   const [adjustImageSize, setAdjustImageSize] = useState<number>(0);
   const [largestImage, setLargestImage] = useState<number>(0);
   const [zoomedIndex, setZoomedIndex] = useState<number | null>(null);
-  const refs = useRef<(HTMLElement | null)[]>([]);
-  const grid = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<(HTMLElement | null)[]>([]);
+  const gridRef = useRef<HTMLDivElement>(null);
 
-  const randomSeeds = useRef<RandomSeeds[]>([]);
-  if (randomSeeds.current.length !== images.length) {
-    randomSeeds.current = images.map(() => ({
+  const randomSeedsRef = useRef<RandomSeeds[]>([]);
+  if (randomSeedsRef.current.length !== images.length) {
+    randomSeedsRef.current = images.map(() => ({
       top: Math.random() * 5,
       leftFactor: Math.random() * 0.3 + 0.7,
       rotateDir: Math.random() < 0.5 ? -1 : 1,
@@ -61,7 +61,7 @@ const ImageCollage = memo(function ImageCollage({
   const positions = useMemo(
     () =>
       images.map((image, index) => {
-        const seeds = randomSeeds.current[index];
+        const seeds = randomSeedsRef.current[index];
         const leftOffset = index < 2 ? 0 : index * 10;
         return {
           top: `${seeds.top}%`,
@@ -92,14 +92,14 @@ const ImageCollage = memo(function ImageCollage({
   useEffect(() => {
     setRerender(false);
     const imageSizes: number[] = [];
-    refs.current.forEach((el) => {
+    imagesRef.current.forEach((el) => {
       if (el) {
         imageSizes.push(el.offsetHeight);
       }
     });
     const largestImage = Math.max(...imageSizes);
     setLargestImage(largestImage);
-  }, [refs, largestImage, screenWidth, rerender]);
+  }, [imagesRef, largestImage, screenWidth, rerender]);
 
   const handleResize = useCallback(() => {
     setRerender(true);
@@ -143,7 +143,7 @@ const ImageCollage = memo(function ImageCollage({
     <>
       <div
         className="image-grid"
-        ref={grid}
+        ref={gridRef}
         style={{
           height: `${
             largestImage > adjustImageSize ? adjustImageSize : largestImage
@@ -160,25 +160,24 @@ const ImageCollage = memo(function ImageCollage({
               style={{
                 zIndex: image.zIndex,
               }}
-              key={index}
+              key={image.caption}
             >
               <figure
                 className={`image-border overlay${
                   isZoomable ? ' image-zoom' : ''
                 }`}
                 ref={(element) => {
-                  refs.current[index] = element;
+                  imagesRef.current[index] = element;
                 }}
-                key={index}
                 style={{
                   ...positions[index],
                   width: `${adjustImageSize}px`,
                 }}
                 onMouseEnter={() => {
-                  refs.current[index]?.classList.add('hover');
+                  imagesRef.current[index]?.classList.add('hover');
                 }}
                 onMouseLeave={() => {
-                  refs.current[index]?.classList.remove('hover');
+                  imagesRef.current[index]?.classList.remove('hover');
                 }}
                 onClick={isZoomable ? () => openLightbox(index) : undefined}
               >

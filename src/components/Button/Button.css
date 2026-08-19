@@ -3,7 +3,7 @@
   text-shadow: none;
   background: var(--color-white);
   color: var(--color-light-azure);
-  /* cursor: pointer; */
+  cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
   backdrop-filter: blur(2px);

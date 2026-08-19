@@ -9,7 +9,7 @@ import { useEffect, useState, useRef } from 'react';
  */
 const useCustomCursorDetection = (): boolean => {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
-  const inputDetected = useRef(false);
+  const inputDetectedRef = useRef(false);
 
   useEffect(() => {
     const htmlElement = document.documentElement;
@@ -17,7 +17,7 @@ const useCustomCursorDetection = (): boolean => {
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 
     const handleMediaQueryChange = (e: MediaQueryListEvent) => {
-      if (!inputDetected.current) {
+      if (!inputDetectedRef.current) {
         if (e.matches) {
           setShowCustomCursor(true);
           htmlElement.classList.add('custom-cursor-active');
@@ -25,7 +25,7 @@ const useCustomCursorDetection = (): boolean => {
           setShowCustomCursor(false);
           htmlElement.classList.remove('custom-cursor-active');
         }
-        inputDetected.current = true;
+        inputDetectedRef.current = true;
       }
     };
 
@@ -34,11 +34,11 @@ const useCustomCursorDetection = (): boolean => {
     if (mediaQuery.matches) {
       setShowCustomCursor(true);
       htmlElement.classList.add('custom-cursor-active');
-      inputDetected.current = true;
+      inputDetectedRef.current = true;
     }
 
     const handleFirstInput = (event: MouseEvent | TouchEvent) => {
-      if (!inputDetected.current) {
+      if (!inputDetectedRef.current) {
         if (event.type === 'mousemove') {
           setShowCustomCursor(true);
           htmlElement.classList.add('custom-cursor-active');
@@ -46,13 +46,13 @@ const useCustomCursorDetection = (): boolean => {
           setShowCustomCursor(false);
           htmlElement.classList.remove('custom-cursor-active');
         }
-        inputDetected.current = true;
+        inputDetectedRef.current = true;
       }
       window.removeEventListener('mousemove', handleFirstInput);
       window.removeEventListener('touchstart', handleFirstInput);
     };
 
-    if (!inputDetected.current) {
+    if (!inputDetectedRef.current) {
       window.addEventListener('mousemove', handleFirstInput, {
         once: true,
       });

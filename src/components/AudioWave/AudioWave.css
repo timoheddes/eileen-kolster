@@ -112,7 +112,7 @@
     min-height: 50px;
     border-radius: 20px;
     background: none;
-    /* cursor: pointer; */
+    cursor: pointer;
     border: none;
 
     svg {

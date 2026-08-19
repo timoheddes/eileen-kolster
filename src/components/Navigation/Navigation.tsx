@@ -42,7 +42,7 @@ export const Navigation = () => {
   const [location] = useLocation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const navRef = useRef<HTMLElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [sliderStyle, setSliderStyle] = useState({
     left: 0,
     top: 0,
@@ -58,7 +58,7 @@ export const Navigation = () => {
 
   const updateSliderBounds = useCallback(() => {
     if (targetIndex >= 0 && navRef.current) {
-      const el = itemRefs.current[targetIndex];
+      const el = itemsRef.current[targetIndex];
       if (el) {
         const navRect = navRef.current.getBoundingClientRect();
         const elRect = el.getBoundingClientRect();
@@ -114,7 +114,7 @@ export const Navigation = () => {
           <motion.div
             key={item.href}
             ref={(el) => {
-              itemRefs.current[index] = el;
+              itemsRef.current[index] = el;
             }}
             className="nav-item"
             variants={itemVariants}
