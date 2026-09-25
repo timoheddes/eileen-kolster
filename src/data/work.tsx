@@ -6,7 +6,8 @@ import iMomCooking from '../assets/video/iMomCooking-web.mp4';
 
 import dieoramaCreativeProcess from '../assets/video/DieoramaCreativeProcess-web.mp4';
 import dieoramaPublicPlacements from '../assets/video/Dieoramatown-web.mp4';
-import migratory_birds from '../assets/video/Migratory-Birds-web.mp4';
+
+import migratory_birds from '../assets/images/photos/migratory-birds.webp';
 
 export const work: TimelineItemType[] = [
   {
@@ -128,7 +129,7 @@ export const work: TimelineItemType[] = [
 
   {
     title: 'Migratory Birds',
-    dates: 'Completed',
+    dates: 'In post-production',
     order: -1,
     body: (
       <>
@@ -140,18 +141,20 @@ export const work: TimelineItemType[] = [
         </p>
         <p>
           The film explores how love and memory migrate across borders through
-          the central metaphor of a saree.
+          the central metaphor of a saree. It is currently in post-production
+          and will be released later this year.
         </p>
         <hr />
-        <VideoPlayer
-          src={migratory_birds}
-          posterTime={49}
-          caption='Trailer'
+        <figure
+          className="image-border overlay"
           style={{
             width: '80%',
             maxWidth: '700px',
           }}
-        />
+        >
+          <figcaption>Migratory Birds</figcaption>
+          <img src={migratory_birds} alt="Migratory Birds" loading="lazy" />
+        </figure>
         <p>
           The film&apos;s narrative is driven by a continuous, intimate
           voiceover, which requires a highly nuanced textural underscore. My
