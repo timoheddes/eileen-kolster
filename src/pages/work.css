@@ -1,0 +1,31 @@
+#not-found {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.project-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+}
+
+.project-facts dt {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.project-facts dd {
+  margin: 0;
+}
+
+.project-scene {
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .project-facts {
+    margin-inline: var(--space-sm);
+  }
+}

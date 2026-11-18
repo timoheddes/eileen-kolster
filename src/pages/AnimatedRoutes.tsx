@@ -8,6 +8,8 @@ import Home from './Home';
 // Other pages lazy-loaded to reduce initial bundle
 const Biography = lazy(() => import('./Biography'));
 const Work = lazy(() => import('./Work'));
+const Project = lazy(() => import('./Project'));
+const NotFound = lazy(() => import('./NotFound'));
 const Contact = lazy(() => import('./Contact'));
 const Share = lazy(() => import('./Share'));
 
@@ -35,6 +37,10 @@ const AnimatedRoutes = () => {
         />
         <Route path="/work" component={() => <LazyRoute component={Work} />} />
         <Route
+          path="/work/:slug"
+          component={() => <LazyRoute component={Project} />}
+        />
+        <Route
           path="/contact"
           component={() => <LazyRoute component={Contact} />}
         />
@@ -43,7 +49,7 @@ const AnimatedRoutes = () => {
           component={() => <LazyRoute component={Share} />}
         />
         <Route>
-          <LazyRoute component={Contact} />
+          <LazyRoute component={NotFound} />
         </Route>
       </Switch>
     </AnimatePresence>
