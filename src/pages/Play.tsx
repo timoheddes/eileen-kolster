@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AdaptiveMusic, type Mode } from '../lib/adaptive/AdaptiveMusic';
-import { stems, timing } from '../data/adaptiveDemo';
+import { adaptiveConfig } from '../data/adaptiveDemo';
 import useAudioState from '../store/audioState';
 import seo from '../data/seo.json';
 
@@ -30,7 +30,7 @@ const Play = () => {
     combat: false,
   });
   const [message, setMessage] = useState('');
-  const [placeholder, setPlaceholder] = useState(true);
+  const [switching, setSwitching] = useState(false);
   const switchTimerRef = useRef<number>(0);
 
   const stopEngine = useCallback(() => {
@@ -39,6 +39,7 @@ const Play = () => {
     engineRef.current = null;
     setStatus('idle');
     setMode('explore');
+    setSwitching(false);
     setLayers({ explore: false, combat: false });
     setMessage('');
   }, []);
@@ -78,10 +79,9 @@ const Play = () => {
     try {
       // The demo and the site's player should never play over each other.
       useAudioState.getState().activeInstance?.pause();
-      const engine = await AdaptiveMusic.create(timing, stems);
+      const engine = await AdaptiveMusic.create(adaptiveConfig);
       await engine.start();
       engineRef.current = engine;
-      setPlaceholder(!engine.usesRealStems);
       setStatus('ready');
       setMessage('Exploration is playing.');
     } catch (error) {
@@ -93,16 +93,20 @@ const Play = () => {
   const changeMode = (next: Mode) => {
     const engine = engineRef.current;
     if (!engine || next === mode) return;
-    const at = engine.setMode(next);
+    const doneAt = engine.setMode(next);
+    if (doneAt === null) return;
     setMode(next);
-    const wait = Math.max(0, (at - engine.currentTime) * 1000);
+    setSwitching(true);
     setMessage(
       `Switching to ${MODE_LABEL[next].toLowerCase()} on the next bar...`,
     );
     window.clearTimeout(switchTimerRef.current);
     switchTimerRef.current = window.setTimeout(
-      () => setMessage(`${MODE_LABEL[next]} is playing.`),
-      wait,
+      () => {
+        setSwitching(false);
+        setMessage(`${MODE_LABEL[next]} is playing.`);
+      },
+      Math.max(0, (doneAt - engine.currentTime) * 1000),
     );
   };
 
@@ -155,6 +159,7 @@ const Play = () => {
                   type="button"
                   className={`play-mode ${mode === m ? 'is-active' : ''}`}
                   aria-pressed={mode === m}
+                  disabled={switching && mode !== m}
                   onClick={() => changeMode(m)}
                 >
                   {MODE_LABEL[m]}
@@ -171,9 +176,8 @@ const Play = () => {
               <span>
                 Add the {MODE_LABEL[mode].toLowerCase()} layer
                 <small>
-                  {mode === 'explore'
-                    ? 'A plucked arpeggio over the pad'
-                    : 'A fast arpeggio on top of the pulse'}
+                  Adds the vertical layer on top of the{' '}
+                  {MODE_LABEL[mode].toLowerCase()} loop
                 </small>
               </span>
             </label>
@@ -208,21 +212,15 @@ const Play = () => {
           </div>
         )}
 
-        {status === 'ready' && placeholder && (
-          <p className="play-note">
-            Preview with synthesised placeholder sounds. Eileen&apos;s own music
-            will replace them.
-          </p>
-        )}
-
         <h3>How it works</h3>
         <p>
           Each state has a <strong>base</strong> loop and a{' '}
           <strong>vertical layer</strong> that can be added on top. All the
-          loops start together and run at {timing.bpm} BPM, so they always stay
-          in sync and only their volume changes. Moving from exploration to
-          combat plays a one-bar <strong>transition</strong> first, and the
-          level meters show which stems are sounding.
+          loops start together and run at {adaptiveConfig.timing.bpm} BPM, so
+          they always stay in sync and only their volume changes. Moving from
+          exploration to combat, and back again, plays its own recorded{' '}
+          <strong>transition</strong>, and the level meters show which stems are
+          sounding.
         </p>
       </section>
     </>
