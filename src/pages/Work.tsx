@@ -1,3 +1,4 @@
+import seo from '../data/seo.json';
 import WorkLayout from '../components/WorkLayout/WorkLayout';
 import Button from '../components/Button/Button';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
@@ -5,11 +6,8 @@ import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 const Work = () => {
   return (
     <>
-      <title>Work | Eileen Kolster</title>
-      <meta
-        name="description"
-        content="Film and documentary scores by Eileen Kolster, a composer based in Amsterdam: the brief, the sound choices and the scored scenes."
-      />
+      <title>{seo.pages['/work'].title}</title>
+      <meta name="description" content={seo.pages['/work'].description} />
       <WorkLayout>
         <section id="work">
           <h2>My work</h2>

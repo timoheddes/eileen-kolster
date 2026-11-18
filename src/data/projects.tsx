@@ -4,6 +4,10 @@ import dieoramaCreativeProcess from '../assets/video/DieoramaCreativeProcess-web
 import dieoramaPublicPlacements from '../assets/video/Dieoramatown-web.mp4';
 import migratoryBirds from '../assets/images/photos/migratory-birds.webp';
 
+import seo from './seo.json';
+
+const projectSeo = seo.projects;
+
 export type ProjectKind = 'Film' | 'Documentary' | 'Game';
 
 /** How the project came about, shown openly on every card and page. */
@@ -46,14 +50,12 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'migratory-birds',
-    title: 'Migratory Birds',
+    ...projectSeo['migratory-birds'],
     kind: 'Film',
     context: 'Commission',
     status: 'In post-production',
     byline: 'Film by Sanskriti Shrivastava',
     role: ['Composer'],
-    summary:
-      'A story of displacement and resilience following a South African stand-up comedian who relocates to the Netherlands.',
     intro: [
       'A story of displacement and resilience following Laura, a South African stand-up comedian who relocates to the Netherlands.',
       'The film explores how love and memory migrate across borders through the central metaphor of a saree.',
@@ -69,14 +71,12 @@ export const projects: Project[] = [
   },
   {
     slug: 'imom',
-    title: 'iMom',
+    ...projectSeo['imom'],
     kind: 'Film',
     context: 'Independent rescore',
     status: 'Completed',
     byline: 'Original film by Ariel Martin',
     role: ['Composer', 'Sound design'],
-    summary:
-      'A satirical sci-fi horror about a world where humanoid technology has replaced traditional parenting.',
     intro: [
       'A satirical sci-fi horror that explores the chilling consequences of a world where humanoid technology has replaced traditional parenting.',
     ],
@@ -104,14 +104,12 @@ export const projects: Project[] = [
   },
   {
     slug: 'dieorama',
-    title: 'Dieorama',
+    ...projectSeo['dieorama'],
     kind: 'Documentary',
     context: 'Independent rescore',
     status: 'Completed',
     byline: 'Original documentary by Kevin Staake',
     role: ['Composer', 'Sound design'],
-    summary:
-      'A portrait of a criminal defense investigator who creates intricate, gruesome miniatures of murder scenes.',
     intro: [
       'A portrait of Abigail Goldman, a Criminal Defense Investigator who spends her nights creating intricate, gruesome miniatures of murder scenes.',
     ],

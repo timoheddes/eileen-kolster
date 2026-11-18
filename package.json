@@ -14,7 +14,7 @@
   "scripts": {
     "preview": "vite preview",
     "dev": "vite",
-    "build": "tsc -b && vite build --base=/",
+    "build": "tsc -b && vite build --base=/ && node scripts/prerender-meta.mjs",
     "optimize": "bash convert-images.sh && bash convert-audio.sh && bash convert-video.sh",
     "convert-images": "bash convert-images.sh",
     "convert-audio": "bash convert-audio.sh",

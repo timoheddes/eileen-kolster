@@ -1,0 +1,38 @@
+{
+  "siteName": "Eileen Kolster",
+  "siteUrl": "https://eileenkolster.com",
+  "image": "/og-default.jpg",
+  "imageAlt": "Eileen Kolster with her violin on a rooftop terrace",
+  "pages": {
+    "/": {
+      "title": "Eileen Kolster",
+      "description": "Eileen Kolster is a British/Dutch composer based in Amsterdam. She is a violinist and pianist, and her music ranges from intimate acoustic and ambient textures to expansive orchestral and synth-driven soundscapes."
+    },
+    "/work": {
+      "title": "Work | Eileen Kolster",
+      "description": "Film and documentary scores by Eileen Kolster, a composer based in Amsterdam: the brief, the sound choices and the scored scenes."
+    },
+    "/biography": {
+      "title": "Eileen Kolster - My Journey",
+      "description": "From Suzuki violin and acoustic engineering to scoring for film: the story of Amsterdam-based composer Eileen Kolster."
+    },
+    "/contact": {
+      "title": "Eileen Kolster - Get in Touch",
+      "description": "Get in touch with Eileen Kolster, a British/Dutch composer based in Amsterdam."
+    }
+  },
+  "projects": {
+    "migratory-birds": {
+      "title": "Migratory Birds",
+      "summary": "A story of displacement and resilience following a South African stand-up comedian who relocates to the Netherlands."
+    },
+    "imom": {
+      "title": "iMom",
+      "summary": "A satirical sci-fi horror about a world where humanoid technology has replaced traditional parenting."
+    },
+    "dieorama": {
+      "title": "Dieorama",
+      "summary": "A portrait of a criminal defense investigator who creates intricate, gruesome miniatures of murder scenes."
+    }
+  }
+}
