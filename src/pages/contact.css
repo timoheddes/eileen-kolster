@@ -28,3 +28,57 @@
 .contact-link:hover mark {
   transform: translateX(0.3em);
 }
+
+.contact-paths {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0;
+  display: grid;
+  gap: var(--space-sm);
+
+  li {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1em;
+    margin-right: 0.5em;
+  }
+}
+
+.contact-path {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  h3 {
+    margin: 0 0 0.25rem;
+  }
+
+  p {
+    margin: 0 0 0.5rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.contact-path-cta {
+  text-decoration: underline;
+}
+
+.contact-path-more {
+  font-size: 0.9rem;
+  padding-left: 0.25rem;
+}

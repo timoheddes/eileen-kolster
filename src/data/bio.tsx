@@ -192,7 +192,10 @@ export const bio: TimelineItemType[] = [
           Education, Arts University Bournemouth.
         </p>
 
-        <p>I am open to new projects and collaborations.</p>
+        <p>
+          I am open to new projects and collaborations in film, documentary and
+          games.
+        </p>
 
         <div className="font-size-1-5 flex gap-1 mt-1 mb-2 mobile-ml-1">
           <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>

@@ -1,14 +1,12 @@
 import Timeline from '../components/Timeline/Timeline';
 import { bio } from '../data/bio';
+import seo from '../data/seo.json';
 
 const Biography = () => {
   return (
     <>
-      <title>Eileen Kolster - My Journey</title>
-      <meta
-        name="description"
-        content="Born in South London in 1986, Eileen is a British/Dutch composer whose musical journey began at the age of five when she started to learn the violin with the Suzuki method."
-      />
+      <title>{seo.pages['/biography'].title}</title>
+      <meta name="description" content={seo.pages['/biography'].description} />
       <Timeline data={bio} />
     </>
   );
