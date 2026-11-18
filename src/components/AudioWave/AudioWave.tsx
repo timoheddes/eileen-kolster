@@ -105,6 +105,8 @@ export const AudioWave = ({
       });
       setPlaying(true);
       setActiveAndPlayPause(wavesurfer);
+      // Let other audio on the site (the adaptive demo) stop itself.
+      window.dispatchEvent(new Event('site-audio:play'));
       document.querySelectorAll('video').forEach((video) => video.pause());
     });
     wavesurfer.on('pause', () => {

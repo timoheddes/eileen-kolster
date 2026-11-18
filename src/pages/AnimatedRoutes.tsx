@@ -8,6 +8,7 @@ import Home from './Home';
 // Other pages lazy-loaded to reduce initial bundle
 const Biography = lazy(() => import('./Biography'));
 const Work = lazy(() => import('./Work'));
+const Play = lazy(() => import('./Play'));
 const Project = lazy(() => import('./Project'));
 const NotFound = lazy(() => import('./NotFound'));
 const Contact = lazy(() => import('./Contact'));
@@ -40,6 +41,7 @@ const AnimatedRoutes = () => {
           path="/work/:slug"
           component={() => <LazyRoute component={Project} />}
         />
+        <Route path="/play" component={() => <LazyRoute component={Play} />} />
         <Route
           path="/contact"
           component={() => <LazyRoute component={Contact} />}
