@@ -12,7 +12,8 @@ import { SkipForwardIcon } from '../../assets/icons/SkipForward';
 import { SkipBackIcon } from '../../assets/icons/SkipBack';
 import useShareState from '../../store/shareState';
 import type { Track } from '../../types/tracks';
-import { useLocation } from 'wouter';
+import { Link, useLocation } from 'wouter';
+import { getProject } from '../../data/projects';
 
 export const AudioWave = ({
   tracks,
@@ -137,6 +138,9 @@ export const AudioWave = ({
     options,
   ]);
 
+  const projectSlug = availableTracks[currentTrack]?.projectSlug;
+  const project = projectSlug ? getProject(projectSlug) : undefined;
+
   return availableTracks[currentTrack] ? (
     <>
       <div className="metadata">
@@ -145,6 +149,22 @@ export const AudioWave = ({
             {availableTracks[currentTrack].title}
           </span>
         </h3>
+        {availableTracks[currentTrack].description && (
+          <p
+            className="metadata-description"
+            title={availableTracks[currentTrack].description}
+          >
+            {availableTracks[currentTrack].description}
+          </p>
+        )}
+        {project && (
+          <Link
+            href={`/work/${project.slug}`}
+            className="metadata-project-link"
+          >
+            From {project.title}
+          </Link>
+        )}
       </div>
       <div className="player">
         <div className="audio-wave" style={style}>
