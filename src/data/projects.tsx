@@ -136,19 +136,20 @@ export const projects: Project[] = [
   },
 
   // ---------------------------------------------------------------------
-  // DRAFTS: kept out of the site (published: false) until the content and
-  // rights are confirmed. Fill in every TODO, then set published: true and
-  // move title/summary into seo.json so the page gets its own meta tags.
+  // WORK IN PROGRESS: published for preview on the feat/reimagined branch
+  // only, with TODO placeholders. Fill in every TODO (title/summary live in
+  // seo.json) before feat/reimagined goes to main. Set published: false to
+  // hide one again, and the documentary rescore needs its footage rights
+  // confirmed before it goes live.
   // ---------------------------------------------------------------------
   {
     slug: 'documentary-rescore',
-    title: 'TODO: documentary title',
+    ...projectSeo['documentary-rescore'],
     kind: 'Documentary',
     context: 'Independent rescore',
     status: 'In progress',
     byline: 'Original documentary by TODO',
     role: ['Composer'],
-    summary: 'TODO: one sentence on what the documentary is about.',
     intro: [
       'TODO: two or three sentences on the documentary and why it was chosen to rescore.',
     ],
@@ -156,18 +157,16 @@ export const projects: Project[] = [
     // Publishing needs confirmation that the rescored footage can be shown.
     scenes: [],
     order: 3,
-    published: false,
+    published: true,
   },
   {
     slug: 'indie-game',
-    title: 'TODO: game title',
+    ...projectSeo['indie-game'],
     kind: 'Game',
     context: 'Independent rescore',
     status: 'TODO',
     byline: 'TODO: developer and game',
     role: ['Composer'],
-    summary:
-      'TODO: one sentence on the game and the music it needed (adaptive exploration and combat).',
     intro: [
       'TODO: a short description of the game, the brief, and how the music reacts to play.',
     ],
@@ -196,7 +195,7 @@ export const projects: Project[] = [
       },
     ],
     order: 4,
-    published: false,
+    published: true,
   },
 ];
 
