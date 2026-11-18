@@ -134,6 +134,70 @@ export const projects: Project[] = [
     order: 2,
     published: true,
   },
+
+  // ---------------------------------------------------------------------
+  // DRAFTS: kept out of the site (published: false) until the content and
+  // rights are confirmed. Fill in every TODO, then set published: true and
+  // move title/summary into seo.json so the page gets its own meta tags.
+  // ---------------------------------------------------------------------
+  {
+    slug: 'documentary-rescore',
+    title: 'TODO: documentary title',
+    kind: 'Documentary',
+    context: 'Independent rescore',
+    status: 'In progress',
+    byline: 'Original documentary by TODO',
+    role: ['Composer'],
+    summary: 'TODO: one sentence on what the documentary is about.',
+    intro: [
+      'TODO: two or three sentences on the documentary and why it was chosen to rescore.',
+    ],
+    // TODO: add scenes (goal, approach, video) once the rescore is ready.
+    // Publishing needs confirmation that the rescored footage can be shown.
+    scenes: [],
+    order: 3,
+    published: false,
+  },
+  {
+    slug: 'indie-game',
+    title: 'TODO: game title',
+    kind: 'Game',
+    context: 'Independent rescore',
+    status: 'TODO',
+    byline: 'TODO: developer and game',
+    role: ['Composer'],
+    summary:
+      'TODO: one sentence on the game and the music it needed (adaptive exploration and combat).',
+    intro: [
+      'TODO: a short description of the game, the brief, and how the music reacts to play.',
+    ],
+    approach: [
+      'TODO: the adaptive approach: a base layer for each state with a vertical layer that adds intensity, and a transition between exploration and combat.',
+    ],
+    scenes: [
+      {
+        title: 'Exploration',
+        goal: 'TODO: what the exploration music should make the player feel.',
+        approach: [
+          'TODO: the base layer, and the vertical layer that fades in as the player discovers more.',
+        ],
+      },
+      {
+        title: 'Transition',
+        goal: 'TODO: how the music moves from exploration into combat.',
+        approach: ['TODO: how the transition is built and when it triggers.'],
+      },
+      {
+        title: 'Combat',
+        goal: 'TODO: what the combat music should make the player feel.',
+        approach: [
+          'TODO: the base layer, and the vertical layer that raises intensity.',
+        ],
+      },
+    ],
+    order: 4,
+    published: false,
+  },
 ];
 
 export const publishedProjects = projects
