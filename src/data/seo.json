@@ -33,6 +33,14 @@
     "dieorama": {
       "title": "Dieorama",
       "summary": "A portrait of a criminal defense investigator who creates intricate, gruesome miniatures of murder scenes."
+    },
+    "documentary-rescore": {
+      "title": "TODO: documentary title",
+      "summary": "TODO: one sentence on what the documentary is about."
+    },
+    "indie-game": {
+      "title": "TODO: game title",
+      "summary": "TODO: one sentence on the game and the music it needed (adaptive exploration and combat)."
     }
   }
 }
