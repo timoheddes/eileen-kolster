@@ -75,7 +75,7 @@
   flex-direction: column;
   width: auto;
   min-width: 230px;
-  max-width: 20%;
+  max-width: 28%;
 
   @media (max-width: 640px) {
     width: auto;
@@ -87,6 +87,33 @@
 
 .metadata-title {
   display: flex;
+}
+
+.metadata-description,
+.metadata-project-link {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  opacity: 0.75;
+  color: inherit;
+}
+
+.metadata-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+
+  @media (max-width: 640px) {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    text-align: center;
+  }
+}
+
+.metadata-project-link {
+  text-decoration: underline;
 }
 
 .metadata-title-text {
