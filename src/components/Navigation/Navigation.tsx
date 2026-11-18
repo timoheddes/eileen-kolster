@@ -8,10 +8,12 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 // Static dynamic imports for preloading
 const preloadBiography = () => import('../../pages/Biography');
 const preloadWork = () => import('../../pages/Work');
+const preloadPlay = () => import('../../pages/Play');
 const preloadContact = () => import('../../pages/Contact');
 
 const NAV_ITEMS = [
   { href: '/work', label: 'My Work', preload: preloadWork },
+  { href: '/play', label: 'Play', preload: preloadPlay },
   { href: '/biography', label: 'My Journey', preload: preloadBiography },
   { href: '/contact', label: 'Get in touch', preload: preloadContact },
 ];

@@ -28,4 +28,8 @@
     <loc>https://eileenkolster.com/work/dieorama</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://eileenkolster.com/play</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>

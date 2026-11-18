@@ -19,6 +19,10 @@
     "/contact": {
       "title": "Eileen Kolster - Get in Touch",
       "description": "Get in touch with Eileen Kolster, a British/Dutch composer based in Amsterdam."
+    },
+    "/play": {
+      "title": "Play the music | Eileen Kolster",
+      "description": "Try adaptive game music: switch between exploration and combat, add vertical layers, and hear how the score reacts to play."
     }
   },
   "projects": {
