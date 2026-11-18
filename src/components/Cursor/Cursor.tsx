@@ -3,7 +3,11 @@ import gsap from 'gsap';
 
 import './Cursor.css';
 
-type CursorMode = 'default' | 'zoom' | 'close' | 'hidden';
+type CursorMode = 'default' | 'zoom' | 'close' | 'play' | 'pause' | 'hidden';
+
+// Height of the native video control bar. Hovering it shows the regular
+// cursor instead of the play/pause icon so the controls stay usable.
+const VIDEO_CONTROLS_HEIGHT = 56;
 
 export const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -13,6 +17,7 @@ export const Cursor = () => {
   const [cursorMode, setCursorMode] = useState<CursorMode>('default');
   const currentHoveredElementRef = useRef<HTMLElement | null>(null);
   const cursorModeRef = useRef<CursorMode>('default');
+  const hoveredVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -23,6 +28,25 @@ export const Cursor = () => {
       return;
     }
 
+    const applyMode = (newMode: CursorMode) => {
+      if (newMode !== cursorModeRef.current) {
+        cursorModeRef.current = newMode;
+        setCursorMode(newMode);
+      }
+    };
+
+    const videoMode = (video: HTMLVideoElement, clientY: number | null) => {
+      if (
+        clientY !== null &&
+        clientY > video.getBoundingClientRect().bottom - VIDEO_CONTROLS_HEIGHT
+      ) {
+        return 'default';
+      }
+      return video.paused ? 'play' : 'pause';
+    };
+
+    let lastY: number | null = null;
+
     const updateCursorMode = (target: HTMLElement) => {
       const imageLightbox = target.closest('.image-lightbox');
       const videoLightbox = target.closest('.video-lightbox');
@@ -31,15 +55,20 @@ export const Cursor = () => {
         '.image-zoom, .video-player-thumbnail',
       );
 
+      const lightboxVideo = target.closest<HTMLVideoElement>(
+        '.video-lightbox-content > video',
+      );
+      hoveredVideoRef.current = lightboxVideo;
+
       let newMode: CursorMode = 'default';
       if (imageLightbox) newMode = 'close';
       else if (videoLightbox && !videoLightboxContent) newMode = 'close';
       else if (zoomElement) newMode = 'zoom';
 
-      if (newMode !== cursorModeRef.current) {
-        cursorModeRef.current = newMode;
-        setCursorMode(newMode);
+      if (lightboxVideo) {
+        newMode = videoMode(lightboxVideo, lastY);
       }
+      applyMode(newMode);
     };
 
     // Position-only handler — runs on every mousemove and must stay
@@ -47,6 +76,18 @@ export const Cursor = () => {
     // (e.g. MagneticWrapper).
     const handleMouseMove = (event: MouseEvent) => {
       cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      lastY = event.clientY;
+      const video = hoveredVideoRef.current;
+      if (video) applyMode(videoMode(video, event.clientY));
+    };
+
+    // The video toggles between playing and paused while hovered (click or
+    // keyboard). Media events do not bubble, so listen in the capture phase.
+    const handlePlaybackChange = (event: Event) => {
+      const video = hoveredVideoRef.current;
+      if (video && event.target === video) {
+        applyMode(videoMode(video, lastY));
+      }
     };
 
     // Element-change handlers — only fire when the pointer enters or
@@ -106,11 +147,15 @@ export const Cursor = () => {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseover', handleMouseOver);
     window.addEventListener('mouseout', handleMouseOut);
+    window.addEventListener('play', handlePlaybackChange, true);
+    window.addEventListener('pause', handlePlaybackChange, true);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('mouseout', handleMouseOut);
+      window.removeEventListener('play', handlePlaybackChange, true);
+      window.removeEventListener('pause', handlePlaybackChange, true);
     };
   }, []);
 
@@ -126,15 +171,67 @@ export const Cursor = () => {
       <svg
         className={`cursor--icon ${
           cursorMode === 'zoom' ? 'cursor--icon-zoom' : ''
-        } ${cursorMode === 'close' ? 'cursor--icon-close' : ''}`}
+        } ${cursorMode === 'close' ? 'cursor--icon-close' : ''} ${
+          cursorMode === 'play' || cursorMode === 'pause'
+            ? 'cursor--icon-media'
+            : ''
+        }`}
         viewBox="0 0 32 32"
         width="32"
         height="32"
         fill="none"
       >
         <circle cx="16" cy="16" r="14" stroke="white" strokeWidth="1.5" />
-        <line x1="16" y1="9" x2="16" y2="23" stroke="white" strokeWidth="1.5" />
-        <line x1="9" y1="16" x2="23" y2="16" stroke="white" strokeWidth="1.5" />
+        {cursorMode === 'play' && (
+          <polygon
+            points="13 10.5 22 16 13 21.5"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
+        )}
+        {cursorMode === 'pause' && (
+          <>
+            <line
+              x1="13"
+              y1="10.5"
+              x2="13"
+              y2="21.5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <line
+              x1="19"
+              y1="10.5"
+              x2="19"
+              y2="21.5"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </>
+        )}
+        {cursorMode !== 'play' && cursorMode !== 'pause' && (
+          <>
+            <line
+              x1="16"
+              y1="9"
+              x2="16"
+              y2="23"
+              stroke="white"
+              strokeWidth="1.5"
+            />
+            <line
+              x1="9"
+              y1="16"
+              x2="23"
+              y2="16"
+              stroke="white"
+              strokeWidth="1.5"
+            />
+          </>
+        )}
       </svg>
     </div>
   );

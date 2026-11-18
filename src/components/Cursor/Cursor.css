@@ -58,7 +58,8 @@
   }
 }
 
-.cursor--icon-zoom {
+.cursor--icon-zoom,
+.cursor--icon-media {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1) rotate(0deg);
 }
