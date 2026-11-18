@@ -1,9 +1,10 @@
-import { Link, useParams } from 'wouter';
+import { useParams } from 'wouter';
 import { getProject } from '../data/projects';
 import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
 import Button from '../components/Button/Button';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 import NotFound from './NotFound';
+import WorkLayout from '../components/WorkLayout/WorkLayout';
 
 import './work.css';
 
@@ -21,66 +22,65 @@ const Project = () => {
       <meta name="description" content={project.summary} />
       <meta property="og:title" content={`${project.title} | Eileen Kolster`} />
       <meta property="og:description" content={project.summary} />
-      <article id="project">
-        <p>
-          <Link href="/work">&larr; All work</Link>
-        </p>
-        <h2>{project.title}</h2>
-        <small>{project.byline}</small>
-        <dl className="project-facts">
-          <div>
-            <dt>Type</dt>
-            <dd>{project.kind}</dd>
+      <WorkLayout>
+        <article id="project">
+          <h2>{project.title}</h2>
+          <small>{project.byline}</small>
+          <dl className="project-facts">
+            <div>
+              <dt>Type</dt>
+              <dd>{project.kind}</dd>
+            </div>
+            <div>
+              <dt>Context</dt>
+              <dd>{project.context}</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>{project.status}</dd>
+            </div>
+            <div>
+              <dt>My role</dt>
+              <dd>{project.role.join(', ')}</dd>
+            </div>
+          </dl>
+          {project.intro.map((t) => (
+            <p key={t}>{t}</p>
+          ))}
+          {project.image && (
+            <figure className="image-border overlay" style={videoStyle}>
+              <img src={project.image.src} alt={project.image.alt} />
+            </figure>
+          )}
+          {project.approach?.map((t) => (
+            <p key={t}>{t}</p>
+          ))}
+          {project.scenes.map((scene) => (
+            <section key={scene.title} className="project-scene">
+              <h3>Scene: {scene.title}</h3>
+              <p>
+                <strong>Goal:</strong> {scene.goal}
+              </p>
+              {scene.approach.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
+              {scene.video && (
+                <VideoPlayer
+                  src={scene.video.src}
+                  posterTime={scene.video.posterTime}
+                  startAt={scene.video.startAt}
+                  style={videoStyle}
+                />
+              )}
+            </section>
+          ))}
+          <div className="font-size-1-5 flex gap-1 mt-1">
+            <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
+              Working on something similar?
+            </Button>
           </div>
-          <div>
-            <dt>Context</dt>
-            <dd>{project.context}</dd>
-          </div>
-          <div>
-            <dt>Status</dt>
-            <dd>{project.status}</dd>
-          </div>
-          <div>
-            <dt>My role</dt>
-            <dd>{project.role.join(', ')}</dd>
-          </div>
-        </dl>
-        {project.intro.map((t) => (
-          <p key={t}>{t}</p>
-        ))}
-        {project.image && (
-          <figure className="image-border overlay" style={videoStyle}>
-            <img src={project.image.src} alt={project.image.alt} />
-          </figure>
-        )}
-        {project.approach?.map((t) => (
-          <p key={t}>{t}</p>
-        ))}
-        {project.scenes.map((scene) => (
-          <section key={scene.title} className="project-scene">
-            <h3>Scene: {scene.title}</h3>
-            <p>
-              <strong>Goal:</strong> {scene.goal}
-            </p>
-            {scene.approach.map((t) => (
-              <p key={t}>{t}</p>
-            ))}
-            {scene.video && (
-              <VideoPlayer
-                src={scene.video.src}
-                posterTime={scene.video.posterTime}
-                startAt={scene.video.startAt}
-                style={videoStyle}
-              />
-            )}
-          </section>
-        ))}
-        <div className="font-size-1-5 flex gap-1 mt-1">
-          <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
-            Working on something similar?
-          </Button>
-        </div>
-      </article>
+        </article>
+      </WorkLayout>
     </>
   );
 };

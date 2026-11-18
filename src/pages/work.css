@@ -1,48 +1,7 @@
-#work,
-#project,
 #not-found {
   max-width: 760px;
   margin: 0 auto;
   padding: 0 var(--space-sm);
-}
-
-.project-list {
-  list-style: none;
-  padding: 0;
-  margin: var(--space-md) 0;
-  display: grid;
-  gap: var(--space-sm);
-}
-
-.project-card {
-  display: block;
-  padding: var(--space-sm) var(--space-md);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.25);
-  color: var(--color-text);
-  text-decoration: none;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.project-card:hover,
-.project-card:focus-visible {
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.project-card-meta {
-  opacity: 0.85;
-}
-
-.project-card-title {
-  margin: 0.25rem 0 0.5rem;
-}
-
-.project-card-more {
-  text-decoration: underline;
 }
 
 .project-facts {
@@ -63,4 +22,10 @@
 
 .project-scene {
   margin-top: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .project-facts {
+    margin-inline: var(--space-sm);
+  }
 }

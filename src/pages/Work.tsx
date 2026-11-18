@@ -1,7 +1,6 @@
-import { Link } from 'wouter';
-import { publishedProjects } from '../data/projects';
-
-import './work.css';
+import WorkLayout from '../components/WorkLayout/WorkLayout';
+import Button from '../components/Button/Button';
+import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 const Work = () => {
   return (
@@ -11,27 +10,27 @@ const Work = () => {
         name="description"
         content="Film and documentary scores by Eileen Kolster, a composer based in Amsterdam: the brief, the sound choices and the scored scenes."
       />
-      <section id="work">
-        <h2>Work</h2>
-        <p className="font-size-1-2 work-intro">
-          Films and documentaries I have scored, with the thinking behind the
-          music.
-        </p>
-        <ul className="project-list">
-          {publishedProjects.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/work/${p.slug}`} className="project-card">
-                <small className="project-card-meta">
-                  {p.kind} · {p.context} · {p.status}
-                </small>
-                <h3 className="project-card-title">{p.title}</h3>
-                <p>{p.summary}</p>
-                <span className="project-card-more">See the project</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <WorkLayout>
+        <section id="work">
+          <h2>My work</h2>
+          <p className="font-size-1-2">
+            Each project here comes with the story behind the music: what the
+            film needed, the sounds I chose to answer it, and the scenes I
+            scored.
+          </p>
+          <p>
+            Some are commissions, some are independent rescores of existing
+            films and documentaries, and some are for study or non-profit
+            projects. Every project says which one it is.
+          </p>
+          <p>Pick a project from the list to see how it was made.</p>
+          <div className="font-size-1-5 flex gap-1 mt-1">
+            <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
+              Get in touch
+            </Button>
+          </div>
+        </section>
+      </WorkLayout>
     </>
   );
 };
