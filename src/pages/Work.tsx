@@ -3,8 +3,8 @@ import Button from '../components/Button/Button';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 import ImageCollage from '../components/ImageCollage/ImageCollage';
 
-import studio from '../assets/images/photos/studio.webp';
-import eileen_theatre from '../assets/images/photos/eileen-theatre.webp';
+import eileen_sofa_violin from '../assets/images/photos/eileen-sofa-violin.webp';
+import eileen_violin_scroll from '../assets/images/photos/eileen-violin-scroll.webp';
 
 const Work = () => {
   return (
@@ -24,14 +24,14 @@ const Work = () => {
           imageSize={315}
           images={[
             {
-              file: studio,
+              file: eileen_sofa_violin,
               zIndex: 40,
-              description: 'Eileen in the studio',
+              description: 'Eileen on a sofa holding her violin',
             },
             {
-              file: eileen_theatre,
+              file: eileen_violin_scroll,
               zIndex: 20,
-              description: 'Eileen at the theatre',
+              description: 'Eileen looking past the scroll of her violin',
             },
           ]}
         />
