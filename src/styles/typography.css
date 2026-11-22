@@ -1,5 +1,5 @@
 .font-size-1-2 {
-  font-size: 1.2em;
+  font-size: var(--text-lead);
 }
 
 .font-size-1-5 {
@@ -19,9 +19,29 @@ h2,
 h3,
 h4 {
   font-weight: 500;
-  line-height: 1.1;
+  line-height: var(--leading-heading);
   font-family: 'Baloo Da 2', system-ui;
   margin: 0;
+}
+
+/* Vertical rhythm: a heading gets room above it unless it opens its block,
+   and sits closer to the text it introduces than to the text before it. */
+* + h2 {
+  margin-top: var(--space-lg);
+}
+
+* + h3 {
+  margin-top: var(--space-md);
+}
+
+* + h4 {
+  margin-top: var(--space-sm);
+}
+
+h2 + p,
+h3 + p,
+h4 + p {
+  margin-top: var(--space-xs);
 }
 
 h1 {
@@ -64,15 +84,19 @@ strong {
 }
 
 p {
-  font-size: 1.1em;
+  font-size: var(--text-body);
   font-weight: 400;
-  margin: 0.5em 0;
-  max-width: 900px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  line-height: var(--leading-body);
+  margin: 0 0 var(--space-sm);
+  max-width: var(--measure);
+  /* Soft halo to keep text legible over the drifting stars */
+  text-shadow:
+    0 0 14px rgba(0, 0, 0, 0.55),
+    0 1px 2px rgba(0, 0, 0, 0.45);
+}
 
-  @media (max-width: 768px) {
-    font-size: 1.3em;
-  }
+small {
+  font-size: var(--text-sm);
 }
 
 .highlight {
