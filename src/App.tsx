@@ -15,8 +15,8 @@ const Particles = lazy(() =>
 );
 
 // SSR-safe default for particle count
-const DEFAULT_PARTICLES = 50;
-const DESKTOP_PARTICLES = 100;
+const DEFAULT_PARTICLES = 35;
+const DESKTOP_PARTICLES = 70;
 const DESKTOP_BREAKPOINT = 768;
 
 function App() {
