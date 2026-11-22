@@ -59,6 +59,8 @@ const LAYER_FADE = 0.4;
 export class AdaptiveMusic {
   private ctx: AudioContext;
   private master: GainNode;
+  /** Tap on the master output, so visuals (the particles) can react to the music. */
+  readonly analyser: AnalyserNode;
   private gains = {} as Record<LoopKey, GainNode>;
   private buffers = {} as Record<StemKey, AudioBuffer>;
   private config: AdaptiveConfig;
@@ -76,6 +78,9 @@ export class AdaptiveMusic {
     this.master = ctx.createGain();
     this.master.gain.value = 0;
     this.master.connect(ctx.destination);
+    this.analyser = ctx.createAnalyser();
+    this.analyser.fftSize = 256;
+    this.master.connect(this.analyser);
   }
 
   /** Fetch and decode every stem. */
