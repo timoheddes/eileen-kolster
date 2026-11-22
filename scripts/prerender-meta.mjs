@@ -29,11 +29,14 @@ const escape = (s) =>
 
 const pages = [
   ...Object.entries(seo.pages).map(([path, p]) => ({ path, ...p })),
-  ...Object.entries(seo.projects).map(([slug, p]) => ({
-    path: `/work/${slug}`,
-    title: `${p.title} | ${seo.siteName}`,
-    description: p.summary,
-  })),
+  // Drafts stay out of the build until they are published.
+  ...Object.entries(seo.projects)
+    .filter(([, p]) => !p.draft)
+    .map(([slug, p]) => ({
+      path: `/work/${slug}`,
+      title: `${p.title} | ${seo.siteName}`,
+      description: p.summary,
+    })),
 ];
 
 const template = readFileSync(join(dist, 'index.html'), 'utf8');
