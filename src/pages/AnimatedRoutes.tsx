@@ -8,8 +8,7 @@ import Home from './Home';
 // Other pages lazy-loaded to reduce initial bundle
 const Biography = lazy(() => import('./Biography'));
 const Music = lazy(() => import('./Music'));
-const Work = lazy(() => import('./Work'));
-const Project = lazy(() => import('./Project'));
+const WorkSection = lazy(() => import('./WorkSection'));
 const NotFound = lazy(() => import('./NotFound'));
 const Contact = lazy(() => import('./Contact'));
 
@@ -26,10 +25,13 @@ const LazyRoute = ({
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  // /work and /work/:slug share one layout, so they share one key and the
+  // side navigation stays mounted between them.
+  const routeKey = location[0].startsWith('/work') ? '/work' : location[0];
 
   return (
     <AnimatePresence mode="wait">
-      <Switch key={location[0]} location={location[0]}>
+      <Switch key={routeKey} location={location[0]}>
         <Route path="/" component={() => <LazyRoute component={Home} />} />
         <Route
           path="/about"
@@ -38,11 +40,10 @@ const AnimatedRoutes = () => {
         <Route path="/biography">
           <Redirect to="/about" replace />
         </Route>
-        <Route path="/work" component={() => <LazyRoute component={Work} />} />
-        <Route
-          path="/work/:slug"
-          component={() => <LazyRoute component={Project} />}
-        />
+        <Route path="/work/:slug?">
+          {/* Children, not an inline component, so it is not remounted on navigation. */}
+          <LazyRoute component={WorkSection} />
+        </Route>
         <Route
           path="/music"
           component={() => <LazyRoute component={Music} />}
