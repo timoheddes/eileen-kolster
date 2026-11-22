@@ -20,11 +20,20 @@ export const AudioWave = ({
   theme = 'light',
   style,
   options,
+  showMetadata = true,
+  autoAdvance = true,
+  focusOnReady = true,
 }: {
   tracks: Track[];
   theme?: 'light' | 'dark' | 'footer';
   style?: React.CSSProperties;
   options?: Partial<WaveSurferOptions>;
+  /** Show the title, description and project link next to the player. */
+  showMetadata?: boolean;
+  /** Move on to the next track when one finishes. */
+  autoAdvance?: boolean;
+  /** Move keyboard focus to the play button once the track has loaded. */
+  focusOnReady?: boolean;
 }) => {
   const [availableTracks, setAvailableTracks] = useState(tracks);
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -69,6 +78,10 @@ export const AudioWave = ({
 
   const changeTrackRef = useRef(changeTrack);
   changeTrackRef.current = changeTrack;
+  const autoAdvanceRef = useRef(autoAdvance);
+  autoAdvanceRef.current = autoAdvance;
+  const focusOnReadyRef = useRef(focusOnReady);
+  focusOnReadyRef.current = focusOnReady;
 
   useEffect(() => {
     if (!waveformRef.current) return;
@@ -114,12 +127,13 @@ export const AudioWave = ({
       setPlaying(false);
     });
     wavesurfer.on('finish', () => {
+      if (!autoAdvanceRef.current) return;
       changeTrackRef.current('next');
       setPlaying(true);
     });
     wavesurfer.on('ready', () => {
       setReady(true);
-      playButton.current?.focus();
+      if (focusOnReadyRef.current) playButton.current?.focus();
     });
 
     return () => {
@@ -145,29 +159,31 @@ export const AudioWave = ({
 
   return availableTracks[currentTrack] ? (
     <>
-      <div className="metadata">
-        <h3 className="font-family-baloo h4 metadata-title">
-          <span className="metadata-title-text">
-            {availableTracks[currentTrack].title}
-          </span>
-        </h3>
-        {availableTracks[currentTrack].description && (
-          <p
-            className="metadata-description"
-            title={availableTracks[currentTrack].description}
-          >
-            {availableTracks[currentTrack].description}
-          </p>
-        )}
-        {project && (
-          <Link
-            href={`/work/${project.slug}`}
-            className="metadata-project-link"
-          >
-            From {project.title}
-          </Link>
-        )}
-      </div>
+      {showMetadata && (
+        <div className="metadata">
+          <h3 className="font-family-baloo h4 metadata-title">
+            <span className="metadata-title-text">
+              {availableTracks[currentTrack].title}
+            </span>
+          </h3>
+          {availableTracks[currentTrack].description && (
+            <p
+              className="metadata-description"
+              title={availableTracks[currentTrack].description}
+            >
+              {availableTracks[currentTrack].description}
+            </p>
+          )}
+          {project && (
+            <Link
+              href={`/work/${project.slug}`}
+              className="metadata-project-link"
+            >
+              From {project.title}
+            </Link>
+          )}
+        </div>
+      )}
       <div className="player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>

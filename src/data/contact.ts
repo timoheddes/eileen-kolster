@@ -50,7 +50,7 @@ export const contactPaths: ContactPath[] = [
       '',
       'Thanks,',
     ],
-    more: { label: 'Hear how adaptive music works', href: '/play' },
+    more: { label: 'Hear how adaptive music works', href: '/music' },
   },
   {
     id: 'other',

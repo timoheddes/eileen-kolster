@@ -5,11 +5,15 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://eileenkolster.com/biography</loc>
+    <loc>https://eileenkolster.com/about</loc>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://eileenkolster.com/work</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://eileenkolster.com/music</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -26,10 +30,6 @@
   </url>
   <url>
     <loc>https://eileenkolster.com/work/dieorama</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://eileenkolster.com/play</loc>
     <priority>0.7</priority>
   </url>
 </urlset>

@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from 'wouter';
+import { Switch, Route, Redirect, useLocation } from 'wouter';
 import { AnimatePresence } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 import { PageLoader } from '../components/Loaders';
@@ -7,12 +7,11 @@ import { PageLoader } from '../components/Loaders';
 import Home from './Home';
 // Other pages lazy-loaded to reduce initial bundle
 const Biography = lazy(() => import('./Biography'));
+const Music = lazy(() => import('./Music'));
 const Work = lazy(() => import('./Work'));
-const Play = lazy(() => import('./Play'));
 const Project = lazy(() => import('./Project'));
 const NotFound = lazy(() => import('./NotFound'));
 const Contact = lazy(() => import('./Contact'));
-const Share = lazy(() => import('./Share'));
 
 // Wrapper component to handle Suspense
 const LazyRoute = ({
@@ -33,23 +32,31 @@ const AnimatedRoutes = () => {
       <Switch key={location[0]} location={location[0]}>
         <Route path="/" component={() => <LazyRoute component={Home} />} />
         <Route
-          path="/biography"
+          path="/about"
           component={() => <LazyRoute component={Biography} />}
         />
+        <Route path="/biography">
+          <Redirect to="/about" replace />
+        </Route>
         <Route path="/work" component={() => <LazyRoute component={Work} />} />
         <Route
           path="/work/:slug"
           component={() => <LazyRoute component={Project} />}
         />
-        <Route path="/play" component={() => <LazyRoute component={Play} />} />
+        <Route
+          path="/music"
+          component={() => <LazyRoute component={Music} />}
+        />
+        <Route path="/play">
+          <Redirect to="/music" replace />
+        </Route>
         <Route
           path="/contact"
           component={() => <LazyRoute component={Contact} />}
         />
-        <Route
-          path="/share/:track"
-          component={() => <LazyRoute component={Share} />}
-        />
+        <Route path="/share/:track">
+          <Redirect to="/music" replace />
+        </Route>
         <Route>
           <LazyRoute component={NotFound} />
         </Route>
