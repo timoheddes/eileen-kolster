@@ -115,7 +115,7 @@
 
 .video-lightbox-content > video {
   max-width: 90vw;
-  max-height: 85vh;
+  max-height: 70vh;
   width: 100%;
   height: auto;
   border-radius: 6px;
@@ -131,6 +131,34 @@
   text-align: center;
 }
 
+.video-lightbox-quote {
+  margin: 0;
+  max-width: 60ch;
+  font-weight: 400;
+}
+
+.video-lightbox-quote blockquote {
+  margin: 0;
+  font-style: italic;
+}
+
+.video-lightbox-quote p {
+  margin: 0 0 0.4rem;
+  max-width: none;
+}
+
+.video-lightbox-quote figcaption {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* Over the native control bar the custom cursor shows no icon, so hand the
+   pointer back to the browser there, and over the caption. */
+body.native-cursor .video-lightbox-content,
+body.native-cursor .video-lightbox-content * {
+  cursor: auto;
+}
+
 /* ── Close button ── */
 
 .video-lightbox-close {
@@ -140,7 +168,7 @@
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
+  cursor: none;
   padding: 0.5rem;
   z-index: 10001;
   transition: color 0.2s ease;

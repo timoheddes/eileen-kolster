@@ -43,19 +43,21 @@ const Home = () => {
         <VideoPlayer
           src="/media/showreel.mp4"
           caption="Showreel"
+          lightboxCaption={
+            <figure className="video-lightbox-quote">
+              <blockquote>
+                <p>&ldquo;{sanskritiShrivastava.short}&rdquo;</p>
+              </blockquote>
+              <figcaption>
+                <strong>{sanskritiShrivastava.author}</strong>, director,{' '}
+                <em>Migratory Birds</em>
+              </figcaption>
+            </figure>
+          }
           buttonLabel="View my showreel"
           buttonIcon={<PlayIcon size={20} />}
         />
       </div>
-      <figure className="home-testimonial">
-        <blockquote>
-          <p>&ldquo;{sanskritiShrivastava.short}&rdquo;</p>
-        </blockquote>
-        <figcaption>
-          <strong>{sanskritiShrivastava.author}</strong>, director,{' '}
-          <em>Migratory Birds</em>
-        </figcaption>
-      </figure>
     </section>
   );
 };

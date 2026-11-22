@@ -6,6 +6,8 @@ import './VideoPlayer.css';
 interface VideoPlayerProps {
   src: string;
   caption?: string;
+  /** Richer content for the lightbox caption (defaults to `caption`). */
+  lightboxCaption?: React.ReactNode;
   /** Image shown on the thumbnail instead of a frame picked from the video. */
   poster?: string;
   posterTime?: number;
@@ -19,6 +21,7 @@ interface VideoPlayerProps {
 export default function VideoPlayer({
   src,
   caption,
+  lightboxCaption,
   poster,
   posterTime,
   startAt,
@@ -167,8 +170,10 @@ export default function VideoPlayer({
                 playsInline
                 preload="auto"
               />
-              {caption && (
-                <div className="video-lightbox-caption">{caption}</div>
+              {(lightboxCaption ?? caption) && (
+                <div className="video-lightbox-caption">
+                  {lightboxCaption ?? caption}
+                </div>
               )}
             </div>
           </div>,
