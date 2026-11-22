@@ -10,6 +10,9 @@ interface VideoPlayerProps {
   poster?: string;
   posterTime?: number;
   startAt?: number;
+  /** Render a button with this label instead of the thumbnail. */
+  buttonLabel?: string;
+  buttonIcon?: React.ReactNode;
   style?: React.CSSProperties;
 }
 
@@ -19,6 +22,8 @@ export default function VideoPlayer({
   poster,
   posterTime,
   startAt,
+  buttonLabel,
+  buttonIcon,
   style,
 }: VideoPlayerProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,28 +88,42 @@ export default function VideoPlayer({
 
   return (
     <>
-      <figure
-        className="image-border overlay video-border video-player-thumbnail"
-        style={style}
-        onClick={open}
-      >
-        {caption && <figcaption>{caption}</figcaption>}
-        <video
-          src={posterTime != null ? `${src}#t=${posterTime}` : src}
-          poster={poster}
-          preload={poster ? 'none' : 'metadata'}
-          playsInline
-          muted
-          aria-hidden="true"
-        />
-        <div className="video-player-play-icon" />
+      {buttonLabel ? (
         <button
           ref={triggerRef}
           type="button"
-          className="video-player-trigger"
-          aria-label={caption ? `Play video: ${caption}` : 'Play video'}
-        />
-      </figure>
+          className="button secondary icon"
+          style={style}
+          onClick={open}
+          data-cursor-text="Play"
+        >
+          {buttonLabel}
+          {buttonIcon}
+        </button>
+      ) : (
+        <figure
+          className="image-border overlay video-border video-player-thumbnail"
+          style={style}
+          onClick={open}
+        >
+          {caption && <figcaption>{caption}</figcaption>}
+          <video
+            src={posterTime != null ? `${src}#t=${posterTime}` : src}
+            poster={poster}
+            preload={poster ? 'none' : 'metadata'}
+            playsInline
+            muted
+            aria-hidden="true"
+          />
+          <div className="video-player-play-icon" />
+          <button
+            ref={triggerRef}
+            type="button"
+            className="video-player-trigger"
+            aria-label={caption ? `Play video: ${caption}` : 'Play video'}
+          />
+        </figure>
+      )}
 
       {isOpen &&
         createPortal(
