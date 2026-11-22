@@ -12,9 +12,20 @@
   }
 }
 
-#home div:nth-child(n) {
-  @media (max-width: 768px) {
-    margin-left: 1em;
+.home-hero {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 1100px) {
+  .home-hero {
+    grid-template-columns: minmax(0, 28rem) minmax(0, 1fr);
+    column-gap: var(--space-xl, 4rem);
+    align-items: start;
+  }
+
+  .home-reel {
+    padding-top: 0.5rem;
   }
 }
 

@@ -53,7 +53,13 @@ const Project = () => {
             <p key={t}>{t}</p>
           ))}
           {project.image && (
-            <figure className="image-border overlay" style={imageStyle}>
+            <figure
+              className="image-border overlay"
+              style={{
+                ...imageStyle,
+                maxWidth: project.image.maxWidth ?? imageStyle.maxWidth,
+              }}
+            >
               <img src={project.image.src} alt={project.image.alt} />
             </figure>
           )}
