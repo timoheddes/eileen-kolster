@@ -21,3 +21,38 @@
 .home-description {
   max-width: 800px;
 }
+
+.home-showreel {
+  margin: var(--space-md) 0 0;
+  max-width: 900px;
+}
+
+.home-showreel video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  background: var(--color-black);
+}
+
+.home-testimonial {
+  margin: var(--space-md) 0 0;
+  max-width: 700px;
+}
+
+.home-testimonial blockquote {
+  margin: 0;
+  font-style: italic;
+}
+
+.home-testimonial figcaption {
+  margin-top: var(--space-xs);
+}
+
+@media (max-width: 768px) {
+  .home-showreel,
+  .home-testimonial {
+    margin-inline: var(--space-sm);
+  }
+}

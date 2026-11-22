@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { FilmIcon } from '../assets/icons/Film';
+import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 import Button from '../components/Button/Button';
 
 import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp';
-import { AudioWaveformIcon } from '../assets/icons/AudioWaveform';
+import { sanskritiShrivastava } from '../data/testimonials';
 import useShareState from '../store/shareState';
 
 import './home.css';
@@ -32,30 +32,42 @@ const Home = () => {
           alt="Eileen on a rooftop terrace with her violin"
         />
       </figure>
-      <h2>An Amsterdam-based media composer</h2>
+      <h2>Composer for films and indie games</h2>
       <p className="font-size-1-2 home-description">
-        My music ranges from intimate acoustic and ambient textures to expansive
-        orchestral and synth-driven soundscapes.
+        Textured, emotionally driven scores, from intimate and ambient to dark
+        and uncanny. Live violin, acoustic instruments, found sounds, synths and
+        sound design.
       </p>
       <p className="font-size-1-2 font-style-bold">
-        I am passionate about contributing to new and intriguing projects.
+        Working on a film or game? Let&apos;s talk.
       </p>
       <div className="font-size-1-5 flex gap-1 mt-1">
         <Button
-          href="/work"
-          icon={<FilmIcon size={20} />}
-          data-cursor-text="View my work"
+          href="/contact"
+          icon={<MessageSquareShareIcon size={20} />}
+          data-cursor-text="Get in touch"
         >
-          My work
-        </Button>
-        <Button
-          href="/biography"
-          variant="secondary"
-          icon={<AudioWaveformIcon size={20} />}
-        >
-          My journey
+          Let&apos;s talk
         </Button>
       </div>
+      <section className="home-showreel" aria-label="Showreel">
+        <video
+          src="/media/showreel.mp4"
+          poster="/media/showreel-poster.jpg"
+          controls
+          playsInline
+          preload="none"
+        />
+      </section>
+      <figure className="home-testimonial">
+        <blockquote>
+          <p>&ldquo;{sanskritiShrivastava.short}&rdquo;</p>
+        </blockquote>
+        <figcaption>
+          <strong>{sanskritiShrivastava.author}</strong>, director,{' '}
+          <em>Migratory Birds</em>
+        </figcaption>
+      </figure>
     </section>
   );
 };
