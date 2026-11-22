@@ -14,11 +14,6 @@ const Particles = lazy(() =>
   import('./components/Particles').then((m) => ({ default: m.Particles })),
 );
 
-// Lazy-load Footer (contains audio player with heavy MP3 imports) to improve FCP/LCP
-const Footer = lazy(() =>
-  import('./components/Footer').then((m) => ({ default: m.Footer })),
-);
-
 // SSR-safe default for particle count
 const DEFAULT_PARTICLES = 50;
 const DESKTOP_PARTICLES = 100;
@@ -50,9 +45,6 @@ function App() {
           </Suspense>
         )}
       </Router>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
       <Analytics />
       <SpeedInsights />
     </>

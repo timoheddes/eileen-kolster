@@ -12,17 +12,17 @@
       "title": "Work | Eileen Kolster",
       "description": "Film and documentary scores by Eileen Kolster, a composer based in Amsterdam: the brief, the sound choices and the scored scenes."
     },
-    "/biography": {
+    "/music": {
+      "title": "Music | Eileen Kolster",
+      "description": "Listen to music for film and games by composer Eileen Kolster, including an adaptive score you can control: switch between exploration and combat and add layers."
+    },
+    "/about": {
       "title": "Eileen Kolster - My Journey",
       "description": "From Suzuki violin and acoustic engineering to scoring for film: the story of Amsterdam-based composer Eileen Kolster."
     },
     "/contact": {
       "title": "Eileen Kolster - Get in Touch",
       "description": "Get in touch with Eileen Kolster, a composer based in Amsterdam writing for film, documentary and games. Tell her about your project."
-    },
-    "/play": {
-      "title": "Play the music | Eileen Kolster",
-      "description": "Try adaptive game music: switch between exploration and combat, add vertical layers, and hear how the score reacts to play."
     }
   },
   "projects": {

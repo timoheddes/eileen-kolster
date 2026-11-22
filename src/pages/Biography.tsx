@@ -5,8 +5,8 @@ import seo from '../data/seo.json';
 const Biography = () => {
   return (
     <>
-      <title>{seo.pages['/biography'].title}</title>
-      <meta name="description" content={seo.pages['/biography'].description} />
+      <title>{seo.pages['/about'].title}</title>
+      <meta name="description" content={seo.pages['/about'].description} />
       <Timeline data={bio} />
     </>
   );

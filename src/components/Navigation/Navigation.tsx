@@ -6,16 +6,17 @@ import useMenuState from '../../store/menuState';
 import { useState, useRef, useEffect, useCallback } from 'react';
 
 // Static dynamic imports for preloading
-const preloadBiography = () => import('../../pages/Biography');
+const preloadAbout = () => import('../../pages/Biography');
 const preloadWork = () => import('../../pages/Work');
-const preloadPlay = () => import('../../pages/Play');
+const preloadMusic = () => import('../../pages/Music');
 const preloadContact = () => import('../../pages/Contact');
 
 const NAV_ITEMS = [
-  { href: '/work', label: 'My Work', preload: preloadWork },
-  { href: '/play', label: 'Play', preload: preloadPlay },
-  { href: '/biography', label: 'My Journey', preload: preloadBiography },
-  { href: '/contact', label: 'Get in touch', preload: preloadContact },
+  { href: '/', label: 'Home', preload: () => Promise.resolve() },
+  { href: '/work', label: 'Work', preload: preloadWork },
+  { href: '/music', label: 'Music', preload: preloadMusic },
+  { href: '/about', label: 'About', preload: preloadAbout },
+  { href: '/contact', label: 'Contact', preload: preloadContact },
 ];
 
 const navigationVariants = {
@@ -54,7 +55,7 @@ export const Navigation = () => {
   });
 
   const activeIndex = NAV_ITEMS.findIndex((item) =>
-    location.startsWith(item.href),
+    item.href === '/' ? location === '/' : location.startsWith(item.href),
   );
   const targetIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
 

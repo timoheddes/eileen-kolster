@@ -1,0 +1,33 @@
+#music {
+  max-width: 800px;
+  padding-bottom: var(--space-lg);
+}
+
+.music-section {
+  margin-top: var(--space-md);
+}
+
+.music-track {
+  margin: var(--space-md) 0;
+}
+
+.music-track h4 {
+  margin: 0;
+}
+
+.music-track-info {
+  margin: 0.25rem 0 var(--space-sm);
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.music-track-soon {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  #music {
+    margin-inline: var(--space-sm);
+  }
+}

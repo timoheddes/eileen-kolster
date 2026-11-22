@@ -1,24 +1,16 @@
-import { useEffect } from 'react';
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
 
 import Button from '../components/Button/Button';
+import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
 
 import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp';
 import { sanskritiShrivastava } from '../data/testimonials';
-import useShareState from '../store/shareState';
 
 import './home.css';
 
+const showreelStyle = { width: '100%', maxWidth: '900px', marginTop: '2rem' };
+
 const Home = () => {
-  const { sharedTrack, setSharedTrack } = useShareState();
-
-  // Clear shared track state when navigating to home
-  useEffect(() => {
-    if (sharedTrack) {
-      setSharedTrack(null);
-    }
-  }, [sharedTrack, setSharedTrack]);
-
   return (
     <section id="home">
       <figure className="header-image image-border overlay">
@@ -50,15 +42,12 @@ const Home = () => {
           Let&apos;s talk
         </Button>
       </div>
-      <section className="home-showreel" aria-label="Showreel">
-        <video
-          src="/media/showreel.mp4"
-          poster="/media/showreel-poster.jpg"
-          controls
-          playsInline
-          preload="none"
-        />
-      </section>
+      <VideoPlayer
+        src="/media/showreel.mp4"
+        poster="/media/showreel-poster.jpg"
+        caption="Showreel"
+        style={showreelStyle}
+      />
       <figure className="home-testimonial">
         <blockquote>
           <p>&ldquo;{sanskritiShrivastava.short}&rdquo;</p>
