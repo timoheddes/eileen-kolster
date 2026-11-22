@@ -47,14 +47,15 @@ const Project = () => {
           {project.intro.map((t) => (
             <p key={t}>{t}</p>
           ))}
+          {project.approach && <h3>My approach</h3>}
+          {project.approach?.map((t) => (
+            <p key={t}>{t}</p>
+          ))}
           {project.image && (
             <figure className="image-border overlay" style={videoStyle}>
               <img src={project.image.src} alt={project.image.alt} />
             </figure>
           )}
-          {project.approach?.map((t) => (
-            <p key={t}>{t}</p>
-          ))}
           {project.scenes.map((scene) => (
             <section key={scene.title} className="project-scene">
               <h3>Scene: {scene.title}</h3>
@@ -74,6 +75,17 @@ const Project = () => {
               )}
             </section>
           ))}
+          {project.testimonial && (
+            <figure className="project-testimonial">
+              <blockquote>
+                <p>&ldquo;{project.testimonial.quote}&rdquo;</p>
+              </blockquote>
+              <figcaption>
+                <strong>{project.testimonial.author}</strong>,{' '}
+                {project.testimonial.role.toLowerCase()}
+              </figcaption>
+            </figure>
+          )}
           <div className="font-size-1-5 flex gap-1 mt-1">
             <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
               Working on something similar?
