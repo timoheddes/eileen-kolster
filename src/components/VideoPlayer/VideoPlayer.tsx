@@ -6,6 +6,8 @@ import './VideoPlayer.css';
 interface VideoPlayerProps {
   src: string;
   caption?: string;
+  /** Image shown on the thumbnail instead of a frame picked from the video. */
+  poster?: string;
   posterTime?: number;
   startAt?: number;
   style?: React.CSSProperties;
@@ -14,6 +16,7 @@ interface VideoPlayerProps {
 export default function VideoPlayer({
   src,
   caption,
+  poster,
   posterTime,
   startAt,
   style,
@@ -88,7 +91,8 @@ export default function VideoPlayer({
         {caption && <figcaption>{caption}</figcaption>}
         <video
           src={posterTime != null ? `${src}#t=${posterTime}` : src}
-          preload="metadata"
+          poster={poster}
+          preload={poster ? 'none' : 'metadata'}
           playsInline
           muted
           aria-hidden="true"
@@ -138,6 +142,7 @@ export default function VideoPlayer({
                 ref={lightboxVideoRef}
                 aria-label={caption ?? 'Video'}
                 src={startAt != null ? `${src}#t=${startAt}` : src}
+                poster={poster}
                 controls
                 controlsList="nodownload"
                 playsInline
