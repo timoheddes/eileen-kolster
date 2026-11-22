@@ -20,6 +20,8 @@ export default function VideoPlayer({
 }: VideoPlayerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const lightboxVideoRef = useRef<HTMLVideoElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const activeAudioInstance = useAudioState((state) => state.activeInstance);
 
   const open = useCallback(() => {
@@ -37,12 +39,24 @@ export default function VideoPlayer({
     setIsOpen(false);
   }, []);
 
-  // Lock scroll & close on ESC
+  // Lock scroll, close on ESC, keep Tab inside the dialog
   useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close();
+      if (e.key !== 'Tab') return;
+      const focusable: (HTMLElement | null)[] = [
+        closeButtonRef.current,
+        lightboxVideoRef.current,
+      ];
+      const items = focusable.filter((el): el is HTMLElement => el !== null);
+      const index = items.indexOf(document.activeElement as HTMLElement);
+      const next = e.shiftKey
+        ? items[(index <= 0 ? items.length : index) - 1]
+        : items[(index + 1) % items.length];
+      e.preventDefault();
+      next?.focus();
     };
 
     document.body.style.overflow = 'hidden';
@@ -54,11 +68,14 @@ export default function VideoPlayer({
     };
   }, [isOpen, close]);
 
-  // Auto-play when lightbox opens
+  // Auto-play when the lightbox opens, move focus into it, and give focus
+  // back to the thumbnail when it closes
   useEffect(() => {
-    if (isOpen && lightboxVideoRef.current) {
-      lightboxVideoRef.current.play();
-    }
+    if (!isOpen) return;
+    const trigger = triggerRef.current;
+    closeButtonRef.current?.focus();
+    lightboxVideoRef.current?.play();
+    return () => trigger?.focus();
   }, [isOpen]);
 
   return (
@@ -74,19 +91,30 @@ export default function VideoPlayer({
           preload="metadata"
           playsInline
           muted
+          aria-hidden="true"
         />
         <div className="video-player-play-icon" />
+        <button
+          ref={triggerRef}
+          type="button"
+          className="video-player-trigger"
+          aria-label={caption ? `Play video: ${caption}` : 'Play video'}
+        />
       </figure>
 
       {isOpen &&
         createPortal(
           <div
             className="video-lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label={caption ?? 'Video'}
             onClick={(e) => {
               if (e.target === e.currentTarget) close();
             }}
           >
             <button
+              ref={closeButtonRef}
               className="video-lightbox-close"
               onClick={close}
               aria-label="Close video"
@@ -108,6 +136,7 @@ export default function VideoPlayer({
             <div className="video-lightbox-content">
               <video
                 ref={lightboxVideoRef}
+                aria-label={caption ?? 'Video'}
                 src={startAt != null ? `${src}#t=${startAt}` : src}
                 controls
                 controlsList="nodownload"
