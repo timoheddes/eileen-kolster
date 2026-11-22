@@ -1,4 +1,5 @@
 import { MessageSquareShareIcon } from '../assets/icons/MessageSquareShare';
+import { PlayIcon } from '../assets/icons/Play';
 
 import Button from '../components/Button/Button';
 import VideoPlayer from '../components/VideoPlayer/VideoPlayer';
@@ -7,8 +8,6 @@ import eileen_roof_violin from '../assets/images/photos/eileen-roof-violin.webp'
 import { sanskritiShrivastava } from '../data/testimonials';
 
 import './home.css';
-
-const showreelStyle = { width: '100%', maxWidth: '900px', marginTop: '2rem' };
 
 const Home = () => {
   return (
@@ -33,7 +32,7 @@ const Home = () => {
       <p className="font-size-1-2 font-style-bold">
         Working on a film or game? Let&apos;s talk.
       </p>
-      <div className="font-size-1-5 flex gap-1 mt-1">
+      <div className="font-size-1-5 flex gap-1 mt-1 mobile-ml-1">
         <Button
           href="/contact"
           icon={<MessageSquareShareIcon size={20} />}
@@ -41,22 +40,24 @@ const Home = () => {
         >
           Let&apos;s talk
         </Button>
+        <VideoPlayer
+          src="/media/showreel.mp4"
+          caption="Showreel"
+          lightboxCaption={
+            <figure className="video-lightbox-quote">
+              <blockquote>
+                <p>&ldquo;{sanskritiShrivastava.short}&rdquo;</p>
+              </blockquote>
+              <figcaption>
+                <strong>{sanskritiShrivastava.author}</strong>, director,{' '}
+                <em>Migratory Birds</em>
+              </figcaption>
+            </figure>
+          }
+          buttonLabel="View my showreel"
+          buttonIcon={<PlayIcon size={20} />}
+        />
       </div>
-      <VideoPlayer
-        src="/media/showreel.mp4"
-        poster="/media/showreel-poster.jpg"
-        caption="Showreel"
-        style={showreelStyle}
-      />
-      <figure className="home-testimonial">
-        <blockquote>
-          <p>&ldquo;{sanskritiShrivastava.short}&rdquo;</p>
-        </blockquote>
-        <figcaption>
-          <strong>{sanskritiShrivastava.author}</strong>, director,{' '}
-          <em>Migratory Birds</em>
-        </figcaption>
-      </figure>
     </section>
   );
 };

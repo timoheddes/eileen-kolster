@@ -11,33 +11,3 @@
     margin-left: -2%;
   }
 }
-
-#home div:nth-child(n) {
-  @media (max-width: 768px) {
-    margin-left: 1em;
-  }
-}
-
-.home-description {
-  max-width: 800px;
-}
-
-.home-testimonial {
-  margin: var(--space-md) 0 0;
-  max-width: 700px;
-}
-
-.home-testimonial blockquote {
-  margin: 0;
-  font-style: italic;
-}
-
-.home-testimonial figcaption {
-  margin-top: var(--space-xs);
-}
-
-@media (max-width: 768px) {
-  .home-testimonial {
-    margin-inline: var(--space-sm);
-  }
-}

@@ -19,6 +19,13 @@ const MODE_LABEL: Record<Mode, string> = {
   combat: 'Combat',
 };
 
+/** Stop feeding the particles from this engine, unless something else took over. */
+const releaseAnalyser = (engine: AdaptiveMusic | null) => {
+  if (engine && useAudioState.getState().analyser === engine.analyser) {
+    useAudioState.setState({ analyser: null });
+  }
+};
+
 export const AdaptiveDemo = () => {
   const engineRef = useRef<AdaptiveMusic | null>(null);
   const meterRef = useRef<Record<string, HTMLDivElement | null>>({});
@@ -34,6 +41,7 @@ export const AdaptiveDemo = () => {
 
   const stopEngine = useCallback(() => {
     window.clearTimeout(switchTimerRef.current);
+    releaseAnalyser(engineRef.current);
     engineRef.current?.stop();
     engineRef.current = null;
     setStatus('idle');
@@ -50,6 +58,7 @@ export const AdaptiveDemo = () => {
     return () => {
       window.removeEventListener('site-audio:play', onOtherAudio);
       window.clearTimeout(switchTimerRef.current);
+      releaseAnalyser(engineRef.current);
       engineRef.current?.stop();
       engineRef.current = null;
     };
@@ -81,6 +90,8 @@ export const AdaptiveDemo = () => {
       const engine = await AdaptiveMusic.create(adaptiveConfig);
       await engine.start();
       engineRef.current = engine;
+      // Let the background particles dance to the demo too.
+      useAudioState.setState({ analyser: engine.analyser });
       setStatus('ready');
       setMessage('Exploration is playing.');
     } catch (error) {

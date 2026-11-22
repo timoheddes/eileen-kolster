@@ -1,3 +1,9 @@
+// Tuning for how present the stars are. Kept low so they sit behind the
+// content instead of speckling the text.
+const MAX_EXTRA_SIZE = 1.4; // added to the 0.5px base size
+const OPACITY_SCALE = 0.7;
+const TWINKLE_STRENGTH = 0.12;
+
 export class Particle {
   // Position and size
   x: number;
@@ -55,12 +61,12 @@ export class Particle {
 
     // Size, speed, and opacity
     const depth = Math.random();
-    this.size = depth * 2 + 0.5;
+    this.size = depth * MAX_EXTRA_SIZE + 0.5;
     this.baseSpeedX = (Math.random() - 0.5) * depth * 0.1;
     this.baseSpeedY = (Math.random() - 0.5) * depth * 0.1;
     this.speedX = this.baseSpeedX;
     this.speedY = this.baseSpeedY;
-    this.opacity = depth * 0.5 + 0.1;
+    this.opacity = (depth * 0.5 + 0.1) * OPACITY_SCALE;
 
     // Position
     this.x = Math.random() * canvasWidth;
@@ -85,7 +91,7 @@ export class Particle {
     // Each particle takes a random amount of time to complete its fade-in (e.g., 1 to 3 seconds)
     this.fadeInDuration = 1000 + Math.random() * 2000;
     // Store the final opacity we want to reach
-    this.targetOpacity = depth * 0.5 + 0.1;
+    this.targetOpacity = (depth * 0.5 + 0.1) * OPACITY_SCALE;
     // Start completely transparent
     this.currentOpacity = 0;
   }
@@ -295,7 +301,8 @@ export class Particle {
 
     // --- OPACITY ---
     const twinkle =
-      Math.abs(Math.sin(this.twinkleOffset + Date.now() * 0.0005)) * 0.2;
+      Math.abs(Math.sin(this.twinkleOffset + Date.now() * 0.0005)) *
+      TWINKLE_STRENGTH;
     // The "sparkle" of the sound (presence) affects the glow
     const finalOpacity =
       this.currentOpacity + twinkle + audio.presence * this.size * 0.5;

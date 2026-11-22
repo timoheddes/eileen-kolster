@@ -39,7 +39,8 @@
 }
 
 @media (max-width: 768px) {
-  .project-facts {
+  .project-facts,
+  .project-testimonial figcaption {
     margin-inline: var(--space-sm);
   }
 }

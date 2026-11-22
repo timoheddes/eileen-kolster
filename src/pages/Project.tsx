@@ -9,6 +9,7 @@ import WorkLayout from '../components/WorkLayout/WorkLayout';
 import './work.css';
 
 const videoStyle = { width: '100%', maxWidth: '700px' };
+const imageStyle = { ...videoStyle, marginTop: 'var(--space-md)' };
 
 const Project = () => {
   const { slug } = useParams();
@@ -52,7 +53,13 @@ const Project = () => {
             <p key={t}>{t}</p>
           ))}
           {project.image && (
-            <figure className="image-border overlay" style={videoStyle}>
+            <figure
+              className="image-border overlay"
+              style={{
+                ...imageStyle,
+                maxWidth: project.image.maxWidth ?? imageStyle.maxWidth,
+              }}
+            >
               <img src={project.image.src} alt={project.image.alt} />
             </figure>
           )}
@@ -86,7 +93,7 @@ const Project = () => {
               </figcaption>
             </figure>
           )}
-          <div className="font-size-1-5 flex gap-1 mt-1">
+          <div className="font-size-1-5 flex gap-1 mt-1 mobile-ml-1">
             <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
               Working on something similar?
             </Button>

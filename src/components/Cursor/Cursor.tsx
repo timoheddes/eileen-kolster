@@ -18,6 +18,7 @@ export const Cursor = () => {
   const currentHoveredElementRef = useRef<HTMLElement | null>(null);
   const cursorModeRef = useRef<CursorMode>('default');
   const hoveredVideoRef = useRef<HTMLVideoElement | null>(null);
+  const inLightboxContentRef = useRef(false);
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -32,6 +33,13 @@ export const Cursor = () => {
       if (newMode !== cursorModeRef.current) {
         cursorModeRef.current = newMode;
         setCursorMode(newMode);
+      }
+      // Inside a video lightbox, 'default' means the control bar or the
+      // caption: show the system cursor there so it never disappears.
+      if (inLightboxContentRef.current && newMode === 'default') {
+        document.body.classList.add('native-cursor');
+      } else {
+        document.body.classList.remove('native-cursor');
       }
     };
 
@@ -59,6 +67,7 @@ export const Cursor = () => {
         '.video-lightbox-content > video',
       );
       hoveredVideoRef.current = lightboxVideo;
+      inLightboxContentRef.current = !!videoLightboxContent;
 
       let newMode: CursorMode = 'default';
       if (imageLightbox) newMode = 'close';
@@ -151,6 +160,7 @@ export const Cursor = () => {
     window.addEventListener('pause', handlePlaybackChange, true);
 
     return () => {
+      document.body.classList.remove('native-cursor');
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('mouseout', handleMouseOut);

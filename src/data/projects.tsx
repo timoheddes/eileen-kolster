@@ -2,7 +2,7 @@ import iMomClimax from '../assets/video/iMomClimax-web.mp4';
 import iMomCooking from '../assets/video/iMomCooking-web.mp4';
 import dieoramaCreativeProcess from '../assets/video/DieoramaCreativeProcess-web.mp4';
 import dieoramaPublicPlacements from '../assets/video/Dieoramatown-web.mp4';
-import migratoryBirds from '../assets/images/photos/migratory-birds.webp';
+import migratoryBirdsPoster from '../assets/images/photos/migratory-birds-poster.webp';
 
 import seo from './seo.json';
 import { sanskritiShrivastava } from './testimonials';
@@ -38,7 +38,8 @@ export interface Project {
   summary: string;
   /** Longer intro paragraphs for the project page. */
   intro: string[];
-  image?: { src: string; alt: string };
+  /** `maxWidth` keeps tall images such as posters from filling the column. */
+  image?: { src: string; alt: string; maxWidth?: string };
   scenes: Scene[];
   /** A collaborator's words about working with Eileen. */
   testimonial?: { quote: string; author: string; role: string };
@@ -63,8 +64,11 @@ export const projects: Project[] = [
       'A story of displacement and resilience following Laura, a South African stand-up comedian who relocates to the Netherlands. The film explores how love and memory migrate across borders through the central metaphor of a saree.',
       'Completed in 2026, the film has been selected for several international festivals.',
     ],
-    // TODO: swap for the poster with laurels once Eileen sends it.
-    image: { src: migratoryBirds, alt: 'Migratory Birds' },
+    image: {
+      src: migratoryBirdsPoster,
+      alt: 'Poster for Migratory Birds, with festival laurels: finalist at the 2026 WSXA Amsterdam International Film Festival and official selection at Migration Matters Film Festival, Amsterdam New Cinema Film Festival and SAFICXS International Lesbian Short Film Fest.',
+      maxWidth: '440px',
+    },
     approach: [
       "The film's narrative is driven by a continuous, intimate voiceover, so the score needed to support Laura's words without intruding. I followed her emotional arc: from the folky, nostalgic warmth of her everyday life in Amsterdam, through a piano waltz and a vintage ragtime for her stand-up scene, to piano and strings for the film's more complex moments of grief. Subtle ambient synths sit underneath to support the strings.",
       'For the ending, I restored a vintage jazz recording and gradually widened its stereo image as the credits roll, opening the sound out from her small private moment into the wider world.',
