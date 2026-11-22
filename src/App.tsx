@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import MainContent from './MainContent';
 import { Cursor } from './components/Cursor';
 import useCustomCursorDetection from './hooks/customCursor';
+import usePrefersReducedMotion from './hooks/prefersReducedMotion';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -26,6 +27,7 @@ const DESKTOP_BREAKPOINT = 768;
 function App() {
   const [numParticles, setNumParticles] = useState(DEFAULT_PARTICLES);
   const showCustomCursor = useCustomCursorDetection();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     // Update particle count based on screen width after mount
@@ -42,9 +44,11 @@ function App() {
       <Header />
       <Router>
         <MainContent />
-        <Suspense fallback={null}>
-          <Particles numParticles={numParticles} gravityWell={false} />
-        </Suspense>
+        {!prefersReducedMotion && (
+          <Suspense fallback={null}>
+            <Particles numParticles={numParticles} gravityWell={false} />
+          </Suspense>
+        )}
       </Router>
       <Suspense fallback={null}>
         <Footer />
