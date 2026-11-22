@@ -5,6 +5,7 @@ import dieoramaPublicPlacements from '../assets/video/Dieoramatown-web.mp4';
 import migratoryBirds from '../assets/images/photos/migratory-birds.webp';
 
 import seo from './seo.json';
+import { sanskritiShrivastava } from './testimonials';
 
 const projectSeo = seo.projects;
 
@@ -39,6 +40,8 @@ export interface Project {
   intro: string[];
   image?: { src: string; alt: string };
   scenes: Scene[];
+  /** A collaborator's words about working with Eileen. */
+  testimonial?: { quote: string; author: string; role: string };
   /** Extra approach paragraphs for projects without scenes yet. */
   approach?: string[];
   /** Order on the index page; lower first. */
@@ -53,18 +56,25 @@ export const projects: Project[] = [
     ...projectSeo['migratory-birds'],
     kind: 'Film',
     context: 'Commission',
-    status: 'In post-production',
+    status: 'Short film · 2026',
     byline: 'Film by Sanskriti Shrivastava',
     role: ['Composer'],
     intro: [
-      'A story of displacement and resilience following Laura, a South African stand-up comedian who relocates to the Netherlands.',
-      'The film explores how love and memory migrate across borders through the central metaphor of a saree.',
+      'A story of displacement and resilience following Laura, a South African stand-up comedian who relocates to the Netherlands. The film explores how love and memory migrate across borders through the central metaphor of a saree.',
+      'Completed in 2026, the film has been selected for several international festivals.',
     ],
+    // TODO: swap for the poster with laurels once Eileen sends it.
     image: { src: migratoryBirds, alt: 'Migratory Birds' },
     approach: [
-      "The film's narrative is driven by a continuous, intimate voiceover, which requires a highly nuanced textural underscore. My approach is focused on creating a sonic bed that mirrors the character's journey and exploring a range of aesthetics from folky, neoclassical acoustic elements to experimental synths and brass.",
-      "The goal is to build an atmosphere that supports and interacts with the character's spoken word without intruding, capturing her sentiment as she moves through different memories and surroundings.",
+      "The film's narrative is driven by a continuous, intimate voiceover, so the score needed to support Laura's words without intruding. I followed her emotional arc: from the folky, nostalgic warmth of her everyday life in Amsterdam, through a piano waltz and a vintage ragtime for her stand-up scene, to piano and strings for the film's more complex moments of grief. Subtle ambient synths sit underneath to support the strings.",
+      'For the ending, I restored a vintage jazz recording and gradually widened its stereo image as the credits roll, opening the sound out from her small private moment into the wider world.',
+      'I composed, mixed and delivered over 15 minutes of original score, including foley.',
     ],
+    testimonial: {
+      quote: sanskritiShrivastava.long,
+      author: sanskritiShrivastava.author,
+      role: 'Director',
+    },
     scenes: [],
     order: 0,
     published: true,
