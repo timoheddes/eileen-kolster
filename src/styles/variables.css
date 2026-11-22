@@ -26,7 +26,7 @@
   /* Type scale (rem so it does not depend on the parent's font size) */
   --text-sm: 0.875rem;
   --text-body: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
-  --text-lead: clamp(1.2rem, 1.1rem + 0.4vw, 1.35rem);
+  --text-lead: clamp(1.1rem, 1.05rem + 0.3vw, 1.25rem);
   --leading-body: 1.65;
   --leading-heading: 1.15;
 

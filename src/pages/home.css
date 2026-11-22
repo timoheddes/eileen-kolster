@@ -1,5 +1,5 @@
 #home .header-image {
-  margin: 0 0 2em 0;
+  margin: 0;
   width: 100%;
   height: auto;
   max-height: 430px;
@@ -10,4 +10,9 @@
     width: 104%;
     margin-left: -2%;
   }
+}
+
+/* The heading below the portrait owns the gap, like any other block. */
+#home .header-image + h2 {
+  margin-top: var(--space-md);
 }

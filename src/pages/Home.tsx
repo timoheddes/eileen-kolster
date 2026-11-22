@@ -29,9 +29,6 @@ const Home = () => {
         and uncanny. Live violin, acoustic instruments, found sounds, synths and
         sound design.
       </p>
-      <p className="font-size-1-2 font-style-bold">
-        Working on a film or game? Let&apos;s talk.
-      </p>
       <div className="font-size-1-5 flex gap-1 mt-1 mobile-ml-1">
         <Button
           href="/contact"
