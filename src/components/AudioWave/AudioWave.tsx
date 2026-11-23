@@ -6,10 +6,6 @@ import useAudioState from '../../store/audioState';
 import { squiglyWave } from './waveRender';
 import { RippleOutline } from '../Loaders';
 
-import { PlayIcon } from '../../assets/icons/Play';
-import { PauseIcon } from '../../assets/icons/Pause';
-import { SkipForwardIcon } from '../../assets/icons/SkipForward';
-import { SkipBackIcon } from '../../assets/icons/SkipBack';
 import useShareState from '../../store/shareState';
 import type { Track } from '../../types/tracks';
 import { Link, useLocation } from 'wouter';
@@ -187,23 +183,6 @@ export const AudioWave = ({
       <div className="player">
         <div className="audio-wave" style={style}>
           <div className={`audio-wave-container theme-${theme}`}>
-            <button
-              className={
-                availableTracks.length === 1 ? 'track-nav--disabled' : ''
-              }
-              onClick={() =>
-                availableTracks.length > 1 && changeTrack('previous')
-              }
-              aria-label="Previous track"
-              aria-disabled={availableTracks.length === 1}
-            >
-              <SkipBackIcon
-                color="white"
-                size={
-                  options?.height ? `${Number(options.height) * 0.5}px` : '50px'
-                }
-              />
-            </button>
             {!ready ? (
               <RippleOutline
                 size={
@@ -212,46 +191,14 @@ export const AudioWave = ({
               />
             ) : (
               <button
+                className="button primary audio-wave-toggle"
                 onClick={() => wavesurferRef.current?.playPause()}
                 ref={playButton}
-                aria-label="Play/Pause"
+                aria-pressed={playing}
               >
-                {!playing ? (
-                  <PlayIcon
-                    color="white"
-                    size={
-                      options?.height
-                        ? `${Number(options.height) * 0.8}px`
-                        : '50px'
-                    }
-                  />
-                ) : (
-                  <PauseIcon
-                    color="white"
-                    size={
-                      options?.height
-                        ? `${Number(options.height) * 0.8}px`
-                        : '50px'
-                    }
-                  />
-                )}
+                {playing ? 'Pause' : 'Play'}
               </button>
             )}
-            <button
-              className={
-                availableTracks.length === 1 ? 'track-nav--disabled' : ''
-              }
-              onClick={() => availableTracks.length > 1 && changeTrack('next')}
-              aria-label="Next track"
-              aria-disabled={availableTracks.length === 1}
-            >
-              <SkipForwardIcon
-                color="white"
-                size={
-                  options?.height ? `${Number(options.height) * 0.5}px` : '50px'
-                }
-              />
-            </button>
             <div
               className={`waveform ${playing ? 'playing' : 'paused'}`}
               style={{

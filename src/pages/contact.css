@@ -1,14 +1,21 @@
+/* The heading below the portrait owns the gap, like any other block. */
+#contact .header-image + h2 {
+  margin-top: var(--space-md);
+}
+
 #contact .header-image {
-  margin: 0 0 2em 0;
+  margin: 0;
   width: 100%;
   height: auto;
   max-height: 301px;
   max-width: 400px;
 
+  /* Full-bleed on small screens, past the page gutter. */
   @media (max-width: 768px) {
-    max-width: 104%;
-    width: 104%;
-    margin-left: -2%;
+    max-width: none;
+    /* The extra 4px pushes the image's own border off-screen. */
+    width: calc(100% + 2 * var(--space-sm) + 8px);
+    margin-inline: calc(-1 * (var(--space-sm) + 4px));
   }
 }
 
@@ -18,10 +25,6 @@
   }
   a {
     padding: 1em 0;
-  }
-
-  @media (max-width: 768px) {
-    margin-left: 1em;
   }
 }
 
@@ -35,16 +38,18 @@
   margin: var(--space-md) 0;
   display: grid;
   gap: var(--space-sm);
+  max-width: 40rem;
 
   li {
     display: grid;
     gap: 0.4rem;
   }
+}
 
-  @media (max-width: 768px) {
-    margin-left: 1em;
-    margin-right: 0.5em;
-  }
+/* The secondary link sits under its card, lined up with the card's text. */
+.contact-path-more {
+  padding-inline: calc(var(--space-md) + 1px);
+  font-size: var(--text-sm);
 }
 
 .contact-path {
@@ -76,9 +81,4 @@
 
 .contact-path-cta {
   text-decoration: underline;
-}
-
-.contact-path-more {
-  font-size: 0.9rem;
-  padding-left: 0.25rem;
 }

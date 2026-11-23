@@ -22,12 +22,6 @@
   gap: 1em;
 }
 
-.mobile-ml-1 {
-  @media (max-width: 768px) {
-    margin-left: 1em;
-  }
-}
-
 .ml-1 {
   margin-left: 1em;
 }

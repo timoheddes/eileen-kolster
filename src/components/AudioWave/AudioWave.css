@@ -130,29 +130,15 @@
   @media (max-width: 640px) {
     width: auto;
   }
-
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    min-height: 50px;
-    border-radius: 20px;
-    background: none;
-    cursor: pointer;
-    border: none;
-
-    svg {
-      transition: transform 0.1s ease-in-out;
-    }
-  }
-
-  button:hover svg {
-    transform: scale(1.15);
-  }
 }
 
 .track-nav--disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.audio-wave-toggle {
+  flex: none;
+  min-width: 6.5rem;
+  justify-content: center;
 }

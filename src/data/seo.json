@@ -9,15 +9,15 @@
       "description": "Eileen Kolster is a British/Dutch composer based in Amsterdam, writing for film, documentary and games. She is a violinist and pianist, and her music ranges from intimate acoustic and ambient textures to expansive orchestral and synth-driven soundscapes."
     },
     "/work": {
-      "title": "Work | Eileen Kolster",
+      "title": "My work | Eileen Kolster",
       "description": "Film and documentary scores by Eileen Kolster, a composer based in Amsterdam: the brief, the sound choices and the scored scenes."
     },
     "/music": {
-      "title": "Music | Eileen Kolster",
+      "title": "Listen | Eileen Kolster",
       "description": "Listen to music for film and games by composer Eileen Kolster, including an adaptive score you can control: switch between exploration and combat and add layers."
     },
     "/about": {
-      "title": "Eileen Kolster - My Journey",
+      "title": "About me | Eileen Kolster",
       "description": "From Suzuki violin and acoustic engineering to scoring for film: the story of Amsterdam-based composer Eileen Kolster."
     },
     "/contact": {
@@ -39,10 +39,12 @@
       "summary": "A portrait of a criminal defense investigator who creates intricate, gruesome miniatures of murder scenes."
     },
     "documentary-rescore": {
+      "draft": true,
       "title": "TODO: documentary title",
       "summary": "TODO: one sentence on what the documentary is about."
     },
     "indie-game": {
+      "draft": true,
       "title": "TODO: game title",
       "summary": "TODO: one sentence on the game and the music it needed (adaptive exploration and combat)."
     }

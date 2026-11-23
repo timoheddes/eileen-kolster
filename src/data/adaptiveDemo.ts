@@ -20,14 +20,15 @@ import toExplore from '../assets/stems/Transition_Combat_to_Exploration_92bpm.mp
  * They start on the downbeat, loop cleanly and are always running together;
  * the demo only changes their volume.
  *
- * Transitions (both start on a bar line):
- * - Exploration to combat is 5.5 beats long: a build-up that lasts exactly one
- *   bar, then a tail that rings into combat. Combat arrives on the downbeat
- *   after the build-up.
- * - Combat to exploration is exactly 2 bars: an impact followed by a long
- *   decay. Combat is cut under the impact and exploration fades in over the
- *   second bar.
- * Those entry points are tuned by ear in the `transitions` settings below.
+ * Everything is 92 BPM in 4/4: 1 beat = 0.652 s, 1 bar = 2.609 s.
+ *
+ * A state change waits for the next bar line of the playing loop, stops it with
+ * a very short fade, and plays the transition from its beginning. The incoming
+ * loop starts from its own beginning at a fixed time after the transition
+ * starts, and the transition's tail rings over it (Eileen's timing):
+ * - Exploration to combat: combat starts 2.549 s after the transition.
+ * - Combat to exploration: exploration starts 1 bar (2.609 s) after the
+ *   transition, with a 0.7 s fade-in on that first play only.
  */
 export const adaptiveConfig: AdaptiveConfig = {
   timing: { bpm: 92, beatsPerBar: 4, bars: 23 },
@@ -40,19 +41,7 @@ export const adaptiveConfig: AdaptiveConfig = {
     toExplore,
   },
   transitions: {
-    toCombat: {
-      // Exploration fades away under the build-up.
-      outFadeBars: 1,
-      // The combat loop comes in on the downbeat after the build-up.
-      inAtBar: 1,
-      inFadeBars: 0.05,
-    },
-    toExplore: {
-      // Combat is cut under the impact at the start of the transition.
-      outFadeBars: 0.05,
-      // Exploration fades in over the second bar of the decay.
-      inAtBar: 1,
-      inFadeBars: 1,
-    },
+    toCombat: { outFade: 0.03, inAfter: 2.549, inFade: 0 },
+    toExplore: { outFade: 0.03, inAfter: (60 / 92) * 4, inFade: 0.7 },
   },
 };

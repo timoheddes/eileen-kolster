@@ -16,6 +16,10 @@ export interface MusicTrack {
 export interface MusicSection {
   id: string;
   title: string;
+  /** One line under the section heading. */
+  blurb: string;
+  /** Small line under the section name in the side navigation. */
+  legend: string;
   tracks: MusicTrack[];
 }
 
@@ -23,12 +27,14 @@ export const musicSections: MusicSection[] = [
   {
     id: 'film',
     title: 'Film',
+    blurb: 'Suites from the films and documentaries I have scored.',
+    legend: 'Suites',
     tracks: [
       {
         id: 'migratory-birds-suite',
         title: 'Migratory Birds: suite',
         file: migratoryBirdsSuite,
-        info: 'Short film · 2026 · dir. Sanskriti Shrivastava',
+        info: 'Short film · 2026',
         description:
           'Four themes from the score: a bittersweet reflection, a nostalgic waltz through Amsterdam, the film’s emotional climax and a tender piano memory.',
       },
@@ -45,6 +51,8 @@ export const musicSections: MusicSection[] = [
   {
     id: 'games',
     title: 'Games',
+    blurb: 'Music that reacts to the player.',
+    legend: 'Interactive demo',
     tracks: [
       {
         id: 'adaptive-score',

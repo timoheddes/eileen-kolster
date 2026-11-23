@@ -150,11 +150,11 @@ export const projects: Project[] = [
   },
 
   // ---------------------------------------------------------------------
-  // WORK IN PROGRESS: published for preview on the feat/reimagined branch
+  // WORK IN PROGRESS: hidden (published: false) until the content and rights
+  // are ready. Previously published for preview on the feat/reimagined branch
   // only, with TODO placeholders. Fill in every TODO (title/summary live in
-  // seo.json) before feat/reimagined goes to main. Set published: false to
-  // hide one again, and the documentary rescore needs its footage rights
-  // confirmed before it goes live.
+  // seo.json, and drop `draft` there) before publishing. The documentary
+  // rescore also needs its footage rights confirmed before it goes live.
   // ---------------------------------------------------------------------
   {
     slug: 'documentary-rescore',
@@ -171,7 +171,7 @@ export const projects: Project[] = [
     // Publishing needs confirmation that the rescored footage can be shown.
     scenes: [],
     order: 3,
-    published: true,
+    published: false,
   },
   {
     slug: 'indie-game',
@@ -209,7 +209,7 @@ export const projects: Project[] = [
       },
     ],
     order: 4,
-    published: true,
+    published: false,
   },
 ];
 
