@@ -1,14 +1,39 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { Link } from 'wouter';
 import { AudioWave } from '../components/AudioWave';
 import { AdaptiveDemo } from '../components/AdaptiveDemo';
-import { musicSections } from '../data/music';
+import { musicSections, type MusicTrack } from '../data/music';
 import seo from '../data/seo.json';
 
 import '../components/Timeline/Timeline.css';
 import './music.css';
 
 const waveOptions = { cursorWidth: 0, height: 56 };
+
+/**
+ * The player is memoised: scrolling re-renders the page to move the section
+ * highlight, and a fresh `tracks` array would restart playback.
+ */
+const TrackPlayer = memo(function TrackPlayer({
+  track,
+}: {
+  track: MusicTrack;
+}) {
+  const tracks = useMemo(
+    () => [{ title: track.title, file: track.file as string }],
+    [track],
+  );
+  return (
+    <AudioWave
+      tracks={tracks}
+      theme="footer"
+      options={waveOptions}
+      showMetadata={false}
+      autoAdvance={false}
+      focusOnReady={false}
+    />
+  );
+});
 
 const Music = () => {
   const [activeId, setActiveId] = useState(musicSections[0].id);
@@ -91,14 +116,7 @@ const Music = () => {
                     </ul>
                     {!track.interactive &&
                       (track.file ? (
-                        <AudioWave
-                          tracks={[{ title: track.title, file: track.file }]}
-                          theme="footer"
-                          options={waveOptions}
-                          showMetadata={false}
-                          autoAdvance={false}
-                          focusOnReady={false}
-                        />
+                        <TrackPlayer track={track} />
                       ) : (
                         <p className="music-track-soon">Audio coming soon.</p>
                       ))}
