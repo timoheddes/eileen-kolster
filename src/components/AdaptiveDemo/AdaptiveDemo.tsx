@@ -176,7 +176,7 @@ export const AdaptiveDemo = () => {
               onChange={toggleLayer}
             />
             <span>
-              Add the {MODE_LABEL[mode].toLowerCase()} layer
+              Add the vertical layer
               <small>
                 Adds the vertical layer on top of the{' '}
                 {MODE_LABEL[mode].toLowerCase()} loop
