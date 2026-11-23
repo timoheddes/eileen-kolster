@@ -34,7 +34,7 @@ export const musicSections: MusicSection[] = [
         id: 'migratory-birds-suite',
         title: 'Migratory Birds: suite',
         file: migratoryBirdsSuite,
-        info: 'Short film · 2026 · dir. Sanskriti Shrivastava',
+        info: 'Short film · 2026',
         description:
           'Four themes from the score: a bittersweet reflection, a nostalgic waltz through Amsterdam, the film’s emotional climax and a tender piano memory.',
       },
