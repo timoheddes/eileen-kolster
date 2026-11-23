@@ -37,10 +37,3 @@
 .project-scene {
   margin-top: var(--space-md);
 }
-
-@media (max-width: 768px) {
-  .project-facts,
-  .project-testimonial figcaption {
-    margin-inline: var(--space-sm);
-  }
-}

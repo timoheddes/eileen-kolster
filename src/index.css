@@ -22,6 +22,10 @@
 html {
   /* Always show scrollbar to prevent layout shift between pages */
   overflow-y: scroll;
+  /* Browser surfaces take the palette too. */
+  scrollbar-color: rgb(255 255 255 / 28%) transparent;
+  accent-color: var(--color-light-azure);
+  caret-color: var(--color-light-azure);
 }
 
 body {
@@ -81,21 +85,12 @@ main {
     margin-right: var(--space-lg);
   }
 
+  /* One gutter for everything on small screens, instead of per-element
+     margins. Full-bleed images opt out with a negative inline margin. */
   @media (max-width: 768px) {
     margin-left: 0;
     margin-right: 0;
-    padding-bottom: 3em;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    .video-player-thumbnail,
-    small {
-      margin-left: var(--space-sm);
-      margin-right: var(--space-sm);
-    }
+    padding: 0 var(--space-sm) 3em;
   }
 }
 

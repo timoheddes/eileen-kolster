@@ -5,14 +5,25 @@
   max-height: 430px;
   max-width: 400px;
 
+  /* Full-bleed on small screens, past the page gutter. */
   @media (max-width: 768px) {
-    max-width: 104%;
-    width: 104%;
-    margin-left: -2%;
+    max-width: none;
+    /* The extra 4px pushes the image's own border off-screen. */
+    width: calc(100% + 2 * var(--space-sm) + 8px);
+    margin-inline: calc(-1 * (var(--space-sm) + 4px));
   }
 }
 
 /* The heading below the portrait owns the gap, like any other block. */
 #home .header-image + h2 {
   margin-top: var(--space-md);
+}
+
+/* Buttons keep their label on one line and wrap as a row instead. */
+#home .flex {
+  flex-wrap: wrap;
+}
+
+#home .button {
+  white-space: nowrap;
 }

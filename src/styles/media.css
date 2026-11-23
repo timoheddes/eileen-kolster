@@ -4,10 +4,6 @@
   position: relative;
   margin: 0;
 
-  @media (max-width: 768px) {
-    margin-left: 1em;
-  }
-
   > img,
   > video {
     width: 100%;

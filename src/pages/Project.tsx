@@ -91,7 +91,7 @@ const Project = () => {
             </figcaption>
           </figure>
         )}
-        <div className="font-size-1-5 flex gap-1 mt-1 mobile-ml-1">
+        <div className="font-size-1-5 flex gap-1 mt-1">
           <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
             Working on something similar?
           </Button>

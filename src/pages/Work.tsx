@@ -41,7 +41,7 @@ const Work = () => {
           Every project says which one it is.
         </p>
         <p>Pick a project from the list to see how it was made.</p>
-        <div className="font-size-1-5 flex gap-1 mt-1 mobile-ml-1">
+        <div className="font-size-1-5 flex gap-1 mt-1">
           <Button href="/contact" icon={<MessageSquareShareIcon size={20} />}>
             Get in touch
           </Button>
