@@ -4,11 +4,25 @@
 }
 
 .music-section {
-  margin-top: var(--space-md);
+  margin-top: var(--space-lg);
+  scroll-margin-top: var(--space-xl);
 }
 
+.music-section h3 {
+  margin: 0;
+}
+
+.music-section-blurb {
+  margin: var(--space-xs) 0 0;
+  opacity: 0.8;
+}
+
+/* Tracks are rows divided by a hairline, so the interactive demo can hold
+   its own panel without nesting boxes. */
 .music-track {
-  margin: var(--space-md) 0;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .music-track h4 {
@@ -16,12 +30,27 @@
 }
 
 .music-track-info {
-  margin: 0.25rem 0 var(--space-sm);
-  font-size: 0.9rem;
-  opacity: 0.75;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: var(--space-xs) 0 var(--space-sm);
+  padding: 0;
+}
+
+.music-track-info li {
+  padding: 1px 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-size: var(--text-sm);
 }
 
 .music-track-soon {
   font-style: italic;
   opacity: 0.75;
+}
+
+#music p a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }

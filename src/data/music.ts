@@ -16,6 +16,10 @@ export interface MusicTrack {
 export interface MusicSection {
   id: string;
   title: string;
+  /** One line under the section heading. */
+  blurb: string;
+  /** Small line under the section name in the side navigation. */
+  legend: string;
   tracks: MusicTrack[];
 }
 
@@ -23,6 +27,8 @@ export const musicSections: MusicSection[] = [
   {
     id: 'film',
     title: 'Film',
+    blurb: 'Suites from the films and documentaries I have scored.',
+    legend: 'Suites',
     tracks: [
       {
         id: 'migratory-birds-suite',
@@ -45,6 +51,8 @@ export const musicSections: MusicSection[] = [
   {
     id: 'games',
     title: 'Games',
+    blurb: 'Music that reacts to the player.',
+    legend: 'Interactive demo',
     tracks: [
       {
         id: 'adaptive-score',

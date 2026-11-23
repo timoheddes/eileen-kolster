@@ -13,9 +13,9 @@ const preloadContact = () => import('../../pages/Contact');
 
 const NAV_ITEMS = [
   { href: '/', label: 'Home', preload: () => Promise.resolve() },
-  { href: '/work', label: 'Work', preload: preloadWork },
-  { href: '/music', label: 'Music', preload: preloadMusic },
-  { href: '/about', label: 'About', preload: preloadAbout },
+  { href: '/work', label: 'My work', preload: preloadWork },
+  { href: '/music', label: 'Listen', preload: preloadMusic },
+  { href: '/about', label: 'About me', preload: preloadAbout },
   { href: '/contact', label: 'Contact', preload: preloadContact },
 ];
 
