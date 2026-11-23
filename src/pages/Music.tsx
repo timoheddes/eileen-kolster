@@ -1,13 +1,15 @@
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo } from 'react';
 import { Link } from 'wouter';
 import { AudioWave } from '../components/AudioWave';
 import { AdaptiveDemo } from '../components/AdaptiveDemo';
 import { musicSections, type MusicTrack } from '../data/music';
+import { scrollToSection, useScrollSpy } from '../hooks/useScrollSpy';
 import seo from '../data/seo.json';
 
 import '../components/Timeline/Timeline.css';
 import './music.css';
 
+const sectionIds = musicSections.map((section) => section.id);
 const waveOptions = { cursorWidth: 0, height: 56 };
 
 /**
@@ -36,24 +38,7 @@ const TrackPlayer = memo(function TrackPlayer({
 });
 
 const Music = () => {
-  const [activeId, setActiveId] = useState(musicSections[0].id);
-
-  // Highlight the section that is currently being read.
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-        }
-      },
-      { rootMargin: '-25% 0px -60% 0px' },
-    );
-    for (const { id } of musicSections) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
-    return () => observer.disconnect();
-  }, []);
+  const activeId = useScrollSpy(sectionIds);
 
   return (
     <>
@@ -70,11 +55,7 @@ const Music = () => {
                   aria-current={
                     activeId === section.id ? 'location' : undefined
                   }
-                  onClick={() =>
-                    document
-                      .getElementById(section.id)
-                      ?.scrollIntoView({ block: 'start' })
-                  }
+                  onClick={() => scrollToSection(section.id)}
                 >
                   <span>{section.title}</span>
                   <br />

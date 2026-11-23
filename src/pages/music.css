@@ -5,7 +5,6 @@
 
 .music-section {
   margin-top: var(--space-lg);
-  scroll-margin-top: var(--space-xl);
 }
 
 .music-section h3 {
