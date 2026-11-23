@@ -8,11 +8,10 @@ import './AdaptiveDemo.css';
 type Status = 'idle' | 'loading' | 'ready' | 'error';
 
 const METERS = [
-  { key: 'exploreBase', label: 'Exploration, base' },
-  { key: 'exploreLayer', label: 'Exploration, layer' },
-  { key: 'combatBase', label: 'Combat, base' },
-  { key: 'combatLayer', label: 'Combat, layer' },
+  { label: 'Exploration', base: 'exploreBase', layer: 'exploreLayer' },
+  { label: 'Combat', base: 'combatBase', layer: 'combatLayer' },
 ] as const;
+const METER_KEYS = METERS.flatMap(({ base, layer }) => [base, layer]);
 
 const MODE_LABEL: Record<Mode, string> = {
   explore: 'Exploration',
@@ -74,7 +73,7 @@ export const AdaptiveDemo = () => {
     const tick = () => {
       const levels = engineRef.current?.levels();
       if (levels) {
-        for (const { key } of METERS) {
+        for (const key of METER_KEYS) {
           const el = meterRef.current[key];
           if (el) el.style.transform = `scaleX(${levels[key].toFixed(3)})`;
         }
@@ -142,16 +141,16 @@ export const AdaptiveDemo = () => {
         Every change waits for the next beat or bar so the music stays in time.
       </p>
 
-      <div className="play-controls">
-        <button
-          type="button"
-          className="button primary play-toggle"
-          onClick={playing ? stopEngine : start}
-          disabled={status === 'loading'}
-        >
-          {playing ? 'Stop' : status === 'loading' ? 'Loading...' : 'Play'}
-        </button>
+      <button
+        type="button"
+        className="button primary play-toggle"
+        onClick={playing ? stopEngine : start}
+        disabled={status === 'loading'}
+      >
+        {playing ? 'Stop' : status === 'loading' ? 'Loading...' : 'Play'}
+      </button>
 
+      <div className="play-controls">
         <div role="group" aria-label="Game state" className="play-modes">
           {(['explore', 'combat'] as Mode[]).map((m) => (
             <button
@@ -185,17 +184,24 @@ export const AdaptiveDemo = () => {
               : 'Press Play to start the demo.'}
         </p>
 
-        <ul className="play-meters" aria-label="Stems playing">
-          {METERS.map(({ key, label }) => (
-            <li key={key}>
+        <ul
+          className="play-meters"
+          aria-label="Levels: base and vertical layer"
+        >
+          {METERS.map(({ label, base, layer }) => (
+            <li key={label}>
               <span>{label}</span>
-              <div className="play-meter-track">
-                <div
-                  className="play-meter-fill"
-                  ref={(el) => {
-                    meterRef.current[key] = el;
-                  }}
-                />
+              <div className="play-meter-bars">
+                {[base, layer].map((key) => (
+                  <div className="play-meter-track" key={key}>
+                    <div
+                      className="play-meter-fill"
+                      ref={(el) => {
+                        meterRef.current[key] = el;
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
             </li>
           ))}
@@ -209,7 +215,8 @@ export const AdaptiveDemo = () => {
         the layer&apos;s volume changes. Moving from exploration to combat, and
         back again, waits for the next bar, plays its own recorded{' '}
         <strong>transition</strong> and then starts the new state from its
-        beginning. The level meters show which stems are sounding.
+        beginning. Each meter shows the base (top bar) and the vertical layer
+        (bottom bar) sounding.
       </p>
     </div>
   );
