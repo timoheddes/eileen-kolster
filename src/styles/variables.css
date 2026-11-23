@@ -27,7 +27,7 @@
   --text-sm: 0.875rem;
   --text-body: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
   --text-lead: clamp(1.1rem, 1.05rem + 0.3vw, 1.25rem);
-  --leading-body: 1.65;
+  --leading-body: 1.5;
   --leading-heading: 1.15;
 
   /* Reading measure: about 65 characters per line */
