@@ -106,6 +106,7 @@ export const AdaptiveDemo = () => {
     const doneAt = engine.setMode(next);
     if (doneAt === null) return;
     setMode(next);
+    setLayers((prev) => ({ ...prev, [next]: false }));
     setSwitching(true);
     setMessage(
       `Switching to ${MODE_LABEL[next].toLowerCase()} on the next bar...`,
@@ -174,14 +175,9 @@ export const AdaptiveDemo = () => {
               type="checkbox"
               checked={layers[mode]}
               onChange={toggleLayer}
+              disabled={switching}
             />
-            <span>
-              Add the vertical layer
-              <small>
-                Adds the vertical layer on top of the{' '}
-                {MODE_LABEL[mode].toLowerCase()} loop
-              </small>
-            </span>
+            <span>Add the vertical layer</span>
           </label>
 
           <p className="play-status" role="status" aria-live="polite">
