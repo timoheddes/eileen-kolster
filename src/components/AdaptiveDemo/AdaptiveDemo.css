@@ -3,11 +3,6 @@
   margin-top: var(--space-md);
 }
 
-.play-start {
-  margin: var(--space-sm) 0;
-  font-size: 1.2rem;
-}
-
 .play-controls {
   display: grid;
   gap: var(--space-sm);
@@ -113,9 +108,17 @@
   }
 }
 
-.play-controls > .button {
+.play-controls > .play-toggle {
   justify-self: start;
+  min-width: 7rem;
+  justify-content: center;
   font-size: 1.1rem;
+}
+
+.play-mode:disabled,
+.play-layer input:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .adaptive-demo h5 {
